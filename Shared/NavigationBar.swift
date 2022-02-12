@@ -28,7 +28,7 @@ struct NavigationBar: View {
                 Text(title)
                     .foregroundColor(mainColor)
                     .padding()
-                    .addIdentifier(identifier)
+//                    .addIdentifier(identifier)
             }
             HStack {
                 if let leftButtonImage = leftImageView {
@@ -55,9 +55,9 @@ struct NavigationBar: View {
         .frame(height: Constants.height)
     }
 }
-
-extension View {
-    func addIdentifier(_ identifier: Identifier) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
-        accessibilityIdentifier(identifier.rawValue)
-    }
-}
+//
+//extension View {
+//    func addIdentifier(_ identifier: Identifier) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
+//        accessibilityIdentifier(identifier.rawValue)
+//    }
+//}

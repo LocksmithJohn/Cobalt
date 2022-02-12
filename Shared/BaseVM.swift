@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BaseVM {
+class BaseVM: ObservableObject {
 
     let screenType: ScreenType
 

@@ -11,15 +11,14 @@ import SwiftUI
 class Dependency: ObservableObject {
 
 //    let dateManager = DateManager()
-    let appState: AppState
-    let coreDataManager: CoreDataManager
-//    let interactor: InteractorProtocol
+    let interactor = Interactor()
+    let appState = AppState()
 
     private var bag = Set<AnyCancellable>()
 
-    @Published var routerInbox = IOS_Router()// tutaj routery chyba byly normalnie potworzone
-    @Published var routerTasks = IOS_Router()
-    @Published var routerProjects = IOS_Router()
+    @Published var notesRouter = Router()// tutaj routery chyba byly normalnie potworzone
+    @Published var tasksRouter = Router()
+    @Published var projectsRouter = Router()
 
     init() {
 //        self.coreDataManager = CoreDataManager(dateManager: dateManager)
@@ -31,9 +30,9 @@ class Dependency: ObservableObject {
 
     private func bindRouters() {
         #if os(iOS)
-        Publishers.Merge3(routerTasks.$screens,
-                          routerProjects.$screens,
-                          routerInbox.$screens)
+        Publishers.Merge3(notesRouter.$screens,
+                          tasksRouter.$screens,
+                          projectsRouter.$screens)
             .sink { [weak self] _ in
                 self?.objectWillChange.send()
             }

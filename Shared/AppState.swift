@@ -8,12 +8,19 @@
 import Combine
 import Foundation
 
-class AppState: {
+class AppState: TasksListAppState {
+
+    let coreDataManager = CoreDataManager.shared
+
+    var tasksSubject: CurrentValueSubject<[TaskDTO], Never> {
+        coreDataManager.tasksSubject
+    }
+
 
 }
 
 protocol TasksListAppState {
 
-    var tasksSubject: PassthroughSubject<[TaskDTO], Never>
+    var tasksSubject: CurrentValueSubject<[TaskDTO], Never> { get }
 
 }

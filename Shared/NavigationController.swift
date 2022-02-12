@@ -14,8 +14,8 @@ protocol NavigationController: UIViewControllerRepresentable {
     func updateUIViewController(_ navigationController: UINavigationController, context: Context)
     func makeCoordinator() -> NavigationStackCoordinator
     func snapShotStackView(navigationController: UINavigationController,
-                           container: Container,
-                           router: IOS_Router)
+                           dependency: Dependency,
+                           router: Router)
     func setInitialView()
 
 }
@@ -36,8 +36,8 @@ extension NavigationController {
     }
 
     func snapShotStackView(navigationController: UINavigationController,
-                           container: Container,
-                           router: IOS_Router) {
+                           dependency: Dependency,
+                           router: Router) {
         let presentedViewControllers = navigationController.viewControllers
         let newViewControllers = router.screens
             .filter { !$0.isModal }
@@ -45,14 +45,14 @@ extension NavigationController {
             let viewController = presentedViewControllers.first {
                 $0.title == screen.type.title
             }
-            let newVC = StackScreenViewController(container: container, type: screen.type)
+            let newVC = StackScreenViewController(dependency: dependency, type: screen.type)
             return viewController ?? newVC
         }
 
         navigationController.setViewControllers(newViewControllers, animated: true)
 
         if let screen = router.screens.first(where: { $0.isModal }) {
-            let modalVC = StackScreenViewController(container: container, type: screen.type)
+            let modalVC = StackScreenViewController(dependency: dependency, type: screen.type)
             navigationController.viewControllers.last?.present(modalVC, animated: true)
         } else {
             navigationController.viewControllers.forEach { $0.dismiss(animated: true) }

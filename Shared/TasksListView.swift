@@ -12,9 +12,9 @@ struct TasksListView: View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 
+    @ObservedObject var viewModel: TasksListVM
 
-
-    init() {
-        
+    init(viewModel: TasksListVM) {
+        self.viewModel = viewModel
     }
 }

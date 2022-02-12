@@ -9,15 +9,15 @@ import Foundation
 import SwiftUI
 
 class StackScreenViewController: UIHostingController<AnyView> {
-    var container: Container
-    var type: IOS_SType { didSet {
-        rootView = ScreenFactory.make(type: type, container: container)
+    var dependency: Dependency
+    var type: ScreenType { didSet {
+        rootView = ScreenFactory.make(type: type, dependency: dependency)
     } }
 
-    init(container: Container, type: IOS_SType) {
-        self.container = container
+    init(dependency: Dependency, type: ScreenType) {
+        self.dependency = dependency
         self.type = type
-        super.init(rootView: ScreenFactory.make(type: type, container: container))
+        super.init(rootView: ScreenFactory.make(type: type, dependency: dependency))
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.title = type.title
     }
@@ -28,9 +28,9 @@ class StackScreenViewController: UIHostingController<AnyView> {
 class Screen: Equatable {
 
     var isModal = false
-    var type = IOS_SType.tasks
+    var type = ScreenType.tasks
 
-    init(type: IOS_SType) {
+    init(type: ScreenType) {
         self.type = type
     }
 

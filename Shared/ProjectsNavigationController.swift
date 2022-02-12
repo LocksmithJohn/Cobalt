@@ -5,6 +5,7 @@
 //  Created by Jan Slusarz on 12/02/2022.
 //
 
+import SwiftUI
 import Foundation
 
 struct ProjectsNavigationController: NavigationController {
@@ -13,12 +14,12 @@ struct ProjectsNavigationController: NavigationController {
 
     func updateUIViewController(_ navigationController: UINavigationController, context: Context) {
         snapShotStackView(navigationController: navigationController,
-                          container: dependency,
-                          router: dependency.routerProjects)
+                          dependency: dependency,
+                          router: dependency.projectsRouter)
     }
 
     func setInitialView() {
-        container.routerProjects.setInitial(.projects)
+        dependency.projectsRouter.route(from: nil, to: .projects)
     }
 
 }

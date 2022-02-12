@@ -12,15 +12,16 @@ class Interactor: TasksListInteractor {
 
     private let coreDataManager = CoreDataManager.shared
 
+    func fetchTasks() {
+        coreDataManager.actionSubject.send(.fetchTasks)
+    }
+
 }
 
 protocol TasksListInteractor {
-//    var tasksSubject: PassthroughSubject<[TaskDTO], Never> { get }
     func fetchTasks()
 }
-
-extension TasksListInteractor {
-    func fetchTasks() {
-        coreDataManager.fetchTa
-    }
-}
+//
+//extension TasksListInteractor {
+//
+//}

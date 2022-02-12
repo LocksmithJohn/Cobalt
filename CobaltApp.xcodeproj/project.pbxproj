@@ -47,6 +47,16 @@
 		CE338AE927B7B773005289D1 /* StackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE727B7B773005289D1 /* StackAction.swift */; };
 		CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AEA27B7B890005289D1 /* BaseVM.swift */; };
 		CE338AEC27B7B890005289D1 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AEA27B7B890005289D1 /* BaseVM.swift */; };
+		CE338AEE27B7D9C9005289D1 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AED27B7D9C9005289D1 /* DateManager.swift */; };
+		CE338AEF27B7D9C9005289D1 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AED27B7D9C9005289D1 /* DateManager.swift */; };
+		CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF027B7D9F7005289D1 /* ItemType.swift */; };
+		CE338AF227B7D9F7005289D1 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF027B7D9F7005289D1 /* ItemType.swift */; };
+		CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */; };
+		CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */; };
+		CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */; };
+		CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */; };
+		CE61F6AE27B7FCC300A734EE /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */; };
+		CE61F6B027B7FE4E00A734EE /* VMFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AF27B7FE4E00A734EE /* VMFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +83,13 @@
 		CE338AE427B7B6A5005289D1 /* ScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenType.swift; sourceTree = "<group>"; };
 		CE338AE727B7B773005289D1 /* StackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackAction.swift; sourceTree = "<group>"; };
 		CE338AEA27B7B890005289D1 /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
+		CE338AED27B7D9C9005289D1 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		CE338AF027B7D9F7005289D1 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		CE338AF427B7DA1C005289D1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemObject+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
+		CE61F6AF27B7FE4E00A734EE /* VMFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +113,8 @@
 		CE338A9627B7A4E4005289D1 = {
 			isa = PBXGroup;
 			children = (
+				CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */,
+				CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */,
 				CE338A9B27B7A4E5005289D1 /* Shared */,
 				CE338AAA27B7A4E6005289D1 /* macOS */,
 				CE338AA427B7A4E6005289D1 /* Products */,
@@ -113,10 +132,15 @@
 				CE338AC027B7A5B7005289D1 /* TasksListView.swift */,
 				CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */,
 				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
+				CE338AF027B7D9F7005289D1 /* ItemType.swift */,
+				CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */,
+				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
 				CE338AC927B7A634005289D1 /* TasksListInteractor.swift */,
 				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
 				CE338ACF27B7A650005289D1 /* AppState.swift */,
 				CE338AD527B7A74C005289D1 /* NavigationBar.swift */,
+				CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */,
+				CE61F6AF27B7FE4E00A734EE /* VMFactory.swift */,
 				CE338AE427B7B6A5005289D1 /* ScreenType.swift */,
 				CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */,
 				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
@@ -245,18 +269,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE338AAE27B7A4E6005289D1 /* ContentView.swift in Sources */,
+				CE61F6B027B7FE4E00A734EE /* VMFactory.swift in Sources */,
+				CE338AEE27B7D9C9005289D1 /* DateManager.swift in Sources */,
 				CE338AD027B7A650005289D1 /* AppState.swift in Sources */,
 				CE338AE827B7B773005289D1 /* StackAction.swift in Sources */,
+				CE61F6AE27B7FCC300A734EE /* ScreenFactory.swift in Sources */,
 				CE338AD327B7A68D005289D1 /* Item.swift in Sources */,
 				CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */,
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
+				CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
+				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
 				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
+				CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */,
 				CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */,
+				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
@@ -271,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
+				CE338AEF27B7D9C9005289D1 /* DateManager.swift in Sources */,
 				CE338AD127B7A650005289D1 /* AppState.swift in Sources */,
 				CE338AE927B7B773005289D1 /* StackAction.swift in Sources */,
 				CE338AD427B7A68D005289D1 /* Item.swift in Sources */,
@@ -278,11 +310,13 @@
 				CE338AE627B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
+				CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE338ACE27B7A63B005289D1 /* Dependency.swift in Sources */,
 				CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAD27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
+				CE338AF227B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC827B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CE338AC527B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
 				CE338AD727B7A74C005289D1 /* NavigationBar.swift in Sources */,
@@ -554,6 +588,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE338AF427B7DA1C005289D1 /* Model.xcdatamodel */,
+			);
+			currentVersion = CE338AF427B7DA1C005289D1 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE338A9727B7A4E4005289D1 /* Project object */;
 }

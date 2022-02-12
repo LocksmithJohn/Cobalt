@@ -11,16 +11,26 @@ import Foundation
 
 class CoreDataManager {
 
+    enum Action {
+        case fetchTask(id: UUID)
+        case fetchTasks
+        case fetchProject(id: UUID)
+        case fetchProjects
+    }
+
     static let shared = CoreDataManager()
 
-    private init() {}
+    private init() {
+        bindAction()
+    }
 
     let projectsSubject = CurrentValueSubject<[ProjectDTO], Never>([])
-    let projectSubject = CurrentValueSubject<ProjectDTO?, Never>()
+    let projectSubject = CurrentValueSubject<ProjectDTO?, Never>(nil)
     let tasksSubject = CurrentValueSubject<[TaskDTO], Never>([])
-    let taskSubject = CurrentValueSubject<TaskDTO?, Never>()
+    let taskSubject = CurrentValueSubject<TaskDTO?, Never>(nil)
 
     let syncTimeSubject = PassthroughSubject<String?, Never>()
+    let actionSubject = PassthroughSubject<Action, Never>()
 
     var managedContext: NSManagedObjectContext {
         let context = persistentContainer.viewContext
@@ -28,7 +38,7 @@ class CoreDataManager {
         return context
     }
 
-    private let dateManager: DateManager
+    private var dateManager = DateManager() // tutaj zle
     private var controllers: [NSFetchedResultsController<NSFetchRequestResult>] = []
     private var cancellableBag = Set<AnyCancellable>()
 
@@ -42,6 +52,27 @@ class CoreDataManager {
         return container
     }()
 
+    private func bindAction() {
+        actionSubject
+            .sink { [weak self] action in
+                self?.handleAction(action: action)
+            }
+            .store(in: &cancellableBag)
+    }
+
+    private func handleAction(action: Action) {
+        switch action {
+        case let .fetchTask(id):
+            fetchTask(id: id)
+        case .fetchTasks:
+            fetchTasks()
+        case let .fetchProject(id):
+            fetchProject(id: id)
+        case .fetchProjects:
+            fetchProjects()
+        }
+    }
+
     func saveContext() {
         if managedContext.hasChanges {
             do {
@@ -53,40 +84,34 @@ class CoreDataManager {
         }
     }
 
-    private func setFetchedResultsController(entityType: EntityType) {
-        let className = String(describing: entityType.type.self)
-        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: className)
-        fetch.sortDescriptors = [NSSortDescriptor(key: entityType.mainAttributeName, ascending: true)]
-        let resultsController = NSFetchedResultsController(fetchRequest: fetch,
-                                                           managedObjectContext: managedContext,
-                                                           sectionNameKeyPath: nil,
-                                                           cacheName: nil)
-        resultsController.delegate = self
-        controllers.append(resultsController)
-    }
+    //    private func setFetchedResultsController(entityType: ItemType) {
+    //        let className = String(describing: entityType.type.self)
+    //        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: className)
+    //        fetch.sortDescriptors = [NSSortDescriptor(key: entityType.mainAttributeName, ascending: true)]
+    //        let resultsController = NSFetchedResultsController(fetchRequest: fetch,
+    //                                                           managedObjectContext: managedContext,
+    //                                                           sectionNameKeyPath: nil,
+    //                                                           cacheName: nil)
+    //        resultsController.delegate = self
+    //        controllers.append(resultsController)
+    //    }
 
     init(dateManager: DateManager) {
         self.dateManager = dateManager
-        super.init()
-        setFetchedResultsController(entityType: .project)
-        setFetchedResultsController(entityType: .task)
+        //        super.init()
+        //        setFetchedResultsController(entityType: .project)
+        //        setFetchedResultsController(entityType: .task)
         dateManager.startSyncTimer()
         bindSyncTimer()
-        getInitialData()
+        //        getInitialData()
         fetch()
     }
 
-    func fetch() {
-        do {
-            try controllers.first?.performFetch()
-        } catch {
-            fatalError()
-        }
-        do {
-            try controllers.last?.performFetch()
-        } catch {
-            fatalError()
-        }
+    private func fetch() {// tutaj do wyalenia?
+        do { try controllers.first?.performFetch() }
+        catch { fatalError() }
+        do { try controllers.last?.performFetch() }
+        catch { fatalError() }
     }
 
     private func bindSyncTimer() {
@@ -97,14 +122,50 @@ class CoreDataManager {
             .store(in: &cancellableBag)
     }
 
-    private func getInitialData() {
-        if let projects = getItems(entityType: .project) as? [Project_CD] {
-            projectsSubject.send(projects)
-        }
-        if let tasks = getItems(entityType: .task) as? [Task_CD] {
-            tasksSubject.send(tasks)
+    func fetchTask(id: UUID) {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+
+        if let itemObject = try? managedContext.fetch(request).first {
+            taskSubject.send(TaskDTO(itemObject: itemObject))
         }
     }
+
+    func fetchProject(id: UUID) {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+
+        if let itemObject = try? managedContext.fetch(request).first {
+            projectSubject.send(ProjectDTO(itemObject: itemObject))
+        }
+    }
+
+    func fetchTasks() {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "type == %@", ItemType.task.rawValue)
+
+        if let itemObjects = try? managedContext.fetch(request) {
+            tasksSubject.send(itemObjects.map { TaskDTO(itemObject: $0) })
+        }
+    }
+
+    func fetchProjects() {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "type == %@", ItemType.project.rawValue)
+
+        if let itemObjects = try? managedContext.fetch(request) {
+            projectsSubject.send(itemObjects.map { ProjectDTO(itemObject: $0) })
+        }
+    }
+
+    //    private func getInitialData() {
+    //        if let projects = getItems(entityType: .project) as? [Project_CD] {
+    //            projectsSubject.send(projects)
+    //        }
+    //        if let tasks = getItems(entityType: .task) as? [Task_CD] {
+    //            tasksSubject.send(tasks)
+    //        }
+    //    }
 }
 
 

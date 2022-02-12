@@ -16,5 +16,6 @@ final class TasksListVM: BaseVM {
          appstate: TasksListAppState) {
         self.interactor = interactor
         self.appstate = appstate
+        super.init(screenType: .tasks)
     }
 }
