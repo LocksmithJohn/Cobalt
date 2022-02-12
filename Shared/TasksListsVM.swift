@@ -8,5 +8,13 @@
 import Foundation
 
 final class TasksListVM: BaseVM {
-    
+
+    private let appstate: TasksListAppState
+    private let interactor: TasksListInteractor
+
+    init(interactor: TasksListInteractor,
+         appstate: TasksListAppState) {
+        self.interactor = interactor
+        self.appstate = appstate
+    }
 }

@@ -41,6 +41,12 @@
 		CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ADE27B7A9D7005289D1 /* NavigationController.swift */; };
 		CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */; };
 		CE338AE327B7A9FC005289D1 /* StackScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */; };
+		CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE427B7B6A5005289D1 /* ScreenType.swift */; };
+		CE338AE627B7B6A5005289D1 /* ScreenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE427B7B6A5005289D1 /* ScreenType.swift */; };
+		CE338AE827B7B773005289D1 /* StackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE727B7B773005289D1 /* StackAction.swift */; };
+		CE338AE927B7B773005289D1 /* StackAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE727B7B773005289D1 /* StackAction.swift */; };
+		CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AEA27B7B890005289D1 /* BaseVM.swift */; };
+		CE338AEC27B7B890005289D1 /* BaseVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AEA27B7B890005289D1 /* BaseVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +70,9 @@
 		CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNavigationController.swift; sourceTree = "<group>"; };
 		CE338ADE27B7A9D7005289D1 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackScreenViewController.swift; sourceTree = "<group>"; };
+		CE338AE427B7B6A5005289D1 /* ScreenType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenType.swift; sourceTree = "<group>"; };
+		CE338AE727B7B773005289D1 /* StackAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackAction.swift; sourceTree = "<group>"; };
+		CE338AEA27B7B890005289D1 /* BaseVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +108,7 @@
 				CE338A9C27B7A4E5005289D1 /* CobaltAppApp.swift */,
 				CE338A9D27B7A4E5005289D1 /* ContentView.swift */,
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
+				CE338AE727B7B773005289D1 /* StackAction.swift */,
 				CE338ABD27B7A5AE005289D1 /* Interactor.swift */,
 				CE338AC027B7A5B7005289D1 /* TasksListView.swift */,
 				CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */,
@@ -107,8 +117,10 @@
 				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
 				CE338ACF27B7A650005289D1 /* AppState.swift */,
 				CE338AD527B7A74C005289D1 /* NavigationBar.swift */,
+				CE338AE427B7B6A5005289D1 /* ScreenType.swift */,
 				CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */,
 				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
+				CE338AEA27B7B890005289D1 /* BaseVM.swift */,
 				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
 				CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */,
 				CE338AD227B7A68D005289D1 /* Item.swift */,
@@ -234,7 +246,10 @@
 			files = (
 				CE338AAE27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CE338AD027B7A650005289D1 /* AppState.swift in Sources */,
+				CE338AE827B7B773005289D1 /* StackAction.swift in Sources */,
 				CE338AD327B7A68D005289D1 /* Item.swift in Sources */,
+				CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */,
+				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
@@ -257,7 +272,10 @@
 			files = (
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CE338AD127B7A650005289D1 /* AppState.swift in Sources */,
+				CE338AE927B7B773005289D1 /* StackAction.swift in Sources */,
 				CE338AD427B7A68D005289D1 /* Item.swift in Sources */,
+				CE338AEC27B7B890005289D1 /* BaseVM.swift in Sources */,
+				CE338AE627B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE338ACE27B7A63B005289D1 /* Dependency.swift in Sources */,

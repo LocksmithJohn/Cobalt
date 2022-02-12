@@ -15,5 +15,5 @@ class AppState: {
 protocol TasksListAppState {
 
     var tasksSubject: PassthroughSubject<[TaskDTO], Never>
-    
+
 }

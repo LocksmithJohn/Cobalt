@@ -8,10 +8,15 @@
 import Foundation
 
 class Item {
-    let name
-    let desrciption
+    let name: String
+    let itemDesrciption: String
+    
+    init(name: String, itemDesrciption: String) {
+        self.name = name
+        self.itemDesrciption = itemDesrciption
+    }
 }
 
-class TaskDTO: Item {
+class TaskDTO: Item {}
 
-}
+class ProjectDTO: Item {}

@@ -16,7 +16,6 @@ struct NavigationBarModifier: ViewModifier {
     let rightButtonAction: (() -> Void)?
     let syncDate: Binding<String?>?
     let mainColor: Color
-    let identifier: Identifier
 
     init(_ title: String? = nil,
          leftImageView: AnyView? = nil,
@@ -32,7 +31,6 @@ struct NavigationBarModifier: ViewModifier {
         self.rightButtonAction = rightButtonAction
         self.syncDate = syncDate
         self.mainColor = mainColor
-        self.identifier = identifier
     }
 
     func body(content: Content) -> some View {
