@@ -13,6 +13,34 @@
 		CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338A9D27B7A4E5005289D1 /* ContentView.swift */; };
 		CE338AB027B7A4E6005289D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE338A9E27B7A4E6005289D1 /* Assets.xcassets */; };
 		CE338AB127B7A4E6005289D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE338A9E27B7A4E6005289D1 /* Assets.xcassets */; };
+		CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ABA27B7A5A7005289D1 /* Router.swift */; };
+		CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ABA27B7A5A7005289D1 /* Router.swift */; };
+		CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ABD27B7A5AE005289D1 /* Interactor.swift */; };
+		CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ABD27B7A5AE005289D1 /* Interactor.swift */; };
+		CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC027B7A5B7005289D1 /* TasksListView.swift */; };
+		CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC027B7A5B7005289D1 /* TasksListView.swift */; };
+		CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */; };
+		CE338AC527B7A5E2005289D1 /* TasksListsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */; };
+		CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC627B7A603005289D1 /* CoreDataManager.swift */; };
+		CE338AC827B7A603005289D1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC627B7A603005289D1 /* CoreDataManager.swift */; };
+		CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC927B7A634005289D1 /* TasksListInteractor.swift */; };
+		CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AC927B7A634005289D1 /* TasksListInteractor.swift */; };
+		CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ACC27B7A63B005289D1 /* Dependency.swift */; };
+		CE338ACE27B7A63B005289D1 /* Dependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ACC27B7A63B005289D1 /* Dependency.swift */; };
+		CE338AD027B7A650005289D1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ACF27B7A650005289D1 /* AppState.swift */; };
+		CE338AD127B7A650005289D1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ACF27B7A650005289D1 /* AppState.swift */; };
+		CE338AD327B7A68D005289D1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AD227B7A68D005289D1 /* Item.swift */; };
+		CE338AD427B7A68D005289D1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AD227B7A68D005289D1 /* Item.swift */; };
+		CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AD527B7A74C005289D1 /* NavigationBar.swift */; };
+		CE338AD727B7A74C005289D1 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AD527B7A74C005289D1 /* NavigationBar.swift */; };
+		CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */; };
+		CE338ADA27B7A77F005289D1 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */; };
+		CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */; };
+		CE338ADD27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */; };
+		CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ADE27B7A9D7005289D1 /* NavigationController.swift */; };
+		CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338ADE27B7A9D7005289D1 /* NavigationController.swift */; };
+		CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */; };
+		CE338AE327B7A9FC005289D1 /* StackScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +50,20 @@
 		CE338AA327B7A4E6005289D1 /* CobaltApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobaltApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE338AA927B7A4E6005289D1 /* CobaltApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CobaltApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE338AAB27B7A4E6005289D1 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		CE338ABA27B7A5A7005289D1 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CE338ABD27B7A5AE005289D1 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		CE338AC027B7A5B7005289D1 /* TasksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListView.swift; sourceTree = "<group>"; };
+		CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListsVM.swift; sourceTree = "<group>"; };
+		CE338AC627B7A603005289D1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		CE338AC927B7A634005289D1 /* TasksListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListInteractor.swift; sourceTree = "<group>"; };
+		CE338ACC27B7A63B005289D1 /* Dependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependency.swift; sourceTree = "<group>"; };
+		CE338ACF27B7A650005289D1 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		CE338AD227B7A68D005289D1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		CE338AD527B7A74C005289D1 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
+		CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsNavigationController.swift; sourceTree = "<group>"; };
+		CE338ADE27B7A9D7005289D1 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackScreenViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +98,20 @@
 			children = (
 				CE338A9C27B7A4E5005289D1 /* CobaltAppApp.swift */,
 				CE338A9D27B7A4E5005289D1 /* ContentView.swift */,
+				CE338ABA27B7A5A7005289D1 /* Router.swift */,
+				CE338ABD27B7A5AE005289D1 /* Interactor.swift */,
+				CE338AC027B7A5B7005289D1 /* TasksListView.swift */,
+				CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */,
+				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
+				CE338AC927B7A634005289D1 /* TasksListInteractor.swift */,
+				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
+				CE338ACF27B7A650005289D1 /* AppState.swift */,
+				CE338AD527B7A74C005289D1 /* NavigationBar.swift */,
+				CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */,
+				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
+				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
+				CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */,
+				CE338AD227B7A68D005289D1 /* Item.swift */,
 				CE338A9E27B7A4E6005289D1 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -177,7 +233,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE338AAE27B7A4E6005289D1 /* ContentView.swift in Sources */,
+				CE338AD027B7A650005289D1 /* AppState.swift in Sources */,
+				CE338AD327B7A68D005289D1 /* Item.swift in Sources */,
+				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
+				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
+				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
+				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
+				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
+				CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */,
+				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
+				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
+				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
+				CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
+				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
+				CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,7 +256,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
+				CE338AD127B7A650005289D1 /* AppState.swift in Sources */,
+				CE338AD427B7A68D005289D1 /* Item.swift in Sources */,
+				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
+				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
+				CE338ACE27B7A63B005289D1 /* Dependency.swift in Sources */,
+				CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */,
+				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAD27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
+				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
+				CE338AC827B7A603005289D1 /* CoreDataManager.swift in Sources */,
+				CE338AC527B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
+				CE338AD727B7A74C005289D1 /* NavigationBar.swift in Sources */,
+				CE338ADA27B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
+				CE338ADD27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
+				CE338AE327B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
