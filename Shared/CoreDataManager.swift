@@ -14,8 +14,10 @@ class CoreDataManager {
     enum Action {
         case fetchTask(id: UUID)
         case fetchTasks
+        case saveTask(task: TaskDTO)
         case fetchProject(id: UUID)
         case fetchProjects
+        case deleteItem(id: UUID)
     }
 
     static let shared = CoreDataManager()
@@ -70,6 +72,10 @@ class CoreDataManager {
             fetchProject(id: id)
         case .fetchProjects:
             fetchProjects()
+        case let .saveTask(task):
+            saveItem(item: task)
+        case let .deleteItem(id):
+            deleteItem(id: id)
         }
     }
 
@@ -155,6 +161,33 @@ class CoreDataManager {
 
         if let itemObjects = try? managedContext.fetch(request) {
             projectsSubject.send(itemObjects.map { ProjectDTO(itemObject: $0) })
+        }
+    }
+
+    func saveItem(item: Item) {
+        let itemObject = ItemObject(context: managedContext)
+        itemObject.name = item.name
+        itemObject.itemDescription = item.itemDesrciption
+        itemObject.id = item.id
+        itemObject.state = item.status.rawValue
+        itemObject.type = item.type.rawValue
+//        project.tasks.forEach {
+//            let task_cd = Task_CD(context: managedContext)
+//            task_cd.id = $0.id
+//            task_cd.name = $0.name
+//            task_cd.taskDescription = $0.description
+//            project_cd.addToTask(task_cd)
+//        }
+        saveContext()
+    }
+
+    func deleteItem(id: UUID) {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+
+        if let task_cd = try? managedContext.fetch(request).first {
+            managedContext.delete(task_cd)
+            saveContext()
         }
     }
 

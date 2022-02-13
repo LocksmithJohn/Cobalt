@@ -8,19 +8,40 @@
 import Combine
 import Foundation
 
-class AppState: TasksListAppState {
-
-    let coreDataManager = CoreDataManager.shared
-
-    var tasksSubject: CurrentValueSubject<[TaskDTO], Never> {
+class AppState: TasksListAppState,
+                TaskDetailsAppState,
+                ProjectsListAppState,
+                ProjectDetailsAppState {
+    var taskDetailsSubject: CurrentValueSubject<TaskDTO?, Never> {
+        coreDataManager.taskSubject
+    }
+    var tasksListSubject: CurrentValueSubject<[TaskDTO], Never> {
         coreDataManager.tasksSubject
     }
+    var projectsListSubject: CurrentValueSubject<[ProjectDTO], Never> {
+        coreDataManager.projectsSubject
+    }
+    var projectDetailsSubject: CurrentValueSubject<ProjectDTO?, Never> {
+        coreDataManager.projectSubject
+    }
 
+    let coreDataManager = CoreDataManager.shared
+    var isTabbarVisibleSubject = CurrentValueSubject<Bool, Never>(true)
 
 }
 
 protocol TasksListAppState {
+    var tasksListSubject: CurrentValueSubject<[TaskDTO], Never> { get }
+}
 
-    var tasksSubject: CurrentValueSubject<[TaskDTO], Never> { get }
+protocol TaskDetailsAppState {
+    var taskDetailsSubject: CurrentValueSubject<TaskDTO?, Never> { get }
+}
 
+protocol ProjectsListAppState {
+    var projectsListSubject: CurrentValueSubject<[ProjectDTO], Never> { get }
+}
+
+protocol ProjectDetailsAppState {
+    var projectDetailsSubject: CurrentValueSubject<ProjectDTO?, Never> { get }
 }

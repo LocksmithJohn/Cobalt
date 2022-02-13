@@ -8,7 +8,12 @@
 import Foundation
 
 class VMFactory {
-    static func tasksList(dependency: Dependency) -> TasksListVM {
-        TasksListVM(interactor: dependency.interactor, appstate: dependency.appState)
+    static func tasksList(_ dependency: Dependency) -> TasksListVM {
+        TasksListVM(interactor: Interactor(router: dependency.tasksRouter),
+                    appstate: dependency.appState)
+    }
+    static func taskDetails(_ dependency: Dependency, id: UUID?) -> TaskDetailsVM {
+        TaskDetailsVM(id: id, interactor: Interactor(router: dependency.tasksRouter),
+                    appstate: dependency.appState)
     }
 }

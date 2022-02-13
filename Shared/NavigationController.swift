@@ -42,17 +42,17 @@ extension NavigationController {
         let newViewControllers = router.screens
             .filter { !$0.isModal }
             .map { screen -> UIViewController in
-            let viewController = presentedViewControllers.first {
-                $0.title == screen.type.title
+                let viewController = presentedViewControllers.first {
+                    $0.title == screen.type.title
+                }
+                let newVC = StackScreenViewController(dependency: dependency, type: screen.type)
+                return viewController ?? newVC
             }
-            let newVC = StackScreenViewController(dependency: dependency, type: screen.type)
-            return viewController ?? newVC
-        }
-
         navigationController.setViewControllers(newViewControllers, animated: true)
 
         if let screen = router.screens.first(where: { $0.isModal }) {
             let modalVC = StackScreenViewController(dependency: dependency, type: screen.type)
+            modalVC.modalPresentationStyle = .overCurrentContext
             navigationController.viewControllers.last?.present(modalVC, animated: true)
         } else {
             navigationController.viewControllers.forEach { $0.dismiss(animated: true) }

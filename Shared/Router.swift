@@ -15,6 +15,11 @@ final class Router: ObservableObject {
         didSet { printStactInfo() }
     }
 
+    private let title: String
+    init(title: String) {
+        self.title = title
+    }
+
     private func send(_ action: StackAction) {
         switch action {
         case .set(let types):
@@ -59,7 +64,7 @@ final class Router: ObservableObject {
     }
 
     private func printStactInfo() {
-        print("screen     ----Screens----")
+        print("screen     ----\(title) : Screens----")
         screens.reversed().forEach {
             print("screen     |screen: \(String(describing: $0.type.title)) \($0.isModal ? "is Modal" : "")")
         }
@@ -71,6 +76,7 @@ final class Router: ObservableObject {
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
+        print("route form: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
         switch typeFrom {
 
             // MARK: - initial tab bar screens
@@ -79,13 +85,27 @@ final class Router: ObservableObject {
 
             // MARK: - Tasks screens flow
         case .tasks :
-            send(.push(.taskDetails(id: nil)))
-
+            if case let .taskDetails(id) = typeTo {
+                if id == nil {
+                    send(.present(.taskDetails(id: nil)))
+                } else {
+                    send(.push(.taskDetails(id: id)))
+                }
+            }
+        case let .taskDetails(id) where typeTo == .tasks:
+            if id == nil {
+                send(.dismiss)
+            } else {
+                send(.pop)
+            }
             // MARK: - Projects screens flow
         case .projects:
             send(.present(.projectDetails(id: nil)))
 
-        default: break
+
+        default:
+            print("route ^ missing route ^ ")
+
         }
     }
 

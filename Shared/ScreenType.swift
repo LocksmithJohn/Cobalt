@@ -16,6 +16,21 @@ enum ScreenType: Equatable {
     case noteDetails(id: UUID?)
 
     var title: String {
-        return "Tytuł"
+        switch self {
+        case .tasks:
+            return "Tasks"
+        case .taskDetails:
+            return "Task"
+        case .projects:
+            return "Projects"
+        case .projectDetails:
+            return "Tasks"
+        case .notes:
+            return "Notes"
+        case .noteDetails:
+            return "Note"
+        default:
+            return "Error screen"
+        }
     }
 }

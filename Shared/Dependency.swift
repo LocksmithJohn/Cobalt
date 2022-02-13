@@ -11,14 +11,14 @@ import SwiftUI
 class Dependency: ObservableObject {
 
 //    let dateManager = DateManager()
-    let interactor = Interactor()
+//    let interactor = Interactor()
     let appState = AppState()
 
     private var bag = Set<AnyCancellable>()
 
-    @Published var notesRouter = Router()// tutaj routery chyba byly normalnie potworzone
-    @Published var tasksRouter = Router()
-    @Published var projectsRouter = Router()
+    @Published var notesRouter = Router(title: "Notes")// tutaj routery chyba byly normalnie potworzone
+    @Published var tasksRouter = Router(title: "Tasks")
+    @Published var projectsRouter = Router(title: "Projects")
 
     init() {
 //        self.coreDataManager = CoreDataManager(dateManager: dateManager)

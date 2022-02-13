@@ -7,16 +7,19 @@
 
 import Foundation
 
-class Item {
+class Item: Identifiable {
+    let id: UUID
     let name: String
     let itemDesrciption: String
     let type: ItemType
     let status: ItemStatus
     
-    init(name: String,
+    init(id: UUID,
+         name: String,
          itemDesrciption: String,
          type: ItemType,
          status: ItemStatus) {
+        self.id = id
         self.name = name
         self.itemDesrciption = itemDesrciption
         self.type = type
@@ -24,7 +27,8 @@ class Item {
     }
 
     convenience init(itemObject: ItemObject) {
-        self.init(name: itemObject.name ?? "tutaj176",
+        self.init(id: itemObject.id,
+                  name: itemObject.name ?? "tutaj176",
                   itemDesrciption: itemObject.itemDescription ?? "tutaj765",
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new)
