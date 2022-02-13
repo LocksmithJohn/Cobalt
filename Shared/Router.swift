@@ -100,9 +100,21 @@ final class Router: ObservableObject {
             }
             // MARK: - Projects screens flow
         case .projects:
-            send(.present(.projectDetails(id: nil)))
+            if case let .projectDetails(id) = typeTo {
+                if id == nil {
+                    send(.present(.projectDetails(id: nil)))
+                } else {
+                    send(.push(.projectDetails(id: id)))
+                }
+            }
+            // MARK: - Project details screens flow
 
-
+        case let .projectDetails(id) where typeTo == .projects:
+            if id == nil {
+                send(.dismiss)
+            } else {
+                send(.pop)
+            }
         default:
             print("route ^ missing route ^ ")
 

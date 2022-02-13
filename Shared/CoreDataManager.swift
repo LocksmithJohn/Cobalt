@@ -15,6 +15,7 @@ class CoreDataManager {
         case fetchTask(id: UUID)
         case fetchTasks
         case saveTask(task: TaskDTO)
+        case saveProject(project: ProjectDTO)
         case fetchProject(id: UUID)
         case fetchProjects
         case deleteItem(id: UUID)
@@ -76,6 +77,8 @@ class CoreDataManager {
             saveItem(item: task)
         case let .deleteItem(id):
             deleteItem(id: id)
+        case let .saveProject(project: project):
+            saveItem(item: project)
         }
     }
 

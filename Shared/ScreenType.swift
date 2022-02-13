@@ -24,7 +24,7 @@ enum ScreenType: Equatable {
         case .projects:
             return "Projects"
         case .projectDetails:
-            return "Tasks"
+            return "Project"
         case .notes:
             return "Notes"
         case .noteDetails:

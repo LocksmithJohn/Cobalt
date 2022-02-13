@@ -10,17 +10,16 @@ import SwiftUI
 class ScreenFactory {
     static func make(type: ScreenType, dependency: Dependency) -> AnyView {
         handleTabbarVisibility(sType: type, dependency: dependency)
-        print("route - make type: \(type)")
-
+        print("filter type: \(type.title)")
         switch type {
         case let .taskDetails(id):
             return AnyView(TaskDetailsView(viewModel: VMFactory.taskDetails(dependency, id: id)))
         case .tasks:
             return AnyView(TasksListView(viewModel: VMFactory.tasksList(dependency)))
         case let .projectDetails(id):
-            return AnyView(Text("s Project Details"))
+            return AnyView(ProjectDetailsView(viewModel: VMFactory.projectDetails(dependency, id: id)))
         case .projects:
-            return AnyView(Text("s Projects"))
+            return AnyView(ProjectsListView(viewModel: VMFactory.projectsList(dependency)))
         case .notes:
             return AnyView(Text("s Notes"))
         case let .noteDetails(id):

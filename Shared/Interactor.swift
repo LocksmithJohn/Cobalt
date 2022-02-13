@@ -8,7 +8,10 @@
 import Combine
 import Foundation
 
-class Interactor: TasksListInteractor, TaskDetailsInteractor {
+class Interactor: TasksListInteractor,
+                  TaskDetailsInteractor,
+                  ProjectsListInteractor,
+                  ProjectDetailsInteractor {
 
     let coreDataManager = CoreDataManager.shared
     private let router: Router
@@ -19,6 +22,10 @@ class Interactor: TasksListInteractor, TaskDetailsInteractor {
 
     func fetchTasks() {
         coreDataManager.actionSubject.send(.fetchTasks)
+    }
+
+    func fetchProjects() {
+        coreDataManager.actionSubject.send(.fetchProjects)
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
@@ -35,12 +42,6 @@ protocol CommonInteractor {
 
 protocol TasksListInteractor: CommonInteractor {
     func fetchTasks()
-}
-
-extension TasksListInteractor {
-    func fetchTasks() {
-        coreDataManager.actionSubject.send(.fetchTasks)
-    }
 }
 
 protocol TaskDetailsInteractor: CommonInteractor {
@@ -60,7 +61,27 @@ extension TaskDetailsInteractor {
     func deleteTask(id: UUID) {
         coreDataManager.actionSubject.send(.deleteItem(id: id))
     }
-    func fetchTasks() {
-        coreDataManager.actionSubject.send(.fetchTasks)
+}
+
+protocol ProjectsListInteractor: CommonInteractor {
+    func fetchProjects()
+}
+
+
+protocol ProjectDetailsInteractor: CommonInteractor {
+    func fetchProject(id: UUID)
+    func fetchProjects()
+    func saveProject(_ project: ProjectDTO)
+    func deleteProject(id: UUID)}
+
+extension ProjectDetailsInteractor {
+    func fetchProject(id: UUID) {
+        coreDataManager.actionSubject.send(.fetchProject(id: id))
+    }
+    func saveProject(_ project: ProjectDTO) {
+        coreDataManager.actionSubject.send(.saveProject(project: project))
+    }
+    func deleteProject(id: UUID) {
+        coreDataManager.actionSubject.send(.deleteItem(id: id))
     }
 }

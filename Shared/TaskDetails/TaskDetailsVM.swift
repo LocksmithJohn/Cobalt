@@ -71,6 +71,7 @@ final class TaskDetailsVM: BaseVM {
             interactor.fetchTask(id: id)
         case .saveTask:
             interactor.saveTask(newTask)
+            interactor.fetchTasks()
             interactor.route(from: screenType, to: .tasks)
         case .back:
             interactor.route(from: screenType, to: .tasks)

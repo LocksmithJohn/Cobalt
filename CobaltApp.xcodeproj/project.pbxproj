@@ -62,6 +62,10 @@
 		CE61F6B627B83CC200A734EE /* NotesNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */; };
 		CE61F6B927B8782900A734EE /* TaskDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6B827B8782900A734EE /* TaskDetailsView.swift */; };
 		CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6BA27B8783300A734EE /* TaskDetailsVM.swift */; };
+		CE61F6BE27B8FA5C00A734EE /* ProjectsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6BD27B8FA5C00A734EE /* ProjectsListView.swift */; };
+		CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6BF27B8FA6900A734EE /* ProjectsListVM.swift */; };
+		CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6C227B9114200A734EE /* ProjectDetailsView.swift */; };
+		CE61F6C527B9115400A734EE /* ProjectDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6C427B9115400A734EE /* ProjectDetailsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +104,10 @@
 		CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesNavigationController.swift; sourceTree = "<group>"; };
 		CE61F6B827B8782900A734EE /* TaskDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsView.swift; sourceTree = "<group>"; };
 		CE61F6BA27B8783300A734EE /* TaskDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsVM.swift; sourceTree = "<group>"; };
+		CE61F6BD27B8FA5C00A734EE /* ProjectsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListView.swift; sourceTree = "<group>"; };
+		CE61F6BF27B8FA6900A734EE /* ProjectsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListVM.swift; sourceTree = "<group>"; };
+		CE61F6C227B9114200A734EE /* ProjectDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsView.swift; sourceTree = "<group>"; };
+		CE61F6C427B9115400A734EE /* ProjectDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +147,10 @@
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
 				CE338AE727B7B773005289D1 /* StackAction.swift */,
 				CE338ABD27B7A5AE005289D1 /* Interactor.swift */,
-				CE61F6BC27B8783800A734EE /* TaskDetails */,
 				CE61F6B727B866ED00A734EE /* TasksList */,
+				CE61F6C627B9116E00A734EE /* ProjectDetails */,
+				CE61F6BC27B8783800A734EE /* TaskDetails */,
+				CE61F6C127B9111600A734EE /* ProjectsList */,
 				CE61F6B127B83C5900A734EE /* Tabbar.swift */,
 				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
 				CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */,
@@ -199,6 +209,24 @@
 				CE61F6BA27B8783300A734EE /* TaskDetailsVM.swift */,
 			);
 			path = TaskDetails;
+			sourceTree = "<group>";
+		};
+		CE61F6C127B9111600A734EE /* ProjectsList */ = {
+			isa = PBXGroup;
+			children = (
+				CE61F6BD27B8FA5C00A734EE /* ProjectsListView.swift */,
+				CE61F6BF27B8FA6900A734EE /* ProjectsListVM.swift */,
+			);
+			path = ProjectsList;
+			sourceTree = "<group>";
+		};
+		CE61F6C627B9116E00A734EE /* ProjectDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CE61F6C227B9114200A734EE /* ProjectDetailsView.swift */,
+				CE61F6C427B9115400A734EE /* ProjectDetailsVM.swift */,
+			);
+			path = ProjectDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +338,8 @@
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
+				CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */,
+				CE61F6C527B9115400A734EE /* ProjectDetailsVM.swift in Sources */,
 				CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE61F6B227B83C5900A734EE /* Tabbar.swift in Sources */,
 				CE61F6B627B83CC200A734EE /* NotesNavigationController.swift in Sources */,
@@ -317,11 +347,13 @@
 				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
+				CE61F6BE27B8FA5C00A734EE /* ProjectsListView.swift in Sources */,
 				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */,
 				CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */,
 				CE61F6B427B83CB200A734EE /* TasksNavigationController.swift in Sources */,
+				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,

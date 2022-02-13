@@ -48,6 +48,12 @@ extension NavigationController {
                 let newVC = StackScreenViewController(dependency: dependency, type: screen.type)
                 return viewController ?? newVC
             }
+        print("filter s -----------)")
+
+        router.screens.forEach { s in
+            print("filter s: \(s.type.title) \(s.isModal)")
+        }
+
         navigationController.setViewControllers(newViewControllers, animated: true)
 
         if let screen = router.screens.first(where: { $0.isModal }) {
