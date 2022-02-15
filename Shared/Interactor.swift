@@ -72,6 +72,7 @@ protocol ProjectDetailsInteractor: CommonInteractor {
     func fetchProject(id: UUID)
     func fetchProjects()
     func saveProject(_ project: ProjectDTO)
+    func saveTask(_ task: TaskDTO)
     func deleteProject(id: UUID)}
 
 extension ProjectDetailsInteractor {

@@ -13,12 +13,12 @@ struct ProjectDetailsView: View {
             // tutaj ponizej wrzucic nowe inity textfieldow dla ios15
             TextField(viewModel.projectName, text: $viewModel.projectName)
             TextField(viewModel.projectDescription, text: $viewModel.projectDescription)
+
+//            Button { viewModel.actionSubject.send(.addTask) } label:
+//            { Text("Add Task").foregroundColor(.blue) }
             Button { viewModel.actionSubject.send(.saveProject) } label:
-            { Text("Save").foregroundColor(.red) }
-            Button {
-                viewModel.actionSubject.send(.deleteProject)
-                
-            } label:
+            { Text("Save").foregroundColor(.blue) }
+            Button { viewModel.actionSubject.send(.deleteProject) } label:
             { Text("Delete").foregroundColor(.red) }
 
         }

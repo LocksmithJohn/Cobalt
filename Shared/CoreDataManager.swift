@@ -32,6 +32,8 @@ class CoreDataManager {
     let tasksSubject = CurrentValueSubject<[TaskDTO], Never>([])
     let taskSubject = CurrentValueSubject<TaskDTO?, Never>(nil)
 
+    let relatedItemsSubject = CurrentValueSubject<[Item], Never>([])
+
     let syncTimeSubject = PassthroughSubject<String?, Never>()
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -158,6 +160,17 @@ class CoreDataManager {
         }
     }
 
+    func fetchRelatedItems() {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "type == %@", ItemType.task.rawValue)
+
+        if let itemObjects = try? managedContext.fetch(request) {
+            tasksSubject.send(itemObjects.map { TaskDTO(itemObject: $0) })
+        }
+    }
+
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@",
+
     func fetchProjects() {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "type == %@", ItemType.project.rawValue)
@@ -174,13 +187,7 @@ class CoreDataManager {
         itemObject.id = item.id
         itemObject.state = item.status.rawValue
         itemObject.type = item.type.rawValue
-//        project.tasks.forEach {
-//            let task_cd = Task_CD(context: managedContext)
-//            task_cd.id = $0.id
-//            task_cd.name = $0.name
-//            task_cd.taskDescription = $0.description
-//            project_cd.addToTask(task_cd)
-//        }
+        itemObject.relatedItemsData = itemsIdsToData(itemIDs: item.relatedItems)
         saveContext()
     }
 
@@ -193,42 +200,4 @@ class CoreDataManager {
             saveContext()
         }
     }
-
-    //    private func getInitialData() {
-    //        if let projects = getItems(entityType: .project) as? [Project_CD] {
-    //            projectsSubject.send(projects)
-    //        }
-    //        if let tasks = getItems(entityType: .task) as? [Task_CD] {
-    //            tasksSubject.send(tasks)
-    //        }
-    //    }
 }
-
-
-
-//extension CoreDataManager: NSFetchedResultsControllerDelegate {
-//
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        switch controller.fetchRequest.entity?.name {
-//        case String(describing: Project_CD.self):
-//            guard let projects = controller.fetchedObjects,
-//                  let projects = projects as? [Project_CD] else {
-//
-//                      projectsSubject.send(completion: .failure(.fetchEntity(type: .project)))
-//                      return
-//                  }
-//            projectsSubject.send(projects)
-//        case String(describing: Task_CD.self):
-//            guard let tasks = controller.fetchedObjects,
-//                  let tasks = tasks as? [Task_CD] else {
-//                      tasksSubject.send(completion: .failure(.fetchEntity(type: .task)))
-//                      return
-//                  }
-//            tasksSubject.send(tasks)
-//        default:
-//            return
-//        }
-//        dateManager.updateDate()
-//    }
-//
-//}

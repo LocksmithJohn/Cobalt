@@ -4,10 +4,11 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="itemDescription" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="relatedItemsData" optional="YES" attributeType="Binary"/>
         <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="ItemObject" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="ItemObject" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

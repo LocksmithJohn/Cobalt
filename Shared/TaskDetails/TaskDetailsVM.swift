@@ -30,7 +30,8 @@ final class TaskDetailsVM: BaseVM {
                 name: taskName,
                 itemDesrciption: taskDescription,
                 type: .task,
-                status: .new)
+                status: .new,
+                relatedItems: ItemIDs())
     }
 
     init(id: UUID?,

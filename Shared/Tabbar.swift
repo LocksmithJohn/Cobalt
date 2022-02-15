@@ -65,7 +65,7 @@ struct Tabbar: View {
         .contentShape(Rectangle())
         .onTapGesture {
             tabSelected = tag
-//            Haptic.impact(.light) tutaj
+            Haptic.impact(.light)
         }
     }
 }

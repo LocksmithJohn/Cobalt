@@ -53,6 +53,7 @@
 		CE338AF227B7D9F7005289D1 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF027B7D9F7005289D1 /* ItemType.swift */; };
 		CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */; };
 		CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */; };
+		CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */; };
 		CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */; };
 		CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */; };
 		CE61F6AE27B7FCC300A734EE /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */; };
@@ -66,6 +67,11 @@
 		CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6BF27B8FA6900A734EE /* ProjectsListVM.swift */; };
 		CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6C227B9114200A734EE /* ProjectDetailsView.swift */; };
 		CE61F6C527B9115400A734EE /* ProjectDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6C427B9115400A734EE /* ProjectDetailsVM.swift */; };
+		CE61F6C827B9622D00A734EE /* Haptic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6C727B9622D00A734EE /* Haptic.swift */; };
+		CE61F6CD27B9B31C00A734EE /* TaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */; };
+		CE61F6CF27B9B34B00A734EE /* ItemIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6CE27B9B34B00A734EE /* ItemIDs.swift */; };
+		CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D027B9B36C00A734EE /* ItemStatus.swift */; };
+		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +101,7 @@
 		CE338AED27B7D9C9005289D1 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		CE338AF027B7D9F7005289D1 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		CE338AF427B7DA1C005289D1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTOReduced.swift; sourceTree = "<group>"; };
 		CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
@@ -108,6 +115,11 @@
 		CE61F6BF27B8FA6900A734EE /* ProjectsListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsListVM.swift; sourceTree = "<group>"; };
 		CE61F6C227B9114200A734EE /* ProjectDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsView.swift; sourceTree = "<group>"; };
 		CE61F6C427B9115400A734EE /* ProjectDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsVM.swift; sourceTree = "<group>"; };
+		CE61F6C727B9622D00A734EE /* Haptic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptic.swift; sourceTree = "<group>"; };
+		CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTO.swift; sourceTree = "<group>"; };
+		CE61F6CE27B9B34B00A734EE /* ItemIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemIDs.swift; sourceTree = "<group>"; };
+		CE61F6D027B9B36C00A734EE /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
+		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +143,7 @@
 		CE338A9627B7A4E4005289D1 = {
 			isa = PBXGroup;
 			children = (
+				CE61F6C727B9622D00A734EE /* Haptic.swift */,
 				CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */,
 				CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */,
 				CE338A9B27B7A4E5005289D1 /* Shared */,
@@ -170,7 +183,7 @@
 				CE338AEA27B7B890005289D1 /* BaseVM.swift */,
 				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
 				CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */,
-				CE338AD227B7A68D005289D1 /* Item.swift */,
+				CE61F6C927B9B2F900A734EE /* Model */,
 				CE338A9E27B7A4E6005289D1 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -227,6 +240,19 @@
 				CE61F6C427B9115400A734EE /* ProjectDetailsVM.swift */,
 			);
 			path = ProjectDetails;
+			sourceTree = "<group>";
+		};
+		CE61F6C927B9B2F900A734EE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE338AD227B7A68D005289D1 /* Item.swift */,
+				CE61F6CE27B9B34B00A734EE /* ItemIDs.swift */,
+				CE61F6D027B9B36C00A734EE /* ItemStatus.swift */,
+				CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */,
+				CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */,
+				CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,24 +361,30 @@
 				CE61F6AE27B7FCC300A734EE /* ScreenFactory.swift in Sources */,
 				CE338AD327B7A68D005289D1 /* Item.swift in Sources */,
 				CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */,
+				CE61F6CF27B9B34B00A734EE /* ItemIDs.swift in Sources */,
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
+				CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */,
+				CE61F6C827B9622D00A734EE /* Haptic.swift in Sources */,
 				CE61F6C527B9115400A734EE /* ProjectDetailsVM.swift in Sources */,
 				CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE61F6B227B83C5900A734EE /* Tabbar.swift in Sources */,
 				CE61F6B627B83CC200A734EE /* NotesNavigationController.swift in Sources */,
+				CE61F6CD27B9B31C00A734EE /* TaskDTO.swift in Sources */,
 				CE61F6B927B8782900A734EE /* TaskDetailsView.swift in Sources */,
 				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
 				CE61F6BE27B8FA5C00A734EE /* ProjectsListView.swift in Sources */,
 				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
+				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */,
 				CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */,
 				CE61F6B427B83CB200A734EE /* TasksNavigationController.swift in Sources */,
+				CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */,
 				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,

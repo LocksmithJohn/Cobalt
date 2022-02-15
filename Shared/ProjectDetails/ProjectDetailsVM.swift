@@ -19,6 +19,8 @@ final class ProjectDetailsVM: BaseVM {
 
     @Published var projectName: String = ""
     @Published var projectDescription: String = ""
+    //    @Published var relatedItems: [UUID] = []
+    //    @Published var relatedItem: String = ""
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -26,11 +28,13 @@ final class ProjectDetailsVM: BaseVM {
     private let interactor: ProjectDetailsInteractor
     private let id: UUID?
     private var newProject: ProjectDTO {
+
         ProjectDTO(id: UUID(),
-                name: projectName,
-                itemDesrciption: projectDescription,
-                type: .project,
-                status: .new)
+                   name: projectName,
+                   itemDesrciption: projectDescription,
+                   type: .project,
+                   status: .new,
+                   relatedItems: ItemIDs()) //tutaj force!
     }
 
     init(id: UUID?,
@@ -70,7 +74,24 @@ final class ProjectDetailsVM: BaseVM {
 
             interactor.fetchProject(id: id)
         case .saveProject:
-            interactor.saveProject(newProject)
+            let subtask = TaskDTO(id: UUID(),
+                                  name: "subtask title",
+                                  itemDesrciption: "subtask desc",
+                                  type: .task,
+                                  status: .new,
+                                  relatedItems: ItemIDs())
+            let str = ItemIDs(ids: [subtask.id])
+//            newProject.updateRelatedItems(itemIDs: str)
+
+            let anotherProject = ProjectDTO(id: UUID(),
+                                            name: projectName,
+                                            itemDesrciption: projectDescription,
+                                            type: .project,
+                                            status: .new,
+                                            relatedItems: str) //tutaj force!
+
+            interactor.saveTask(subtask)
+            interactor.saveProject(anotherProject)
             interactor.route(from: screenType, to: .projects)
             interactor.fetchProjects()
         case .back:
