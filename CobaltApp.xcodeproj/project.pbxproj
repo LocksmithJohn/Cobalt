@@ -72,6 +72,7 @@
 		CE61F6CF27B9B34B00A734EE /* ItemIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6CE27B9B34B00A734EE /* ItemIDs.swift */; };
 		CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D027B9B36C00A734EE /* ItemStatus.swift */; };
 		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
+		CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +121,7 @@
 		CE61F6CE27B9B34B00A734EE /* ItemIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemIDs.swift; sourceTree = "<group>"; };
 		CE61F6D027B9B36C00A734EE /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
 		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
+		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */,
 				CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */,
 				CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */,
+				CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */,
 				CE61F6B427B83CB200A734EE /* TasksNavigationController.swift in Sources */,
 				CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */,
+				CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */,
 				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,

@@ -8,17 +8,22 @@
 import Combine
 import CoreData
 import Foundation
+import SwiftUI
 
 class CoreDataManager {
 
     enum Action {
+        case saveTask(task: TaskDTO)
         case fetchTask(id: UUID)
         case fetchTasks
-        case saveTask(task: TaskDTO)
+
         case saveProject(project: ProjectDTO)
         case fetchProject(id: UUID)
         case fetchProjects
+        case fetchProjectsReduced
+
         case deleteItem(id: UUID)
+        case fetchRelatedItems(id: UUID)
     }
 
     static let shared = CoreDataManager()
@@ -33,6 +38,7 @@ class CoreDataManager {
     let taskSubject = CurrentValueSubject<TaskDTO?, Never>(nil)
 
     let relatedItemsSubject = CurrentValueSubject<[Item], Never>([])
+    let projectsReducedSubject = CurrentValueSubject<[ProjectDTOReduced], Never>([])
 
     let syncTimeSubject = PassthroughSubject<String?, Never>()
     let actionSubject = PassthroughSubject<Action, Never>()
@@ -74,13 +80,17 @@ class CoreDataManager {
         case let .fetchProject(id):
             fetchProject(id: id)
         case .fetchProjects:
-            fetchProjects()
+            fetchProjects(reduced: false)
         case let .saveTask(task):
             saveItem(item: task)
         case let .deleteItem(id):
             deleteItem(id: id)
         case let .saveProject(project: project):
             saveItem(item: project)
+        case let .fetchRelatedItems(id):
+            fetchRelatedItems(id: id)
+        case .fetchProjectsReduced:
+            fetchProjects(reduced: true)
         }
     }
 
@@ -160,23 +170,26 @@ class CoreDataManager {
         }
     }
 
-    func fetchRelatedItems() {
+    func fetchRelatedItems(id: UUID) {
+        print("filter items contains: \(id.uuidString)")
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "type == %@", ItemType.task.rawValue)
+        request.predicate = NSPredicate(format: "relatedItemsData CONTAINS %@", id.uuidString)
 
         if let itemObjects = try? managedContext.fetch(request) {
-            tasksSubject.send(itemObjects.map { TaskDTO(itemObject: $0) })
+            relatedItemsSubject.send(itemObjects.map { Item(itemObject: $0) })
         }
     }
 
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name CONTAINS[cd] %@",
-
-    func fetchProjects() {
+    func fetchProjects(reduced: Bool) {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "type == %@", ItemType.project.rawValue)
 
         if let itemObjects = try? managedContext.fetch(request) {
-            projectsSubject.send(itemObjects.map { ProjectDTO(itemObject: $0) })
+            if reduced {
+                projectsReducedSubject.send(itemObjects.map { ProjectDTOReduced(itemObject: $0) })
+            } else {
+                projectsSubject.send(itemObjects.map { ProjectDTO(itemObject: $0) })
+            }
         }
     }
 
@@ -187,7 +200,7 @@ class CoreDataManager {
         itemObject.id = item.id
         itemObject.state = item.status.rawValue
         itemObject.type = item.type.rawValue
-        itemObject.relatedItemsData = itemsIdsToData(itemIDs: item.relatedItems)
+        itemObject.relatedItemsData = item.relatedItems//itemsIdsToData(itemIDs: item.relatedItems)
         saveContext()
     }
 

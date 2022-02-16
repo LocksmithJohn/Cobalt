@@ -14,14 +14,14 @@ class Item: Identifiable { // tutaj zmeinic na strukture
     let itemDesrciption: String
     let type: ItemType
     let status: ItemStatus
-    var relatedItems: ItemIDs
+    var relatedItems: String
     
     init(id: UUID,
          name: String,
          itemDesrciption: String,
          type: ItemType,
          status: ItemStatus,
-         relatedItems: ItemIDs) {
+         relatedItems: String) {
         self.id = id
         self.name = name
         self.itemDesrciption = itemDesrciption
@@ -36,16 +36,16 @@ class Item: Identifiable { // tutaj zmeinic na strukture
                   itemDesrciption: itemObject.itemDescription ?? "tutaj765",
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new,
-                  relatedItems: dataToItemsID(data: itemObject.relatedItemsData))
+                  relatedItems: itemObject.relatedItemsData ?? "tutaj987654")
     }
 
-    func updateRelatedItems(itemIDs: ItemIDs) {
-        guard let id = itemIDs.ids.first else {
-            return
-        }
-        self.relatedItems.ids.append(id)
-        print("")
-    }
+//    func updateRelatedItems(itemIDs: String) {
+//        guard let id = itemIDs.ids.first else {
+//            return
+//        }
+//        self.relatedItems.ids.append(id)
+//        print("")
+//    }
 }
 
 enum ItemType: String {
@@ -53,4 +53,9 @@ enum ItemType: String {
     case project
     case note
     case waitFor
+}
+
+enum ItemRelation: String {
+    case sbt // subtask
+    case ppr // parent project
 }

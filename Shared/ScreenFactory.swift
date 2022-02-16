@@ -10,7 +10,6 @@ import SwiftUI
 class ScreenFactory {
     static func make(type: ScreenType, dependency: Dependency) -> AnyView {
         handleTabbarVisibility(sType: type, dependency: dependency)
-        print("filter type: \(type.title)")
         switch type {
         case let .taskDetails(id):
             return AnyView(TaskDetailsView(viewModel: VMFactory.taskDetails(dependency, id: id)))

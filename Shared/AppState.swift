@@ -25,6 +25,14 @@ class AppState: TasksListAppState,
         coreDataManager.projectSubject
     }
 
+    var relatedItemsSubject: CurrentValueSubject<[Item], Never> {
+        coreDataManager.relatedItemsSubject
+    }
+
+    var projectsReducedSubject: CurrentValueSubject<[ProjectDTOReduced], Never> {
+        coreDataManager.projectsReducedSubject
+    }
+
     let coreDataManager = CoreDataManager.shared
     var isTabbarVisibleSubject = CurrentValueSubject<Bool, Never>(true)
 
@@ -36,6 +44,7 @@ protocol TasksListAppState {
 
 protocol TaskDetailsAppState {
     var taskDetailsSubject: CurrentValueSubject<TaskDTO?, Never> { get }
+    var projectsReducedSubject: CurrentValueSubject<[ProjectDTOReduced], Never> { get }
 }
 
 protocol ProjectsListAppState {
@@ -44,4 +53,6 @@ protocol ProjectsListAppState {
 
 protocol ProjectDetailsAppState {
     var projectDetailsSubject: CurrentValueSubject<ProjectDTO?, Never> { get }
+    var relatedItemsSubject: CurrentValueSubject<[Item], Never> { get } // tutaj ma byc ograniczone dto
+
 }

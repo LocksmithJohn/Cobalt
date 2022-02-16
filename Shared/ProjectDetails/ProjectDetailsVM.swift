@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import UIKit
 
 final class ProjectDetailsVM: BaseVM {
 
@@ -19,7 +20,7 @@ final class ProjectDetailsVM: BaseVM {
 
     @Published var projectName: String = ""
     @Published var projectDescription: String = ""
-    //    @Published var relatedItems: [UUID] = []
+    @Published var relatedItems: [Item] = []
     //    @Published var relatedItem: String = ""
 
     let actionSubject = PassthroughSubject<Action, Never>()
@@ -34,7 +35,7 @@ final class ProjectDetailsVM: BaseVM {
                    itemDesrciption: projectDescription,
                    type: .project,
                    status: .new,
-                   relatedItems: ItemIDs()) //tutaj force!
+                   relatedItems: "") //tutaj force!
     }
 
     init(id: UUID?,
@@ -57,6 +58,14 @@ final class ProjectDetailsVM: BaseVM {
                 self?.projectDescription = project.itemDesrciption
             }
             .store(in: &cancellableBag)
+
+        appstate.relatedItemsSubject
+            .compactMap { $0 }
+            .sink { [weak self] relatedItems in
+                self?.relatedItems = relatedItems
+                print("filter items: \(relatedItems.map { $0.id })")
+            }
+            .store(in: &cancellableBag)
     }
 
     private func bindAction() {
@@ -73,22 +82,36 @@ final class ProjectDetailsVM: BaseVM {
             guard let id = id else { return }
 
             interactor.fetchProject(id: id)
+            interactor.fetchRelatedItems(id: id)
         case .saveProject:
-            let subtask = TaskDTO(id: UUID(),
+            let taskID = UUID()
+            let projectID = UUID()
+
+            let taskRelations = ItemRelation.sbt.rawValue + projectID.uuidString + ","
+            let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
+
+            let subtask = TaskDTO(id: taskID,
                                   name: "subtask title",
                                   itemDesrciption: "subtask desc",
                                   type: .task,
                                   status: .new,
-                                  relatedItems: ItemIDs())
-            let str = ItemIDs(ids: [subtask.id])
+                                  relatedItems: taskRelations)
+//            let str = ItemIDs(ids: [subtask.id])
 //            newProject.updateRelatedItems(itemIDs: str)
 
-            let anotherProject = ProjectDTO(id: UUID(),
+//            prepare
+
+
+            let anotherProject = ProjectDTO(id: projectID,
                                             name: projectName,
                                             itemDesrciption: projectDescription,
                                             type: .project,
                                             status: .new,
-                                            relatedItems: str) //tutaj force!
+                                            relatedItems: projectRelations)
+            print("filter       project    id: \(anotherProject.id)")
+            print("filter       subtask    id: \(subtask.id)")
+            print("filter       subtask    items: \(subtask.relatedItems)")
+
 
             interactor.saveTask(subtask)
             interactor.saveProject(anotherProject)

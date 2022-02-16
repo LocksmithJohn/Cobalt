@@ -19,6 +19,7 @@ final class TaskDetailsVM: BaseVM {
 
     @Published var taskName: String = ""
     @Published var taskDescription: String = ""
+    @Published var projects: [ProjectDTOReduced] = []
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -31,7 +32,7 @@ final class TaskDetailsVM: BaseVM {
                 itemDesrciption: taskDescription,
                 type: .task,
                 status: .new,
-                relatedItems: ItemIDs())
+                relatedItems: "")
     }
 
     init(id: UUID?,
@@ -54,6 +55,12 @@ final class TaskDetailsVM: BaseVM {
                 self?.taskDescription = task.itemDesrciption
             }
             .store(in: &cancellableBag)
+        appstate.projectsReducedSubject
+            .compactMap { $0 }
+            .sink { [weak self] projects in
+                self?.projects = projects
+            }
+            .store(in: &cancellableBag)
     }
 
     private func bindAction() {
@@ -70,6 +77,7 @@ final class TaskDetailsVM: BaseVM {
             guard let id = id else { return }
 
             interactor.fetchTask(id: id)
+            interactor.fetchProjectsReduced()
         case .saveTask:
             interactor.saveTask(newTask)
             interactor.fetchTasks()
