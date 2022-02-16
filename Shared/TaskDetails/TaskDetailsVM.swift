@@ -17,15 +17,23 @@ final class TaskDetailsVM: BaseVM {
         case deleteTask
     }
 
-    @Published var taskName: String = ""
+    @Published var taskName: String = "" {
+        didSet {
+            print("life taskName: \(taskName)")
+        }
+    }
     @Published var taskDescription: String = ""
+
     @Published var projects: [ProjectDTOReduced] = []
+    @Published var relatedProject: ProjectDTOReduced?
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
     private let appstate: TaskDetailsAppState
     private let interactor: TaskDetailsInteractor
     private let id: UUID?
+    //    private var relatedProjectID: UUID?
+
     private var newTask: TaskDTO {
         TaskDTO(id: UUID(),
                 name: taskName,
@@ -36,29 +44,47 @@ final class TaskDetailsVM: BaseVM {
     }
 
     init(id: UUID?,
+         relatedProjectID: UUID?,
          interactor: TaskDetailsInteractor,
          appstate: TaskDetailsAppState) {
         self.interactor = interactor
         self.appstate = appstate
         self.id = id
-        super.init(screenType: .taskDetails(id: id))
+        //        self.relatedProjectID = relatedProjectID
+        super.init(screenType: .taskDetails(id: id, relatedProjectID: UUID(uuidString: "tutaj wywalic to? ")))
 
         bindAppState()
         bindAction()
+        print("life TaskDetailsVM: init")
+    }
+
+    deinit{
+        print("life TaskDetailsVM: deinit")
     }
 
     private func bindAppState() {
-        appstate.taskDetailsSubject
+        appstate.taskDetailsSubject // tutaj czemu ten subject leci 2 razy
             .compactMap { $0 }
             .sink { [weak self] task in
                 self?.taskName = task.name
                 self?.taskDescription = task.itemDesrciption
+                print("filter getUUIDs 1: \(task.relatedItems)")
+                print("filter getUUIDs 2: \(task.relatedItems.getUUIDs())")
+                if let relatedProjectID = task.relatedItems.getUUIDs().first?.id {
+                    self?.interactor.fetchProjectReduced(id: relatedProjectID) // tutaj interactor musi byc w akcjach
+                }
             }
             .store(in: &cancellableBag)
         appstate.projectsReducedSubject
             .compactMap { $0 }
             .sink { [weak self] projects in
                 self?.projects = projects
+            }
+            .store(in: &cancellableBag)
+        appstate.projectReducedSubject
+            .compactMap { $0 }
+            .sink { [weak self] relatedProject in
+                self?.relatedProject = relatedProject
             }
             .store(in: &cancellableBag)
     }

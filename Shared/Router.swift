@@ -83,22 +83,25 @@ final class Router: ObservableObject {
         case .none:
             send(.set([typeTo]))
 
-            // MARK: - Tasks screens flow
+            // MARK: - Tasks list flow
         case .tasks :
-            if case let .taskDetails(id) = typeTo {
+            if case let .taskDetails(id, relatedProjectID) = typeTo {
                 if id == nil {
-                    send(.present(.taskDetails(id: nil)))
+                    send(.present(.taskDetails(id: nil, relatedProjectID: nil)))
                 } else {
-                    send(.push(.taskDetails(id: id)))
+                    send(.push(.taskDetails(id: id, relatedProjectID: nil)))
                 }
             }
+
+            // MARK: - Tasks details flow
         case let .taskDetails(id) where typeTo == .tasks:
             if id == nil {
                 send(.dismiss)
             } else {
                 send(.pop)
             }
-            // MARK: - Projects screens flow
+
+            // MARK: - Projects list flow
         case .projects:
             if case let .projectDetails(id) = typeTo {
                 if id == nil {
@@ -107,17 +110,20 @@ final class Router: ObservableObject {
                     send(.push(.projectDetails(id: id)))
                 }
             }
-            // MARK: - Project details screens flow
 
+            // MARK: - Project details flow
         case let .projectDetails(id) where typeTo == .projects:
             if id == nil {
                 send(.dismiss)
             } else {
                 send(.pop)
             }
+
+            // MARK: - Project details flow
+        case let .projectDetails(projectID) where typeTo == .taskDetails(id: nil, relatedProjectID: projectID):
+            send(.present(.taskDetails(id: nil, relatedProjectID: projectID)))
         default:
             print("route ^ missing route ^ ")
-
         }
     }
 

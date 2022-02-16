@@ -54,9 +54,9 @@ final class TasksListVM: BaseVM {
         case .onAppear:
             interactor.fetchTasks()
         case .addTask:
-            interactor.route(from: screenType, to: .taskDetails(id: nil))
+            interactor.route(from: screenType, to: .taskDetails(id: nil, relatedProjectID: nil))
         case let .goToTask(id):
-            interactor.route(from: screenType, to: .taskDetails(id: id))
+            interactor.route(from: screenType, to: .taskDetails(id: id, relatedProjectID: nil))
         }
     }
 }

@@ -11,23 +11,25 @@ struct TaskDetailsView: View {
     var body: some View {
         Form {
             // tutaj ponizej wrzucic nowe inity textfieldow dla ios15
-            TextField(viewModel.taskName, text: $viewModel.taskName)
-            TextField(viewModel.taskDescription, text: $viewModel.taskDescription)
-            Button { projectListVisible.toggle() } label:
-            { Text("Choose project").foregroundColor(.gray) }
+            Section {
+                TextField(viewModel.taskName, text: $viewModel.taskName)
+                TextField(viewModel.taskDescription, text: $viewModel.taskDescription)
+            } header: { Text("Task details") }
 
-            if projectListVisible {
-                projectsView
-            }
-
-            HStack {
+            Section {
+                Button { projectListVisible.toggle() } label:
+                { Text("Choose project").foregroundColor(.gray) }
+                Text("Parent project: \(viewModel.relatedProject?.name ?? "-")")
+                if projectListVisible {
+                    projectsView
+                }
+            } header: { Text("Parent project") }
+            Section {
                 Button { viewModel.actionSubject.send(.saveTask) } label:
                 { Text("Save").foregroundColor(.green) }
-                Spacer()
                 Button { viewModel.actionSubject.send(.deleteTask) } label:
                 { Text("Delete").foregroundColor(.red) }
             }
-
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
@@ -43,7 +45,7 @@ struct TaskDetailsView: View {
     init(viewModel: TaskDetailsVM) {
         self.viewModel = viewModel
     }
-    
+
     private var projectsView: some View {
         ForEach(viewModel.projects) { project in
             Text(project.name)

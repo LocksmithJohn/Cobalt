@@ -16,6 +16,7 @@ final class ProjectDetailsVM: BaseVM {
         case back
         case saveProject
         case deleteProject
+        case showAddingTask
     }
 
     @Published var projectName: String = ""
@@ -35,7 +36,7 @@ final class ProjectDetailsVM: BaseVM {
                    itemDesrciption: projectDescription,
                    type: .project,
                    status: .new,
-                   relatedItems: "") //tutaj force!
+                   relatedItems: "")
     }
 
     init(id: UUID?,
@@ -90,17 +91,12 @@ final class ProjectDetailsVM: BaseVM {
             let taskRelations = ItemRelation.sbt.rawValue + projectID.uuidString + ","
             let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
 
-            let subtask = TaskDTO(id: taskID,
+            let subtask = TaskDTO(id: taskID, // tutaj tą cala logike przeniesc gdzies
                                   name: "subtask title",
                                   itemDesrciption: "subtask desc",
                                   type: .task,
                                   status: .new,
                                   relatedItems: taskRelations)
-//            let str = ItemIDs(ids: [subtask.id])
-//            newProject.updateRelatedItems(itemIDs: str)
-
-//            prepare
-
 
             let anotherProject = ProjectDTO(id: projectID,
                                             name: projectName,
@@ -108,10 +104,6 @@ final class ProjectDetailsVM: BaseVM {
                                             type: .project,
                                             status: .new,
                                             relatedItems: projectRelations)
-            print("filter       project    id: \(anotherProject.id)")
-            print("filter       subtask    id: \(subtask.id)")
-            print("filter       subtask    items: \(subtask.relatedItems)")
-
 
             interactor.saveTask(subtask)
             interactor.saveProject(anotherProject)
@@ -125,6 +117,8 @@ final class ProjectDetailsVM: BaseVM {
 
             interactor.deleteProject(id: id)
             interactor.route(from: screenType, to: .projects)
+        case .showAddingTask:
+            interactor.route(from: screenType, to: .taskDetails(id: nil, relatedProjectID: id))
         }
     }
 

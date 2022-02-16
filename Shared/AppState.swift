@@ -12,25 +12,29 @@ class AppState: TasksListAppState,
                 TaskDetailsAppState,
                 ProjectsListAppState,
                 ProjectDetailsAppState {
-    var taskDetailsSubject: CurrentValueSubject<TaskDTO?, Never> {
+    var taskDetailsSubject: PassthroughSubject<TaskDTO?, Never> {
         coreDataManager.taskSubject
     }
-    var tasksListSubject: CurrentValueSubject<[TaskDTO], Never> {
+    var tasksListSubject: PassthroughSubject<[TaskDTO], Never> {
         coreDataManager.tasksSubject
     }
-    var projectsListSubject: CurrentValueSubject<[ProjectDTO], Never> {
+    var projectsListSubject: PassthroughSubject<[ProjectDTO], Never> {
         coreDataManager.projectsSubject
     }
-    var projectDetailsSubject: CurrentValueSubject<ProjectDTO?, Never> {
+    var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> {
         coreDataManager.projectSubject
     }
 
-    var relatedItemsSubject: CurrentValueSubject<[Item], Never> {
+    var relatedItemsSubject: PassthroughSubject<[Item], Never> {
         coreDataManager.relatedItemsSubject
     }
 
-    var projectsReducedSubject: CurrentValueSubject<[ProjectDTOReduced], Never> {
+    var projectsReducedSubject: PassthroughSubject<[ProjectDTOReduced], Never> {
         coreDataManager.projectsReducedSubject
+    }
+
+    var projectReducedSubject: PassthroughSubject<ProjectDTOReduced?, Never> {
+        coreDataManager.projectReducedSubject
     }
 
     let coreDataManager = CoreDataManager.shared
@@ -39,20 +43,20 @@ class AppState: TasksListAppState,
 }
 
 protocol TasksListAppState {
-    var tasksListSubject: CurrentValueSubject<[TaskDTO], Never> { get }
+    var tasksListSubject: PassthroughSubject<[TaskDTO], Never> { get }
 }
 
 protocol TaskDetailsAppState {
-    var taskDetailsSubject: CurrentValueSubject<TaskDTO?, Never> { get }
-    var projectsReducedSubject: CurrentValueSubject<[ProjectDTOReduced], Never> { get }
+    var taskDetailsSubject: PassthroughSubject<TaskDTO?, Never> { get }
+    var projectsReducedSubject: PassthroughSubject<[ProjectDTOReduced], Never> { get }
+    var projectReducedSubject: PassthroughSubject<ProjectDTOReduced?, Never> { get }
 }
 
 protocol ProjectsListAppState {
-    var projectsListSubject: CurrentValueSubject<[ProjectDTO], Never> { get }
+    var projectsListSubject: PassthroughSubject<[ProjectDTO], Never> { get }
 }
 
 protocol ProjectDetailsAppState {
-    var projectDetailsSubject: CurrentValueSubject<ProjectDTO?, Never> { get }
-    var relatedItemsSubject: CurrentValueSubject<[Item], Never> { get } // tutaj ma byc ograniczone dto
-
+    var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> { get }
+    var relatedItemsSubject: PassthroughSubject<[Item], Never> { get } // tutaj ma byc ograniczone dto
 }

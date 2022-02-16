@@ -7,4 +7,4 @@
 
 import Foundation
 
-class ProjectDTO: Item {}
+class ProjectDTO: Item {} // tutaj te wszysstkie modele poprzerabiac na male strukturki

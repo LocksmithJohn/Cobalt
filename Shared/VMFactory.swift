@@ -12,8 +12,8 @@ class VMFactory {
         TasksListVM(interactor: Interactor(router: dependency.tasksRouter),
                     appstate: dependency.appState)
     }
-    static func taskDetails(_ dependency: Dependency, id: UUID?) -> TaskDetailsVM {
-        TaskDetailsVM(id: id, interactor: Interactor(router: dependency.tasksRouter),
+    static func taskDetails(_ dependency: Dependency, id: UUID?, relatedProjectID: UUID?) -> TaskDetailsVM {
+        TaskDetailsVM(id: id, relatedProjectID: relatedProjectID, interactor: Interactor(router: dependency.tasksRouter),
                       appstate: dependency.appState)
     }
     static func projectsList(_ dependency: Dependency) -> ProjectsListVM {

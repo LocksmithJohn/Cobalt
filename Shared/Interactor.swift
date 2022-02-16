@@ -49,6 +49,7 @@ protocol TaskDetailsInteractor: CommonInteractor {
     func fetchTasks()
     func saveTask(_ task: TaskDTO)
     func fetchProjectsReduced()
+    func fetchProjectReduced(id: UUID)
     func deleteTask(id: UUID)
 }
 
@@ -64,6 +65,9 @@ extension TaskDetailsInteractor {
     }
     func fetchProjectsReduced() {
         coreDataManager.actionSubject.send(.fetchProjectsReduced)
+    }
+    func fetchProjectReduced(id: UUID) {
+        coreDataManager.actionSubject.send(.fetchProjectReduced(id: id))
     }
 }
 

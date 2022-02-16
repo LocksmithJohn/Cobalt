@@ -73,6 +73,7 @@
 		CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D027B9B36C00A734EE /* ItemStatus.swift */; };
 		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
 		CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */; };
+		CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +123,7 @@
 		CE61F6D027B9B36C00A734EE /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
 		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
 		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
+		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +173,7 @@
 				CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */,
 				CE61F6B327B83CB200A734EE /* TasksNavigationController.swift */,
 				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
+				CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */,
 				CE338AF027B7D9F7005289D1 /* ItemType.swift */,
 				CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */,
 				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
@@ -366,6 +369,7 @@
 				CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */,
 				CE61F6CF27B9B34B00A734EE /* ItemIDs.swift in Sources */,
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
+				CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */,
 				CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,

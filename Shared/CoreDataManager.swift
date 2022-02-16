@@ -20,6 +20,7 @@ class CoreDataManager {
         case saveProject(project: ProjectDTO)
         case fetchProject(id: UUID)
         case fetchProjects
+        case fetchProjectReduced(id: UUID)
         case fetchProjectsReduced
 
         case deleteItem(id: UUID)
@@ -32,13 +33,15 @@ class CoreDataManager {
         bindAction()
     }
 
-    let projectsSubject = CurrentValueSubject<[ProjectDTO], Never>([])
-    let projectSubject = CurrentValueSubject<ProjectDTO?, Never>(nil)
-    let tasksSubject = CurrentValueSubject<[TaskDTO], Never>([])
-    let taskSubject = CurrentValueSubject<TaskDTO?, Never>(nil)
+    let projectSubject = PassthroughSubject<ProjectDTO?, Never>()
+    let projectsSubject = PassthroughSubject<[ProjectDTO], Never>()
+    let projectReducedSubject = PassthroughSubject<ProjectDTOReduced?, Never>()
+    let projectsReducedSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
 
-    let relatedItemsSubject = CurrentValueSubject<[Item], Never>([])
-    let projectsReducedSubject = CurrentValueSubject<[ProjectDTOReduced], Never>([])
+    let taskSubject = PassthroughSubject<TaskDTO?, Never>()
+    let tasksSubject = PassthroughSubject<[TaskDTO], Never>()
+
+    let relatedItemsSubject = PassthroughSubject<[Item], Never>()
 
     let syncTimeSubject = PassthroughSubject<String?, Never>()
     let actionSubject = PassthroughSubject<Action, Never>()
@@ -78,7 +81,7 @@ class CoreDataManager {
         case .fetchTasks:
             fetchTasks()
         case let .fetchProject(id):
-            fetchProject(id: id)
+            fetchProject(id: id, reduced: false)
         case .fetchProjects:
             fetchProjects(reduced: false)
         case let .saveTask(task):
@@ -91,6 +94,8 @@ class CoreDataManager {
             fetchRelatedItems(id: id)
         case .fetchProjectsReduced:
             fetchProjects(reduced: true)
+        case let .fetchProjectReduced(id: id):
+            fetchProject(id: id, reduced: true)
         }
     }
 
@@ -152,12 +157,16 @@ class CoreDataManager {
         }
     }
 
-    func fetchProject(id: UUID) {
+    func fetchProject(id: UUID, reduced: Bool) {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id.uuidString)
 
         if let itemObject = try? managedContext.fetch(request).first {
-            projectSubject.send(ProjectDTO(itemObject: itemObject))
+            if reduced {
+                projectReducedSubject.send(ProjectDTOReduced(itemObject: itemObject))
+            } else {
+                projectSubject.send(ProjectDTO(itemObject: itemObject))
+            }
         }
     }
 

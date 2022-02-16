@@ -11,8 +11,8 @@ class ScreenFactory {
     static func make(type: ScreenType, dependency: Dependency) -> AnyView {
         handleTabbarVisibility(sType: type, dependency: dependency)
         switch type {
-        case let .taskDetails(id):
-            return AnyView(TaskDetailsView(viewModel: VMFactory.taskDetails(dependency, id: id)))
+        case let .taskDetails(id, relatedProjectID):
+            return AnyView(TaskDetailsView(viewModel: VMFactory.taskDetails(dependency, id: id, relatedProjectID: relatedProjectID)))
         case .tasks:
             return AnyView(TasksListView(viewModel: VMFactory.tasksList(dependency)))
         case let .projectDetails(id):

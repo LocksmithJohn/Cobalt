@@ -10,20 +10,34 @@ import SwiftUI
 struct ProjectDetailsView: View {
     var body: some View {
         Form {
-            // tutaj ponizej wrzucic nowe inity textfieldow dla ios15
-            TextField(viewModel.projectName, text: $viewModel.projectName)
-            TextField(viewModel.projectDescription, text: $viewModel.projectDescription)
-            ForEach(viewModel.relatedItems) { relatedItem in
-                Text(relatedItem.name).font(.system(size: 18)).foregroundColor(.gray)
+            Section {
+                TextField(viewModel.projectName, text: $viewModel.projectName)
+                TextField(viewModel.projectDescription, text: $viewModel.projectDescription)
+            } header: {
+                Text("Project details")
             }
-//            Button { viewModel.actionSubject.send(.addTask) } label:
-//            { Text("Add Task").foregroundColor(.blue) }
-            HStack {
-                Button { viewModel.actionSubject.send(.saveProject) } label:
-                { Text("Save").foregroundColor(.green) }
-                Spacer()
+
+            // tutaj ponizej wrzucic nowe inity textfieldow dla ios15
+            Section {
+                ForEach(viewModel.relatedItems) { relatedItem in
+                    Text(relatedItem.name).font(.system(size: 18)).foregroundColor(.gray)
+                }
+                Button {
+                    viewModel.actionSubject.send(.showAddingTask)
+
+                } label:
+                { Text("Add Task").foregroundColor(.blue) }
+            } header: {
+                Text("Tasks")
+            }
+
+            Section {
                 Button { viewModel.actionSubject.send(.deleteProject) } label:
                 { Text("Delete").foregroundColor(.red) }
+                Button { viewModel.actionSubject.send(.saveProject) } label:
+                { Text("Save").foregroundColor(.green) }
+            } header: {
+                Text("Project actions")
             }
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
