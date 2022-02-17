@@ -12,6 +12,6 @@ struct ContentView: View {
     let dependency = Dependency()
 
     var body: some View {
-        Tabbar().environmentObject(dependency)
+        Tabbar(viewModel: TabbarVM(dependency: dependency))
     }
 }

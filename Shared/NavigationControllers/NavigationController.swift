@@ -51,6 +51,8 @@ extension NavigationController {
 
         navigationController.setViewControllers(newViewControllers, animated: true)
 
+        let rootViewController = UIApplication.shared.windows.first?.rootViewController
+
         if router.modalsChanged {
             let newAllModals = router.screens.filter { $0.isModal }
             let previousAllModals = router.previousModals
@@ -60,7 +62,7 @@ extension NavigationController {
 
             if modalsToDelete.count == 1 {
                 // if there is only one modal to remove
-                navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
+                rootViewController?.presentedViewController?.dismiss(animated: true, completion: nil)
             } else if modalsToDelete.count > 1 {
                 // if there are multiple modals to remove
                 print("WARNING: removing multiple modals not handled")
@@ -70,13 +72,13 @@ extension NavigationController {
                 // if there is only one new modal
                 let modalVC = StackScreenViewController(dependency: dependency, type: modalScreen.type, router: router)
                 modalVC.modalPresentationStyle = .overCurrentContext
-                navigationController.present(modalVC, animated: true)
+                rootViewController?.present(modalVC, animated: true)
             } else if newAllModals.count > 1 {
                 // if there is only one new modal and at least another one is already displayed
                 if let modalScreen = newAllModals.last {
                     let modalVC = StackScreenViewController(dependency: dependency, type: modalScreen.type, router: router)
                     modalVC.modalPresentationStyle = .overCurrentContext
-                    navigationController.presentedViewController?.present(modalVC, animated: true)
+                    rootViewController?.presentedViewController?.present(modalVC, animated: true)
                 }
             }
 

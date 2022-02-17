@@ -9,44 +9,55 @@ import SwiftUI
 
 struct Tabbar: View {
 
-    @EnvironmentObject var dependency: Dependency
 
     @State private var tabSelected = 0
+    @ObservedObject private var viewModel: TabbarVM
+
+    init(viewModel: TabbarVM) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         VStack(spacing: 0) {
-            if dependency.appState.isTabbarVisibleSubject.value {
-                switch tabSelected {
-                case 0:
-                    NotesNavigationController()
-                        .environmentObject(dependency)
-                case 1:
-                    TasksNavigationController()
-                        .environmentObject(dependency)
-                default:
-                    ProjectsNavigationController()
-                        .environmentObject(dependency)
-                }
-                HStack {
-                    tabItem(iconName: "tray.and.arrow.down",
-                            text: "Inbox",
-                            tag: 0,
-                            color: .white)
-                    Spacer()
-                    tabItem(iconName: "list.bullet",
-                            text: "Tasks",
-                            tag: 1,
-                            color: .white)
-                    Spacer()
-                    tabItem(iconName: "doc.on.doc",
-                            text: "Projects",
-                            tag: 2,
-                            color: .white)
-                }
-                .padding(.bottom, 30)
-                .padding(.horizontal, 30)
+            switch tabSelected {
+            case 0:
+                NotesNavigationController()
+                    .environmentObject(viewModel.dependency)
+            case 1:
+                TasksNavigationController()
+                    .environmentObject(viewModel.dependency)
+            default:
+                ProjectsNavigationController()
+                    .environmentObject(viewModel.dependency)
+            }
+            if viewModel.isTabbarVisible {
+                tabBarContent
             }
         }
+    }
+
+    private var tabBarContent: some View {
+        HStack {
+            HStack {
+                tabItem(iconName: "tray.and.arrow.down",
+                        text: "Inbox",
+                        tag: 0,
+                        color: .white)
+                Spacer()
+                tabItem(iconName: "list.bullet",
+                        text: "Tasks",
+                        tag: 1,
+                        color: .white)
+                Spacer()
+                tabItem(iconName: "doc.on.doc",
+                        text: "Projects",
+                        tag: 2,
+                        color: .white)
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
+        }
+        .background(Color.black.ignoresSafeArea())
     }
 
     private func tabItem(iconName: String,

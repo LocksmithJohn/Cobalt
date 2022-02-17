@@ -43,7 +43,6 @@ class ScreenFactory {
                 return false
             }
         }
-        //    TODO: - obsluzyc tabbar jak bedzie czas
-//        container.appState.isTabbarVisibleSubject.send(visible)
+        dependency.appState.isTabbarVisibleSubject.send(visible)
     }
 }

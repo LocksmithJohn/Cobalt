@@ -76,6 +76,8 @@
 		CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */; };
 		CE9043EB27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
 		CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
+		CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */; };
+		CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +129,7 @@
 		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
 		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		CE9043EA27BE73F200AADC63 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,7 @@
 				CE61F6BC27B8783800A734EE /* TaskDetails */,
 				CE61F6C127B9111600A734EE /* ProjectsList */,
 				CE61F6B127B83C5900A734EE /* Tabbar.swift */,
+				CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */,
 				CE8F04BE27BD35E20067D3EE /* NavigationControllers */,
 				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
 				CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */,
@@ -400,6 +404,7 @@
 				CE61F6BE27B8FA5C00A734EE /* ProjectsListView.swift in Sources */,
 				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
+				CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */,
 				CE338AC127B7A5B7005289D1 /* TasksListView.swift in Sources */,
@@ -430,6 +435,7 @@
 				CE338AEC27B7B890005289D1 /* BaseVM.swift in Sources */,
 				CE338AE627B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
+				CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */,
