@@ -85,11 +85,11 @@ class CoreDataManager {
         case .fetchProjects:
             fetchProjects(reduced: false)
         case let .saveTask(task):
-            saveItem(item: task)
+            saveItem(item: Item(task))
         case let .deleteItem(id):
             deleteItem(id: id)
         case let .saveProject(project: project):
-            saveItem(item: project)
+            saveItem(item: Item(project))
         case let .fetchRelatedItems(id):
             fetchRelatedItems(id: id)
         case .fetchProjectsReduced:

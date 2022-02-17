@@ -19,7 +19,7 @@ struct ProjectDetailsView: View {
 
             // TODO: - ponizej wrzucic nowe inity textfieldow dla ios15
             Section {
-                ForEach(viewModel.relatedItems) { relatedItem in
+                ForEach(viewModel.subtasks) { relatedItem in
                     Text(relatedItem.name).font(.system(size: 18)).foregroundColor(.gray)
                 }
                 Button {

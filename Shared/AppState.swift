@@ -25,8 +25,21 @@ class AppState: TasksListAppState,
         coreDataManager.projectSubject
     }
 
-    var relatedItemsSubject: PassthroughSubject<[Item], Never> {
+    var relatedTasksSubject: PassthroughSubject<[TaskDTOReduced], Never> {
+
         coreDataManager.relatedItemsSubject
+            .map { arrayI in
+                arrayI.map { item -> TaskDTOReduced in
+                    return TaskDTOReduced(item: item)
+                }
+            }
+
+        //        coreDataManager.relatedItemsSubject
+        //            .map {
+        //                $0.map {
+        //                    TaskDTOReduced(item: $0)
+        //                }
+        //            }
     }
 
     var projectsReducedSubject: PassthroughSubject<[ProjectDTOReduced], Never> {
@@ -58,5 +71,5 @@ protocol ProjectsListAppState {
 
 protocol ProjectDetailsAppState {
     var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> { get }
-    var relatedItemsSubject: PassthroughSubject<[Item], Never> { get } // TODO: - ma byc ograniczone dto
+    var relatedTasksSubject: PassthroughSubject<[TaskDTOReduced], Never> { get } // TODO: - ma byc ograniczone dto
 }

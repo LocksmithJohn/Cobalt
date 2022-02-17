@@ -32,6 +32,8 @@ class Interactor: TasksListInteractor,
         router.route(from: typeFrom, to: typeTo)
     }
 
+    func
+
 }
 
 protocol CommonInteractor {
@@ -51,6 +53,7 @@ protocol TaskDetailsInteractor: CommonInteractor {
     func fetchProjectsReduced()
     func fetchProjectReduced(id: UUID)
     func deleteTask(id: UUID)
+    func fetchRelatedItems(id: UUID)
 }
 
 extension TaskDetailsInteractor {

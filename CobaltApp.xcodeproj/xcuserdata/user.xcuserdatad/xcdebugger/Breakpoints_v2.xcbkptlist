@@ -7,64 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DA42F580-36B6-4E89-AE3D-E2A580AC36BB"
-            shouldBeEnabled = "Yes"
+            uuid = "115D528D-8141-43C7-89AD-2B0AAFC8D006"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/VMFactory.swift"
+            filePath = "Shared/Interactor.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "tasksList(_:router:)"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "fetchProject(id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "64E30864-6FC3-4F4F-9B37-9DF3559FC79D"
+            uuid = "C7ABA5AE-5932-4099-A5E4-9DEC36265D58"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/VMFactory.swift"
+            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "taskDetails(_:id:projectID:router:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "bindAppState()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A092C598-D922-456D-A466-DA8A09738D52"
+            uuid = "8C4CB050-9067-4109-8D05-E68481D70B73"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/VMFactory.swift"
+            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
-            landmarkName = "projectsList(_:router:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A272E940-D5F1-4335-B541-50B92796B4C5"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shared/VMFactory.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "projectDetails(_:id:router:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "bindAppState()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

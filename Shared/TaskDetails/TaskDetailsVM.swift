@@ -15,6 +15,7 @@ final class TaskDetailsVM: BaseVM {
         case back
         case saveTask
         case deleteTask
+        case selectedProject(id: UUID)
     }
 
     @Published var taskName: String = ""
@@ -29,15 +30,7 @@ final class TaskDetailsVM: BaseVM {
     private let interactor: TaskDetailsInteractor
     private let id: UUID?
     private var projectID: UUID?
-
-    private var newTask: TaskDTO {
-        TaskDTO(id: UUID(),
-                name: taskName,
-                itemDesrciption: taskDescription,
-                type: .task,
-                status: .new,
-                relatedItems: "")
-    }
+    private var newTask = TaskDTO(newID: UUID())
 
     init(id: UUID?,
          projectID: UUID?,
@@ -58,8 +51,8 @@ final class TaskDetailsVM: BaseVM {
             .compactMap { $0 }
             .sink { [weak self] task in
                 self?.taskName = task.name
-                self?.taskDescription = task.itemDesrciption
-                if let projectID = task.relatedItems.getUUIDs().first?.id {
+                self?.taskDescription = task.itemDescription ?? ""
+                if let projectID = task.relatedItems?.getUUIDs().first?.id { // TODO: - ta operacje nie moze byc tutaj
                     self?.projectID = projectID
                     self?.interactor.fetchProjectReduced(id: projectID) // TODO: - interactor musi byc w akcjach
                 }
@@ -90,13 +83,17 @@ final class TaskDetailsVM: BaseVM {
     private func handleAction(action: Action) {
         switch action {
         case .onAppear:
-            guard let id = id else { return }
-
-            interactor.fetchTask(id: id)
+            if let id = id {
+                interactor.fetchTask(id: id)
+            }
             interactor.fetchProjectsReduced()
         case .saveTask:
+            writeTaskValues()
             interactor.saveTask(newTask)
-            interactor.fetchTasks()
+            if let projectID = projectID {
+                interactor.fetchRelatedItems(id: projectID)
+            }
+            interactor.fetchTasks() // tutaj zaciągac tylko taski reduced, tylko jezeli wiem ze wracam naliste taskow
             interactor.route(from: screenType, to: .tasks)
         case .back:
             if let projectID = projectID {
@@ -110,7 +107,21 @@ final class TaskDetailsVM: BaseVM {
 
             interactor.deleteTask(id: id)
             interactor.route(from: screenType, to: .tasks)
+        case let .selectedProject(id):
+            projectID = id
         }
+    }
+
+    private func writeTaskValues() {
+        addSbtRelation() // tutaj to sie wykonuje tylko dla istniejacego parent projectu
+        newTask.name = taskName // zapisywanie taska wyniesc stąd
+        newTask.itemDescription = taskDescription
+    }
+
+    private func addSbtRelation() {
+        guard let projectIDString = projectID?.uuidString else { return }
+
+        newTask.relatedItems = ItemRelation.sbt.rawValue + projectIDString + ","
     }
 
 }

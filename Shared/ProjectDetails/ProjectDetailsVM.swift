@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 final class ProjectDetailsVM: BaseVM {
+    // tutaj musi byc mozliwosc zapisu nowego projektu oraz updatu istniejącego
+    // itemy powiązane nie są zapisywane tutaj, ale na swoich ekranach z przekazanym ID z tego projektu
 
     enum Action {
         case onAppear
@@ -21,22 +23,14 @@ final class ProjectDetailsVM: BaseVM {
 
     @Published var projectName: String = ""
     @Published var projectDescription: String = ""
-    @Published var relatedItems: [Item] = []
+    @Published var subtasks: [TaskDTOReduced] = []
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
     private let appstate: ProjectDetailsAppState
     private let interactor: ProjectDetailsInteractor
     private let id: UUID
-    private var newProject: ProjectDTO {
-
-        ProjectDTO(id: UUID(),
-                   name: projectName,
-                   itemDesrciption: projectDescription,
-                   type: .project,
-                   status: .new,
-                   relatedItems: "")
-    }
+    //    private var newProject = ProjectDTO(newID: UUID())
 
     init(id: UUID?,
          interactor: ProjectDetailsInteractor,
@@ -55,14 +49,14 @@ final class ProjectDetailsVM: BaseVM {
             .compactMap { $0 }
             .sink { [weak self] project in
                 self?.projectName = project.name
-                self?.projectDescription = project.itemDesrciption
+                self?.projectDescription = project.itemDescription ?? ""
             }
             .store(in: &cancellableBag)
 
         appstate.relatedItemsSubject
             .compactMap { $0 }
             .sink { [weak self] relatedItems in
-                self?.relatedItems = relatedItems
+                self?.subtasks = relatedItems
             }
             .store(in: &cancellableBag)
     }
@@ -81,28 +75,10 @@ final class ProjectDetailsVM: BaseVM {
             interactor.fetchProject(id: id)
             interactor.fetchRelatedItems(id: id)
         case .saveProject:
-            let taskID = UUID()
-            let projectID = UUID()
 
-            let taskRelations = ItemRelation.sbt.rawValue + projectID.uuidString + ","
-            let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
+            //            let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
 
-            let subtask = TaskDTO(id: taskID, // TODO: - tą cala logike przeniesc gdzies
-                                  name: "subtask title",
-                                  itemDesrciption: "subtask desc",
-                                  type: .task,
-                                  status: .new,
-                                  relatedItems: taskRelations)
-
-            let anotherProject = ProjectDTO(id: projectID,
-                                            name: projectName,
-                                            itemDesrciption: projectDescription,
-                                            type: .project,
-                                            status: .new,
-                                            relatedItems: projectRelations)
-
-            interactor.saveTask(subtask)
-            interactor.saveProject(anotherProject)
+            interactor.saveProject(newProject)
             interactor.route(from: screenType, to: .projects)
             interactor.fetchProjects()
         case .back:
@@ -114,6 +90,15 @@ final class ProjectDetailsVM: BaseVM {
         case .showAddingTask:
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: id))
         }
+    }
+
+    private var newProject: ProjectDTO {
+        ProjectDTO(id: id,
+                   name: projectName,
+                   itemDesrciption: projectDescription,
+                   type: .project,
+                   status: .new,
+                   relatedItems: <#T##String?#>)
     }
 
 }

@@ -50,6 +50,10 @@ struct TaskDetailsView: View {
         ForEach(viewModel.projects) { project in
             Text(project.name)
                 .padding(.leading, 8)
+                .onTapGesture {
+                    viewModel.actionSubject.send(.selectedProject(id: project.id))
+                    projectListVisible = false
+                }
         }
     }
 }

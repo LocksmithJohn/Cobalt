@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Item: Identifiable { // TODO:  zmeinic na strukture
+struct Item: Identifiable { // TODO:  zmeinic na strukture
     let id: UUID
     let name: String
     let itemDesrciption: String
@@ -30,13 +30,31 @@ class Item: Identifiable { // TODO:  zmeinic na strukture
         self.relatedItems = relatedItems
     }
 
-    convenience init(itemObject: ItemObject) {
+    init(itemObject: ItemObject) {
         self.init(id: itemObject.id,
                   name: itemObject.name ?? "tutaj176",
                   itemDesrciption: itemObject.itemDescription ?? "tutaj765",
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new,
                   relatedItems: itemObject.relatedItemsData ?? "tutaj987654")
+    }
+
+    init(_ taskDTO: TaskDTO) {
+        self.id = taskDTO.id
+        self.name = taskDTO.name
+        self.itemDesrciption = taskDTO.itemDescription ?? ""
+        self.type = taskDTO.type
+        self.status = taskDTO.status
+        self.relatedItems = taskDTO.relatedItems ?? ""
+    }
+
+    init(_ projectDTO: ProjectDTO) {
+        self.id = projectDTO.id
+        self.name = projectDTO.name
+        self.itemDesrciption = projectDTO.itemDescription ?? ""
+        self.type = projectDTO.type
+        self.status = projectDTO.status
+        self.relatedItems = projectDTO.relatedItems ?? ""
     }
 
 }
