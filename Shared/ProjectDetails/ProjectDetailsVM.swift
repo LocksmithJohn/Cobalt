@@ -22,13 +22,12 @@ final class ProjectDetailsVM: BaseVM {
     @Published var projectName: String = ""
     @Published var projectDescription: String = ""
     @Published var relatedItems: [Item] = []
-    //    @Published var relatedItem: String = ""
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
     private let appstate: ProjectDetailsAppState
     private let interactor: ProjectDetailsInteractor
-    private let id: UUID?
+    private let id: UUID
     private var newProject: ProjectDTO {
 
         ProjectDTO(id: UUID(),
@@ -44,7 +43,7 @@ final class ProjectDetailsVM: BaseVM {
          appstate: ProjectDetailsAppState) {
         self.interactor = interactor
         self.appstate = appstate
-        self.id = id
+        self.id = id ?? UUID() // DOC: If this is creating project flow (not editing), create new project id here
         super.init(screenType: .projectDetails(id: id))
 
         bindAppState()
@@ -64,7 +63,6 @@ final class ProjectDetailsVM: BaseVM {
             .compactMap { $0 }
             .sink { [weak self] relatedItems in
                 self?.relatedItems = relatedItems
-                print("filter items: \(relatedItems.map { $0.id })")
             }
             .store(in: &cancellableBag)
     }
@@ -80,8 +78,6 @@ final class ProjectDetailsVM: BaseVM {
     private func handleAction(action: Action) {
         switch action {
         case .onAppear:
-            guard let id = id else { return }
-
             interactor.fetchProject(id: id)
             interactor.fetchRelatedItems(id: id)
         case .saveProject:
@@ -91,7 +87,7 @@ final class ProjectDetailsVM: BaseVM {
             let taskRelations = ItemRelation.sbt.rawValue + projectID.uuidString + ","
             let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
 
-            let subtask = TaskDTO(id: taskID, // tutaj tą cala logike przeniesc gdzies
+            let subtask = TaskDTO(id: taskID, // TODO: - tą cala logike przeniesc gdzies
                                   name: "subtask title",
                                   itemDesrciption: "subtask desc",
                                   type: .task,
@@ -113,12 +109,10 @@ final class ProjectDetailsVM: BaseVM {
             interactor.route(from: screenType, to: .projects)
             interactor.fetchProjects()
         case .deleteProject:
-            guard let id = id else { return }
-
             interactor.deleteProject(id: id)
             interactor.route(from: screenType, to: .projects)
         case .showAddingTask:
-            interactor.route(from: screenType, to: .taskDetails(id: nil, relatedProjectID: id))
+            interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: id))
         }
     }
 

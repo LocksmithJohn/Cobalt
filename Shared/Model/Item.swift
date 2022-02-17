@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Item: Identifiable { // tutaj zmeinic na strukture
+class Item: Identifiable { // TODO:  zmeinic na strukture
     let id: UUID
     let name: String
     let itemDesrciption: String
@@ -39,13 +39,6 @@ class Item: Identifiable { // tutaj zmeinic na strukture
                   relatedItems: itemObject.relatedItemsData ?? "tutaj987654")
     }
 
-//    func updateRelatedItems(itemIDs: String) {
-//        guard let id = itemIDs.ids.first else {
-//            return
-//        }
-//        self.relatedItems.ids.append(id)
-//        print("")
-//    }
 }
 
 enum ItemType: String {

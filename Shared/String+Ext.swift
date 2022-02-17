@@ -35,14 +35,4 @@ extension String {
         return tuples
     }
 
-//    func getUUIDs() -> [UUID] {
-//        components(separatedBy: ",")
-//            .map {
-//                $0.dropFirst(3)
-//            }
-//            .compactMap {
-//                UUID(uuidString: String($0))
-//            }
-//    }
-
 }

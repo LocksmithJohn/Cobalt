@@ -45,18 +45,41 @@ extension NavigationController {
                 let viewController = presentedViewControllers.first {
                     $0.title == screen.type.title
                 }
-                let newVC = StackScreenViewController(dependency: dependency, type: screen.type)
+                let newVC = StackScreenViewController(dependency: dependency, type: screen.type, router: router)
                 return viewController ?? newVC
             }
 
         navigationController.setViewControllers(newViewControllers, animated: true)
 
-        if let screen = router.screens.first(where: { $0.isModal }) {
-            let modalVC = StackScreenViewController(dependency: dependency, type: screen.type)
-            modalVC.modalPresentationStyle = .overCurrentContext
-            navigationController.viewControllers.last?.present(modalVC, animated: true)
-        } else {
-            navigationController.viewControllers.forEach { $0.dismiss(animated: true) }
+        if router.modalsChanged {
+            let newAllModals = router.screens.filter { $0.isModal }
+            let previousAllModals = router.previousModals
+
+            let modalsToAdd = newAllModals.filter { !previousAllModals.contains($0) }
+            let modalsToDelete = previousAllModals.filter { !newAllModals.contains($0) }
+
+            if modalsToDelete.count == 1 {
+                // if there is only one modal to remove
+                navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
+            } else if modalsToDelete.count > 1 {
+                // if there are multiple modals to remove
+                print("WARNING: removing multiple modals not handled")
+            }
+
+            if newAllModals.count == 1, let modalScreen = newAllModals.first {
+                // if there is only one new modal
+                let modalVC = StackScreenViewController(dependency: dependency, type: modalScreen.type, router: router)
+                modalVC.modalPresentationStyle = .overCurrentContext
+                navigationController.present(modalVC, animated: true)
+            } else if newAllModals.count > 1 {
+                // if there is only one new modal and at least another one is already displayed
+                if let modalScreen = newAllModals.last {
+                    let modalVC = StackScreenViewController(dependency: dependency, type: modalScreen.type, router: router)
+                    modalVC.modalPresentationStyle = .overCurrentContext
+                    navigationController.presentedViewController?.present(modalVC, animated: true)
+                }
+            }
+
         }
     }
 

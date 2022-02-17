@@ -10,7 +10,7 @@ import SwiftUI
 struct TaskDetailsView: View {
     var body: some View {
         Form {
-            // tutaj ponizej wrzucic nowe inity textfieldow dla ios15
+            // TODO: ponizej wrzucic nowe inity textfieldow dla ios15
             Section {
                 TextField(viewModel.taskName, text: $viewModel.taskName)
                 TextField(viewModel.taskDescription, text: $viewModel.taskDescription)

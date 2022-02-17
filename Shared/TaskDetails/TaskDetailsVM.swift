@@ -17,11 +17,7 @@ final class TaskDetailsVM: BaseVM {
         case deleteTask
     }
 
-    @Published var taskName: String = "" {
-        didSet {
-            print("life taskName: \(taskName)")
-        }
-    }
+    @Published var taskName: String = ""
     @Published var taskDescription: String = ""
 
     @Published var projects: [ProjectDTOReduced] = []
@@ -32,7 +28,7 @@ final class TaskDetailsVM: BaseVM {
     private let appstate: TaskDetailsAppState
     private let interactor: TaskDetailsInteractor
     private let id: UUID?
-    //    private var relatedProjectID: UUID?
+    private var projectID: UUID?
 
     private var newTask: TaskDTO {
         TaskDTO(id: UUID(),
@@ -44,34 +40,28 @@ final class TaskDetailsVM: BaseVM {
     }
 
     init(id: UUID?,
-         relatedProjectID: UUID?,
+         projectID: UUID?,
          interactor: TaskDetailsInteractor,
          appstate: TaskDetailsAppState) {
         self.interactor = interactor
         self.appstate = appstate
         self.id = id
-        //        self.relatedProjectID = relatedProjectID
-        super.init(screenType: .taskDetails(id: id, relatedProjectID: UUID(uuidString: "tutaj wywalic to? ")))
+        self.projectID = projectID
+        super.init(screenType: .taskDetails(id: id, projectID: projectID))
 
         bindAppState()
         bindAction()
-        print("life TaskDetailsVM: init")
-    }
-
-    deinit{
-        print("life TaskDetailsVM: deinit")
     }
 
     private func bindAppState() {
-        appstate.taskDetailsSubject // tutaj czemu ten subject leci 2 razy
+        appstate.taskDetailsSubject // TODO: - czemu ten subject leci 2 razy
             .compactMap { $0 }
             .sink { [weak self] task in
                 self?.taskName = task.name
                 self?.taskDescription = task.itemDesrciption
-                print("filter getUUIDs 1: \(task.relatedItems)")
-                print("filter getUUIDs 2: \(task.relatedItems.getUUIDs())")
-                if let relatedProjectID = task.relatedItems.getUUIDs().first?.id {
-                    self?.interactor.fetchProjectReduced(id: relatedProjectID) // tutaj interactor musi byc w akcjach
+                if let projectID = task.relatedItems.getUUIDs().first?.id {
+                    self?.projectID = projectID
+                    self?.interactor.fetchProjectReduced(id: projectID) // TODO: - interactor musi byc w akcjach
                 }
             }
             .store(in: &cancellableBag)
@@ -109,7 +99,11 @@ final class TaskDetailsVM: BaseVM {
             interactor.fetchTasks()
             interactor.route(from: screenType, to: .tasks)
         case .back:
-            interactor.route(from: screenType, to: .tasks)
+            if let projectID = projectID {
+                interactor.route(from: screenType, to: .projectDetails(id: projectID))
+            } else {
+                interactor.route(from: screenType, to: .tasks)
+            }
             interactor.fetchTasks()
         case .deleteTask:
             guard let id = id else { return }

@@ -74,6 +74,8 @@
 		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
 		CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */; };
 		CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */; };
+		CE9043EB27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
+		CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -124,6 +126,7 @@
 		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
 		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
 		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		CE9043EA27BE73F200AADC63 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,11 +172,10 @@
 				CE61F6BC27B8783800A734EE /* TaskDetails */,
 				CE61F6C127B9111600A734EE /* ProjectsList */,
 				CE61F6B127B83C5900A734EE /* Tabbar.swift */,
-				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
-				CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */,
-				CE61F6B327B83CB200A734EE /* TasksNavigationController.swift */,
+				CE8F04BE27BD35E20067D3EE /* NavigationControllers */,
 				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
 				CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */,
+				CE9043EA27BE73F200AADC63 /* Array+Ext.swift */,
 				CE338AF027B7D9F7005289D1 /* ItemType.swift */,
 				CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */,
 				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
@@ -186,7 +188,6 @@
 				CE338AE427B7B6A5005289D1 /* ScreenType.swift */,
 				CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */,
 				CE338AEA27B7B890005289D1 /* BaseVM.swift */,
-				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
 				CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */,
 				CE61F6C927B9B2F900A734EE /* Model */,
 				CE338A9E27B7A4E6005289D1 /* Assets.xcassets */,
@@ -259,6 +260,17 @@
 				CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CE8F04BE27BD35E20067D3EE /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
+				CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */,
+				CE61F6B327B83CB200A734EE /* TasksNavigationController.swift */,
+				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
+			);
+			path = NavigationControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,6 +388,7 @@
 				CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */,
 				CE61F6C827B9622D00A734EE /* Haptic.swift in Sources */,
 				CE61F6C527B9115400A734EE /* ProjectDetailsVM.swift in Sources */,
+				CE9043EB27BE73F200AADC63 /* Array+Ext.swift in Sources */,
 				CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE61F6B227B83C5900A734EE /* Tabbar.swift in Sources */,
 				CE61F6B627B83CC200A734EE /* NotesNavigationController.swift in Sources */,
@@ -419,6 +432,7 @@
 				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
+				CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */,
 				CE338ACE27B7A63B005289D1 /* Dependency.swift in Sources */,
 				CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,

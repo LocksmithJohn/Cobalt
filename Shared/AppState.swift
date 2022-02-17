@@ -58,5 +58,5 @@ protocol ProjectsListAppState {
 
 protocol ProjectDetailsAppState {
     var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> { get }
-    var relatedItemsSubject: PassthroughSubject<[Item], Never> { get } // tutaj ma byc ograniczone dto
+    var relatedItemsSubject: PassthroughSubject<[Item], Never> { get } // TODO: - ma byc ograniczone dto
 }

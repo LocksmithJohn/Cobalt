@@ -52,7 +52,7 @@ class CoreDataManager {
         return context
     }
 
-    private var dateManager = DateManager() // tutaj zle
+    private var dateManager = DateManager() // TODO:  zle
     private var controllers: [NSFetchedResultsController<NSFetchRequestResult>] = []
     private var cancellableBag = Set<AnyCancellable>()
 
@@ -110,34 +110,10 @@ class CoreDataManager {
         }
     }
 
-    //    private func setFetchedResultsController(entityType: ItemType) {
-    //        let className = String(describing: entityType.type.self)
-    //        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: className)
-    //        fetch.sortDescriptors = [NSSortDescriptor(key: entityType.mainAttributeName, ascending: true)]
-    //        let resultsController = NSFetchedResultsController(fetchRequest: fetch,
-    //                                                           managedObjectContext: managedContext,
-    //                                                           sectionNameKeyPath: nil,
-    //                                                           cacheName: nil)
-    //        resultsController.delegate = self
-    //        controllers.append(resultsController)
-    //    }
-
     init(dateManager: DateManager) {
         self.dateManager = dateManager
-        //        super.init()
-        //        setFetchedResultsController(entityType: .project)
-        //        setFetchedResultsController(entityType: .task)
         dateManager.startSyncTimer()
         bindSyncTimer()
-        //        getInitialData()
-        fetch()
-    }
-
-    private func fetch() {// tutaj do wyalenia?
-        do { try controllers.first?.performFetch() }
-        catch { fatalError() }
-        do { try controllers.last?.performFetch() }
-        catch { fatalError() }
     }
 
     private func bindSyncTimer() {
@@ -180,7 +156,6 @@ class CoreDataManager {
     }
 
     func fetchRelatedItems(id: UUID) {
-        print("filter items contains: \(id.uuidString)")
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "relatedItemsData CONTAINS %@", id.uuidString)
 
@@ -209,7 +184,7 @@ class CoreDataManager {
         itemObject.id = item.id
         itemObject.state = item.status.rawValue
         itemObject.type = item.type.rawValue
-        itemObject.relatedItemsData = item.relatedItems//itemsIdsToData(itemIDs: item.relatedItems)
+        itemObject.relatedItemsData = item.relatedItems
         saveContext()
     }
 

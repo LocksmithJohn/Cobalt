@@ -9,7 +9,7 @@ import Foundation
 
 enum ScreenType: Equatable {
     case tasks
-    case taskDetails(id: UUID?, relatedProjectID: UUID?)
+    case taskDetails(id: UUID?, projectID: UUID?)
     case projects
     case projectDetails(id: UUID?)
     case notes

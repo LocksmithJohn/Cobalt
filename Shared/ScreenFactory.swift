@@ -8,17 +8,25 @@
 import SwiftUI
 
 class ScreenFactory {
-    static func make(type: ScreenType, dependency: Dependency) -> AnyView {
+    static func make(type: ScreenType, dependency: Dependency, router: Router) -> AnyView {
         handleTabbarVisibility(sType: type, dependency: dependency)
         switch type {
-        case let .taskDetails(id, relatedProjectID):
-            return AnyView(TaskDetailsView(viewModel: VMFactory.taskDetails(dependency, id: id, relatedProjectID: relatedProjectID)))
+        case let .taskDetails(id, projectID):
+            return AnyView(
+                TaskDetailsView(viewModel: VMFactory.taskDetails(dependency, id: id, projectID: projectID, router: router))
+            )
         case .tasks:
-            return AnyView(TasksListView(viewModel: VMFactory.tasksList(dependency)))
+            return AnyView(
+                TasksListView(viewModel: VMFactory.tasksList(dependency, router: router))
+            )
         case let .projectDetails(id):
-            return AnyView(ProjectDetailsView(viewModel: VMFactory.projectDetails(dependency, id: id)))
+            return AnyView(
+                ProjectDetailsView(viewModel: VMFactory.projectDetails(dependency, id: id, router: router))
+            )
         case .projects:
-            return AnyView(ProjectsListView(viewModel: VMFactory.projectsList(dependency)))
+            return AnyView(
+                ProjectsListView(viewModel: VMFactory.projectsList(dependency, router: router))
+            )
         case .notes:
             return AnyView(Text("s Notes"))
         case let .noteDetails(id):

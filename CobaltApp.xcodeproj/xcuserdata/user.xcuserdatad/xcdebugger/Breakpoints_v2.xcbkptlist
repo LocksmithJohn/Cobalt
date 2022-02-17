@@ -7,80 +7,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "73CAA5A8-9376-4972-A754-CA1BEC97C71E"
+            uuid = "DA42F580-36B6-4E89-AE3D-E2A580AC36BB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/TaskDetails/TaskDetailsVM.swift"
+            filePath = "Shared/VMFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "bindAppState()"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "tasksList(_:router:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "19708B70-56F0-425A-8392-DC94F4936D05"
+            uuid = "64E30864-6FC3-4F4F-9B37-9DF3559FC79D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/TaskDetails/TaskDetailsVM.swift"
+            filePath = "Shared/VMFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "handleAction(action:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "taskDetails(_:id:projectID:router:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "980FB991-4551-48A5-893D-81CE9AB135F2"
+            uuid = "A092C598-D922-456D-A466-DA8A09738D52"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
+            filePath = "Shared/VMFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "handleAction(action:)"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "projectsList(_:router:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "46CE7949-7E53-4295-9F7B-9E1A54795F37"
+            uuid = "A272E940-D5F1-4335-B541-50B92796B4C5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/ProjectDetails/ProjectDetailsView.swift"
+            filePath = "Shared/VMFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "18FCAD5D-840F-44E7-92EB-0067FF6B3F2F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Shared/Router.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "route(from:to:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "projectDetails(_:id:router:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -15,12 +15,19 @@ final class Router: ObservableObject {
         didSet { printStactInfo() }
     }
 
-    private let title: String
+    var previousModals: [Screen] = []
+    let title: String
+    var modalsChanged: Bool {
+        screens.filter { $0.isModal } !=
+        previousModals.filter { $0.isModal }
+    }
+    
     init(title: String) {
         self.title = title
     }
 
     private func send(_ action: StackAction) {
+        previousModals = screens.filter { $0.isModal }
         switch action {
         case .set(let types):
             screens.removeAll()
@@ -36,9 +43,9 @@ final class Router: ObservableObject {
             screen.isModal = true
             screens.append(screen)
         case .dismiss:
-            objectWillChange.send()
-            screens.removeAll { $0.isModal }
-            printStactInfo()
+//            objectWillChange.send()
+            screens.removeLast()
+//            printStactInfo()
         case .pop:
             guard !screens.isEmpty else { return }
             screens.removeLast()
@@ -64,11 +71,13 @@ final class Router: ObservableObject {
     }
 
     private func printStactInfo() {
-        print("screen     ----\(title) : Screens----")
-        screens.reversed().forEach {
-            print("screen     |screen: \(String(describing: $0.type.title)) \($0.isModal ? "is Modal" : "")")
-        }
-        print("screen     -----------------")
+//        if title == "Projects" {
+            print("screen     ----\(title) : Screens----")
+            screens.reversed().forEach {
+                print("screen     |screen: \(String(describing: $0.type.title)) \($0.isModal ? "is Modal" : "")")
+            }
+            print("screen     -----------------")
+//        }
     }
 
     func pop() {
@@ -76,7 +85,7 @@ final class Router: ObservableObject {
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
-        print("route form: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
+        print("router: \(title) form: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
         switch typeFrom {
 
             // MARK: - initial tab bar screens
@@ -85,22 +94,28 @@ final class Router: ObservableObject {
 
             // MARK: - Tasks list flow
         case .tasks :
-            if case let .taskDetails(id, relatedProjectID) = typeTo {
+            if case let .taskDetails(id, projectID) = typeTo {
                 if id == nil {
-                    send(.present(.taskDetails(id: nil, relatedProjectID: nil)))
+                    send(.present(.taskDetails(id: nil, projectID: nil)))
                 } else {
-                    send(.push(.taskDetails(id: id, relatedProjectID: nil)))
+                    send(.push(.taskDetails(id: id, projectID: nil)))
                 }
             }
 
             // MARK: - Tasks details flow
-        case let .taskDetails(id) where typeTo == .tasks:
-            if id == nil {
+        case let .taskDetails(taskID, projectID):
+            switch typeTo {
+            case .tasks:
+                if taskID == nil {
+                    send(.dismiss)
+                } else {
+                    send(.pop)
+                }
+            case .projectDetails:
                 send(.dismiss)
-            } else {
-                send(.pop)
+            default:
+                break
             }
-
             // MARK: - Projects list flow
         case .projects:
             if case let .projectDetails(id) = typeTo {
@@ -112,18 +127,24 @@ final class Router: ObservableObject {
             }
 
             // MARK: - Project details flow
-        case let .projectDetails(id) where typeTo == .projects:
-            if id == nil {
-                send(.dismiss)
-            } else {
-                send(.pop)
+        case let .projectDetails(projectID):
+            switch typeTo {
+            case .projects:
+                if projectID == nil {
+                    send(.dismiss)
+                } else {
+                    send(.pop)
+                }
+            case let .taskDetails(taskID, projectID):
+                send(.present(.taskDetails(id: taskID, projectID: projectID)))
+            default:
+                break
             }
-
             // MARK: - Project details flow
-        case let .projectDetails(projectID) where typeTo == .taskDetails(id: nil, relatedProjectID: projectID):
-            send(.present(.taskDetails(id: nil, relatedProjectID: projectID)))
+        case let .projectDetails(projectID) where typeTo == .taskDetails(id: nil, projectID: projectID):
+            send(.present(.taskDetails(id: nil, projectID: projectID)))
         default:
-            print("route ^ missing route ^ ")
+            print("WARING: ^ missing route ^ ")
         }
     }
 
