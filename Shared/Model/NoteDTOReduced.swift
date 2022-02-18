@@ -1,20 +1,20 @@
 //
-//  TaskDTOReduced.swift
-//  CobaltApp (iOS)
+//  NoteDTOReduced.swift
+//  CobaltApp
 //
-//  Created by Jan Slusarz on 15/02/2022.
+//  Created by Jan Slusarz on 18/02/2022.
 //
 
 import Foundation
 
-struct TaskDTOReduced: Identifiable {
+struct NoteDTOReduced: Identifiable {
 
     let id: UUID
     let name: String
 
     init(itemObject: ItemObject) {
         self.id = itemObject.id
-        self.name = itemObject.name ?? "tutaj538"
+        self.name = itemObject.name ?? "tutaj118"
     }
 
     init(item: Item) {

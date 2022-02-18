@@ -28,9 +28,13 @@ class ScreenFactory {
                 ProjectsListView(viewModel: VMFactory.projectsList(dependency, router: router))
             )
         case .notes:
-            return AnyView(Text("s Notes"))
+            return AnyView(
+                NotesListView(viewModel: VMFactory.notesList(dependency, router: router))
+            )
         case let .noteDetails(id):
-            return AnyView(Text("s Note Details"))
+            return AnyView(
+                NoteDetailsView(viewModel: VMFactory.noteDetails(dependency, id: id, router: router))
+            )
         }
     }
 

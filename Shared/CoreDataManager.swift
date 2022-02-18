@@ -21,7 +21,10 @@ class CoreDataManager {
         case fetchProject(id: UUID)
         case fetchProjects
         case fetchProjectReduced(id: UUID)
-        case fetchProjectsReduced
+
+        case fetchNotes
+        case fetchNote(id: UUID)
+        case saveNote(note: NoteDTO)
 
         case deleteItem(id: UUID)
         case fetchRelatedItems(id: UUID)
@@ -34,12 +37,15 @@ class CoreDataManager {
     }
 
     let projectSubject = PassthroughSubject<ProjectDTO?, Never>()
-    let projectsSubject = PassthroughSubject<[ProjectDTO], Never>()
+    let projectsSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
     let projectReducedSubject = PassthroughSubject<ProjectDTOReduced?, Never>()
-    let projectsReducedSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
+//    let projectsReducedSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
 
     let taskSubject = PassthroughSubject<TaskDTO?, Never>()
-    let tasksSubject = PassthroughSubject<[TaskDTO], Never>()
+    let tasksSubject = PassthroughSubject<[TaskDTOReduced], Never>()
+
+    let noteSubject = PassthroughSubject<NoteDTO?, Never>()
+    let notesSubject = PassthroughSubject<[NoteDTOReduced], Never>()
 
     let relatedItemsSubject = MYPassthroughSubject<[Item]>()
 
@@ -83,7 +89,7 @@ class CoreDataManager {
         case let .fetchProject(id):
             fetchProject(id: id, reduced: false)
         case .fetchProjects:
-            fetchProjects(reduced: false)
+            fetchProjects()
         case let .saveTask(task):
             saveItem(item: Item(task))
         case let .deleteItem(id):
@@ -92,10 +98,14 @@ class CoreDataManager {
             saveItem(item: Item(project))
         case let .fetchRelatedItems(id):
             fetchRelatedItems(id: id)
-        case .fetchProjectsReduced:
-            fetchProjects(reduced: true)
         case let .fetchProjectReduced(id: id):
             fetchProject(id: id, reduced: true)
+        case .fetchNotes:
+            fetchNotes()
+        case let .fetchNote(id):
+            fetchNote(id: id)
+        case let .saveNote(note):
+            saveItem(item: Item(note))
         }
     }
 

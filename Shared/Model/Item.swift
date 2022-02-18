@@ -57,6 +57,15 @@ struct Item: Identifiable { // TODO:  zmeinic na strukture
         self.relatedItems = projectDTO.relatedItems ?? ""
     }
 
+    init(_ noteDTO: NoteDTO) {
+        self.id = noteDTO.id
+        self.name = noteDTO.name
+        self.itemDesrciption = noteDTO.itemDescription ?? ""
+        self.type = noteDTO.type
+        self.status = .new
+        self.relatedItems = ""
+    }
+
 }
 
 enum ItemType: String {

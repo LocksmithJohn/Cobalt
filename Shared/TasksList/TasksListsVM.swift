@@ -16,7 +16,7 @@ final class TasksListVM: BaseVM {
         case goToTask(id: UUID)
     }
 
-    @Published var tasks: [TaskDTO] = []
+    @Published var tasks: [TaskDTOReduced] = []
 
     let actionSubject = PassthroughSubject<Action, Never>()
 

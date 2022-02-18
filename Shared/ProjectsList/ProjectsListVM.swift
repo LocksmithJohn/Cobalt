@@ -15,7 +15,7 @@ final class ProjectsListVM: BaseVM {
         case goToProject(id: UUID)
     }
 
-    @Published var projects: [ProjectDTO] = []
+    @Published var projects: [ProjectDTOReduced] = []
 
     let actionSubject = PassthroughSubject<Action, Never>()
 

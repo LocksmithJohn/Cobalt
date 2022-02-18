@@ -116,6 +116,7 @@ final class Router: ObservableObject {
             default:
                 break
             }
+
             // MARK: - Projects list flow
         case .projects:
             if case let .projectDetails(id) = typeTo {
@@ -140,9 +141,28 @@ final class Router: ObservableObject {
             default:
                 break
             }
+
             // MARK: - Project details flow
         case let .projectDetails(projectID) where typeTo == .taskDetails(id: nil, projectID: projectID):
             send(.present(.taskDetails(id: nil, projectID: projectID)))
+
+            // MARK: - Notes list flow
+        case .notes:
+            if case let .noteDetails(id) = typeTo {
+                if id == nil {
+                    send(.present(.noteDetails(id: nil)))
+                } else {
+                    send(.push(.noteDetails(id: id)))
+                }
+            }
+
+            // MARK: - Note details flow
+        case let .noteDetails(id):
+            if id == nil {
+                send(.dismiss)
+            } else {
+                send(.pop)
+            }
         default:
             print("WARING: ^ missing route ^ ")
         }

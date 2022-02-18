@@ -24,4 +24,12 @@ class VMFactory {
         ProjectDetailsVM(id: id, interactor: Interactor(router: router),
                          appstate: dependency.appState)
     }
+    static func noteDetails(_ dependency: Dependency, id: UUID?, router: Router) -> NoteDetailsVM {
+        NoteDetailsVM(id: id, interactor: Interactor(router: router),
+                      appstate: dependency.appState)
+    }
+    static func notesList(_ dependency: Dependency, router: Router) -> NotesListVM {
+        NotesListVM(interactor: Interactor(router: router),
+                    appstate: dependency.appState)
+    }
 }

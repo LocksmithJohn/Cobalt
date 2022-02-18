@@ -81,6 +81,30 @@
 		CECFD1A827BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */; };
 		CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */; };
 		CECFD1AC27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */; };
+		CECFD1AE27BFD21800CCDBC2 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AD27BFD21800CCDBC2 /* NotesListView.swift */; };
+		CECFD1AF27BFD21800CCDBC2 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AD27BFD21800CCDBC2 /* NotesListView.swift */; };
+		CECFD1B127BFD21F00CCDBC2 /* NotesListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1B027BFD21F00CCDBC2 /* NotesListVM.swift */; };
+		CECFD1B227BFD21F00CCDBC2 /* NotesListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1B027BFD21F00CCDBC2 /* NotesListVM.swift */; };
+		CECFD1B527BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1B427BFD3AD00CCDBC2 /* NoteDTO.swift */; };
+		CECFD1B627BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1B427BFD3AD00CCDBC2 /* NoteDTO.swift */; };
+		CECFD1B827BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1B727BFD3B800CCDBC2 /* NoteDTOReduced.swift */; };
+		CECFD1B927BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1B727BFD3B800CCDBC2 /* NoteDTOReduced.swift */; };
+		CECFD1BB27BFD86F00CCDBC2 /* AppState+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1BA27BFD86F00CCDBC2 /* AppState+Tasks.swift */; };
+		CECFD1BC27BFD86F00CCDBC2 /* AppState+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1BA27BFD86F00CCDBC2 /* AppState+Tasks.swift */; };
+		CECFD1BE27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1BD27BFD87D00CCDBC2 /* AppState+Projects.swift */; };
+		CECFD1BF27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1BD27BFD87D00CCDBC2 /* AppState+Projects.swift */; };
+		CECFD1C127BFD88500CCDBC2 /* AppState+Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C027BFD88500CCDBC2 /* AppState+Notes.swift */; };
+		CECFD1C227BFD88500CCDBC2 /* AppState+Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C027BFD88500CCDBC2 /* AppState+Notes.swift */; };
+		CECFD1C427BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C327BFDF9500CCDBC2 /* Interactor+Tasks.swift */; };
+		CECFD1C527BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C327BFDF9500CCDBC2 /* Interactor+Tasks.swift */; };
+		CECFD1C727BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C627BFDF9C00CCDBC2 /* Interactor+Projects.swift */; };
+		CECFD1C827BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C627BFDF9C00CCDBC2 /* Interactor+Projects.swift */; };
+		CECFD1CA27BFDFA300CCDBC2 /* Interactor+Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */; };
+		CECFD1CB27BFDFA300CCDBC2 /* Interactor+Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */; };
+		CECFD1CD27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */; };
+		CECFD1CE27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */; };
+		CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */; };
+		CECFD1D127BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +158,18 @@
 		CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVM.swift; sourceTree = "<group>"; };
 		CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Fetching.swift"; sourceTree = "<group>"; };
 		CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
+		CECFD1AD27BFD21800CCDBC2 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
+		CECFD1B027BFD21F00CCDBC2 /* NotesListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListVM.swift; sourceTree = "<group>"; };
+		CECFD1B427BFD3AD00CCDBC2 /* NoteDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDTO.swift; sourceTree = "<group>"; };
+		CECFD1B727BFD3B800CCDBC2 /* NoteDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDTOReduced.swift; sourceTree = "<group>"; };
+		CECFD1BA27BFD86F00CCDBC2 /* AppState+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Tasks.swift"; sourceTree = "<group>"; };
+		CECFD1BD27BFD87D00CCDBC2 /* AppState+Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Projects.swift"; sourceTree = "<group>"; };
+		CECFD1C027BFD88500CCDBC2 /* AppState+Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppState+Notes.swift"; sourceTree = "<group>"; };
+		CECFD1C327BFDF9500CCDBC2 /* Interactor+Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interactor+Tasks.swift"; sourceTree = "<group>"; };
+		CECFD1C627BFDF9C00CCDBC2 /* Interactor+Projects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interactor+Projects.swift"; sourceTree = "<group>"; };
+		CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interactor+Notes.swift"; sourceTree = "<group>"; };
+		CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsView.swift; sourceTree = "<group>"; };
+		CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +210,12 @@
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
 				CE338AE727B7B773005289D1 /* StackAction.swift */,
 				CE338ABD27B7A5AE005289D1 /* Interactor.swift */,
+				CECFD1C327BFDF9500CCDBC2 /* Interactor+Tasks.swift */,
+				CECFD1C627BFDF9C00CCDBC2 /* Interactor+Projects.swift */,
+				CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */,
 				CE61F6B727B866ED00A734EE /* TasksList */,
+				CECFD1D227BFE9D800CCDBC2 /* NoteDetails */,
+				CECFD1B327BFD22F00CCDBC2 /* NotesList */,
 				CE61F6C627B9116E00A734EE /* ProjectDetails */,
 				CE61F6BC27B8783800A734EE /* TaskDetails */,
 				CE61F6C127B9111600A734EE /* ProjectsList */,
@@ -190,6 +231,9 @@
 				CE338AC927B7A634005289D1 /* TasksListInteractor.swift */,
 				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
 				CE338ACF27B7A650005289D1 /* AppState.swift */,
+				CECFD1BA27BFD86F00CCDBC2 /* AppState+Tasks.swift */,
+				CECFD1BD27BFD87D00CCDBC2 /* AppState+Projects.swift */,
+				CECFD1C027BFD88500CCDBC2 /* AppState+Notes.swift */,
 				CE338AD527B7A74C005289D1 /* NavigationBar.swift */,
 				CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */,
 				CE61F6AF27B7FE4E00A734EE /* VMFactory.swift */,
@@ -262,9 +306,11 @@
 				CE338AD227B7A68D005289D1 /* Item.swift */,
 				CE61F6D027B9B36C00A734EE /* ItemStatus.swift */,
 				CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */,
-				CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */,
 				CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */,
+				CECFD1B427BFD3AD00CCDBC2 /* NoteDTO.swift */,
+				CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */,
 				CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */,
+				CECFD1B727BFD3B800CCDBC2 /* NoteDTOReduced.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +334,24 @@
 				CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */,
 			);
 			path = "Type+Extensions";
+			sourceTree = "<group>";
+		};
+		CECFD1B327BFD22F00CCDBC2 /* NotesList */ = {
+			isa = PBXGroup;
+			children = (
+				CECFD1AD27BFD21800CCDBC2 /* NotesListView.swift */,
+				CECFD1B027BFD21F00CCDBC2 /* NotesListVM.swift */,
+			);
+			path = NotesList;
+			sourceTree = "<group>";
+		};
+		CECFD1D227BFE9D800CCDBC2 /* NoteDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */,
+				CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */,
+			);
+			path = NoteDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,10 +452,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECFD1CA27BFDFA300CCDBC2 /* Interactor+Notes.swift in Sources */,
+				CECFD1BB27BFD86F00CCDBC2 /* AppState+Tasks.swift in Sources */,
 				CE338AAE27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CE61F6B027B7FE4E00A734EE /* VMFactory.swift in Sources */,
 				CE338AEE27B7D9C9005289D1 /* DateManager.swift in Sources */,
 				CE338AD027B7A650005289D1 /* AppState.swift in Sources */,
+				CECFD1B127BFD21F00CCDBC2 /* NotesListVM.swift in Sources */,
 				CE338AE827B7B773005289D1 /* StackAction.swift in Sources */,
 				CE61F6AE27B7FCC300A734EE /* ScreenFactory.swift in Sources */,
 				CE338AD327B7A68D005289D1 /* Item.swift in Sources */,
@@ -399,23 +466,31 @@
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */,
 				CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */,
+				CECFD1BE27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */,
+				CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */,
 				CE61F6C827B9622D00A734EE /* Haptic.swift in Sources */,
 				CE61F6C527B9115400A734EE /* ProjectDetailsVM.swift in Sources */,
 				CE9043EB27BE73F200AADC63 /* Array+Ext.swift in Sources */,
+				CECFD1C127BFD88500CCDBC2 /* AppState+Notes.swift in Sources */,
 				CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE61F6B227B83C5900A734EE /* Tabbar.swift in Sources */,
 				CE61F6B627B83CC200A734EE /* NotesNavigationController.swift in Sources */,
 				CE61F6CD27B9B31C00A734EE /* TaskDTO.swift in Sources */,
 				CE61F6B927B8782900A734EE /* TaskDetailsView.swift in Sources */,
+				CECFD1B527BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */,
 				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
+				CECFD1AE27BFD21800CCDBC2 /* NotesListView.swift in Sources */,
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
 				CE61F6BE27B8FA5C00A734EE /* ProjectsListView.swift in Sources */,
 				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
+				CECFD1B827BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
 				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
+				CECFD1C427BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
+				CECFD1C727BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */,
@@ -431,6 +506,7 @@
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
 				CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
+				CECFD1CD27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */,
 				CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
 				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
 				CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
@@ -442,15 +518,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
+				CECFD1C527BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
 				CE338AEF27B7D9C9005289D1 /* DateManager.swift in Sources */,
 				CECFD1A827BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
 				CE338AD127B7A650005289D1 /* AppState.swift in Sources */,
+				CECFD1B227BFD21F00CCDBC2 /* NotesListVM.swift in Sources */,
 				CE338AE927B7B773005289D1 /* StackAction.swift in Sources */,
+				CECFD1D127BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */,
 				CE338AD427B7A68D005289D1 /* Item.swift in Sources */,
 				CE338AEC27B7B890005289D1 /* BaseVM.swift in Sources */,
 				CE338AE627B7B6A5005289D1 /* ScreenType.swift in Sources */,
+				CECFD1BF27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */,
 				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
+				CECFD1CE27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
 				CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */,
@@ -459,13 +540,20 @@
 				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAD27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CECFD1AC27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
+				CECFD1C827BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
+				CECFD1B927BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
+				CECFD1B627BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */,
 				CE338AF227B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC827B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CE338AC527B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
+				CECFD1CB27BFDFA300CCDBC2 /* Interactor+Notes.swift in Sources */,
 				CE338AD727B7A74C005289D1 /* NavigationBar.swift in Sources */,
 				CE338ADA27B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
+				CECFD1BC27BFD86F00CCDBC2 /* AppState+Tasks.swift in Sources */,
 				CE338ADD27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
+				CECFD1C227BFD88500CCDBC2 /* AppState+Notes.swift in Sources */,
+				CECFD1AF27BFD21800CCDBC2 /* NotesListView.swift in Sources */,
 				CE338AE327B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
