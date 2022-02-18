@@ -77,6 +77,10 @@
 		CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
 		CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */; };
 		CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */; };
+		CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */; };
+		CECFD1A827BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */; };
+		CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */; };
+		CECFD1AC27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +132,8 @@
 		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		CE9043EA27BE73F200AADC63 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVM.swift; sourceTree = "<group>"; };
+		CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Fetching.swift"; sourceTree = "<group>"; };
+		CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,8 +182,8 @@
 				CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */,
 				CE8F04BE27BD35E20067D3EE /* NavigationControllers */,
 				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
-				CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */,
-				CE9043EA27BE73F200AADC63 /* Array+Ext.swift */,
+				CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */,
+				CECFD1A927BFB26900CCDBC2 /* Type+Extensions */,
 				CE338AF027B7D9F7005289D1 /* ItemType.swift */,
 				CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */,
 				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
@@ -272,6 +278,16 @@
 				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
 			);
 			path = NavigationControllers;
+			sourceTree = "<group>";
+		};
+		CECFD1A927BFB26900CCDBC2 /* Type+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */,
+				CE9043EA27BE73F200AADC63 /* Array+Ext.swift */,
+				CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */,
+			);
+			path = "Type+Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,11 +425,13 @@
 				CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */,
 				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
+				CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
 				CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
+				CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
 				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
 				CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
 			);
@@ -425,6 +443,7 @@
 			files = (
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CE338AEF27B7D9C9005289D1 /* DateManager.swift in Sources */,
+				CECFD1A827BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
 				CE338AD127B7A650005289D1 /* AppState.swift in Sources */,
 				CE338AE927B7B773005289D1 /* StackAction.swift in Sources */,
 				CE338AD427B7A68D005289D1 /* Item.swift in Sources */,
@@ -439,6 +458,7 @@
 				CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAD27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
+				CECFD1AC27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
 				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
 				CE338AF227B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC827B7A603005289D1 /* CoreDataManager.swift in Sources */,

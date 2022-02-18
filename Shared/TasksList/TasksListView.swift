@@ -12,7 +12,7 @@ struct TasksListView: View {
         Form {
             ForEach(viewModel.tasks) { task in
                 Label { Text(task.name) }
-                    icon: { Image(systemName: "rosette") }
+            icon: { Image(systemName: "square.fill").foregroundColor(.blue) }
                 .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
 
             }

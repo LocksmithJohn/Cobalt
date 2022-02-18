@@ -32,8 +32,6 @@ class Interactor: TasksListInteractor,
         router.route(from: typeFrom, to: typeTo)
     }
 
-    func
-
 }
 
 protocol CommonInteractor {

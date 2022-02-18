@@ -42,17 +42,17 @@ struct Tabbar: View {
                 tabItem(iconName: "tray.and.arrow.down",
                         text: "Inbox",
                         tag: 0,
-                        color: .white)
+                        color: .yellow)
                 Spacer()
                 tabItem(iconName: "list.bullet",
                         text: "Tasks",
                         tag: 1,
-                        color: .white)
+                        color: .blue)
                 Spacer()
                 tabItem(iconName: "doc.on.doc",
                         text: "Projects",
                         tag: 2,
-                        color: .white)
+                        color: .green)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)

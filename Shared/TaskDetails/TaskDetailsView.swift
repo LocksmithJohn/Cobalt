@@ -9,26 +9,33 @@ import SwiftUI
 
 struct TaskDetailsView: View {
     var body: some View {
-        Form {
-            // TODO: ponizej wrzucic nowe inity textfieldow dla ios15
-            Section {
+        VStack {
+            Label {
                 TextField(viewModel.taskName, text: $viewModel.taskName)
-                TextField(viewModel.taskDescription, text: $viewModel.taskDescription)
-            } header: { Text("Task details") }
+                    .font(.title)
+            } icon: {
+                Image(systemName: "square.fill")
+                    .foregroundColor(.blue)
+            }.padding(.horizontal)
+            TextField(viewModel.taskDescription, text: $viewModel.taskDescription)
 
-            Section {
-                Button { projectListVisible.toggle() } label:
-                { Text("Choose project").foregroundColor(.gray) }
-                Text("Parent project: \(viewModel.relatedProject?.name ?? "-")")
-                if projectListVisible {
-                    projectsView
+
+            Form {
+                // TODO: wrzucic nowe inity textfieldow dla ios15
+                Section {
+                    Button { projectListVisible.toggle() } label:
+                    { Text("Choose project").foregroundColor(.gray) }
+                    Text("Parent project: \(viewModel.relatedProject?.name ?? "-")")
+                    if projectListVisible {
+                        projectsView
+                    }
+                } header: { Text("Parent project") }
+                Section {
+                    Button { viewModel.actionSubject.send(.saveTask) } label:
+                    { Text("Save").foregroundColor(.gray) }
+                    Button { viewModel.actionSubject.send(.deleteTask) } label:
+                    { Text("Delete").foregroundColor(.gray) }
                 }
-            } header: { Text("Parent project") }
-            Section {
-                Button { viewModel.actionSubject.send(.saveTask) } label:
-                { Text("Save").foregroundColor(.green) }
-                Button { viewModel.actionSubject.send(.deleteTask) } label:
-                { Text("Delete").foregroundColor(.red) }
             }
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }

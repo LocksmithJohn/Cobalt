@@ -41,7 +41,7 @@ class CoreDataManager {
     let taskSubject = PassthroughSubject<TaskDTO?, Never>()
     let tasksSubject = PassthroughSubject<[TaskDTO], Never>()
 
-    let relatedItemsSubject = PassthroughSubject<[Item], Never>()
+    let relatedItemsSubject = MYPassthroughSubject<[Item]>()
 
     let syncTimeSubject = PassthroughSubject<String?, Never>()
     let actionSubject = PassthroughSubject<Action, Never>()
@@ -122,59 +122,6 @@ class CoreDataManager {
                 self?.syncTimeSubject.send(timeValue)
             })
             .store(in: &cancellableBag)
-    }
-
-    func fetchTask(id: UUID) {
-        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
-
-        if let itemObject = try? managedContext.fetch(request).first {
-            taskSubject.send(TaskDTO(itemObject: itemObject))
-        }
-    }
-
-    func fetchProject(id: UUID, reduced: Bool) {
-        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
-
-        if let itemObject = try? managedContext.fetch(request).first {
-            if reduced {
-                projectReducedSubject.send(ProjectDTOReduced(itemObject: itemObject))
-            } else {
-                projectSubject.send(ProjectDTO(itemObject: itemObject))
-            }
-        }
-    }
-
-    func fetchTasks() {
-        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "type == %@", ItemType.task.rawValue)
-
-        if let itemObjects = try? managedContext.fetch(request) {
-            tasksSubject.send(itemObjects.map { TaskDTO(itemObject: $0) })
-        }
-    }
-
-    func fetchRelatedItems(id: UUID) {
-        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "relatedItemsData CONTAINS %@", id.uuidString)
-
-        if let itemObjects = try? managedContext.fetch(request) {
-            relatedItemsSubject.send(itemObjects.map { Item(itemObject: $0) })
-        }
-    }
-
-    func fetchProjects(reduced: Bool) {
-        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "type == %@", ItemType.project.rawValue)
-
-        if let itemObjects = try? managedContext.fetch(request) {
-            if reduced {
-                projectsReducedSubject.send(itemObjects.map { ProjectDTOReduced(itemObject: $0) })
-            } else {
-                projectsSubject.send(itemObjects.map { ProjectDTO(itemObject: $0) })
-            }
-        }
     }
 
     func saveItem(item: Item) {

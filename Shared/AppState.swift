@@ -21,26 +21,24 @@ class AppState: TasksListAppState,
     var projectsListSubject: PassthroughSubject<[ProjectDTO], Never> {
         coreDataManager.projectsSubject
     }
-    var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> {
+    var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> { // tutaj wszedzie powinny byc publishery
         coreDataManager.projectSubject
     }
 
-    var relatedTasksSubject: PassthroughSubject<[TaskDTOReduced], Never> {
+    let relatedTasksSubject = MYPassthroughSubject<[TaskDTOReduced]>()
+    var cancellableBag = Set<AnyCancellable>()
 
+    init() {
         coreDataManager.relatedItemsSubject
-            .map { arrayI in
-                arrayI.map { item -> TaskDTOReduced in
-                    return TaskDTOReduced(item: item)
-                }
+            .map { myitems -> [TaskDTOReduced] in
+                myitems.map { TaskDTOReduced(item: $0) }
             }
-
-        //        coreDataManager.relatedItemsSubject
-        //            .map {
-        //                $0.map {
-        //                    TaskDTOReduced(item: $0)
-        //                }
-        //            }
+            .sink { [weak self] tasksReduced in
+                self?.relatedTasksSubject.send(tasksReduced)
+            }
+            .store(in: &cancellableBag)
     }
+
 
     var projectsReducedSubject: PassthroughSubject<[ProjectDTOReduced], Never> {
         coreDataManager.projectsReducedSubject

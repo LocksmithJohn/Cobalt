@@ -30,11 +30,12 @@ final class ProjectDetailsVM: BaseVM {
     private let appstate: ProjectDetailsAppState
     private let interactor: ProjectDetailsInteractor
     private let id: UUID
-    //    private var newProject = ProjectDTO(newID: UUID())
+    private let isCreating: Bool
 
     init(id: UUID?,
          interactor: ProjectDetailsInteractor,
          appstate: ProjectDetailsAppState) {
+        self.isCreating = id == nil
         self.interactor = interactor
         self.appstate = appstate
         self.id = id ?? UUID() // DOC: If this is creating project flow (not editing), create new project id here
@@ -53,10 +54,10 @@ final class ProjectDetailsVM: BaseVM {
             }
             .store(in: &cancellableBag)
 
-        appstate.relatedItemsSubject
+        appstate.relatedTasksSubject
             .compactMap { $0 }
-            .sink { [weak self] relatedItems in
-                self?.subtasks = relatedItems
+            .sink { [weak self] tasks in
+                self?.subtasks = tasks
             }
             .store(in: &cancellableBag)
     }
@@ -77,10 +78,9 @@ final class ProjectDetailsVM: BaseVM {
         case .saveProject:
 
             //            let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
-
+            // TODO: ptojekt nie dostaje zanych relacji, powinien?
             interactor.saveProject(newProject)
-            interactor.route(from: screenType, to: .projects)
-            interactor.fetchProjects()
+            actionSubject.send(.back)
         case .back:
             interactor.route(from: screenType, to: .projects)
             interactor.fetchProjects()
@@ -98,7 +98,7 @@ final class ProjectDetailsVM: BaseVM {
                    itemDesrciption: projectDescription,
                    type: .project,
                    status: .new,
-                   relatedItems: <#T##String?#>)
+                   relatedItems: "")
     }
 
 }

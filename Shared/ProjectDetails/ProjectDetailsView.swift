@@ -9,35 +9,43 @@ import SwiftUI
 
 struct ProjectDetailsView: View {
     var body: some View {
-        Form {
-            Section {
+        VStack {
+            Label {
                 TextField(viewModel.projectName, text: $viewModel.projectName)
-                TextField(viewModel.projectDescription, text: $viewModel.projectDescription)
-            } header: {
-                Text("Project details")
-            }
-
-            // TODO: - ponizej wrzucic nowe inity textfieldow dla ios15
-            Section {
-                ForEach(viewModel.subtasks) { relatedItem in
-                    Text(relatedItem.name).font(.system(size: 18)).foregroundColor(.gray)
+                    .font(.title)
+            } icon: {
+                Image(systemName: "square.fill")
+                    .foregroundColor(.green)
+            }.padding(.horizontal)
+            TextField(viewModel.projectDescription, text: $viewModel.projectDescription)
+                .padding(.horizontal)
+            Form {
+                // TODO: - wrzucic nowe inity textfieldow dla ios15
+                Section {
+                    ForEach(viewModel.subtasks) { relatedItem in
+                        Label {
+                            Text(relatedItem.name)
+                                .font(.system(size: 18))
+                                .foregroundColor(.gray)
+                        } icon: {
+                            Image(systemName: "square.fill")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    Button {
+                        viewModel.actionSubject.send(.showAddingTask)
+                    } label:
+                    { Text("Add Task").foregroundColor(.gray) }
+                } header: {
+                    Text("Tasks:")
                 }
-                Button {
-                    viewModel.actionSubject.send(.showAddingTask)
 
-                } label:
-                { Text("Add Task").foregroundColor(.blue) }
-            } header: {
-                Text("Tasks")
-            }
-
-            Section {
-                Button { viewModel.actionSubject.send(.deleteProject) } label:
-                { Text("Delete").foregroundColor(.red) }
-                Button { viewModel.actionSubject.send(.saveProject) } label:
-                { Text("Save").foregroundColor(.green) }
-            } header: {
-                Text("Project actions")
+                Section {
+                    Button { viewModel.actionSubject.send(.deleteProject) } label:
+                    { Text("Delete").foregroundColor(.gray) }
+                    Button { viewModel.actionSubject.send(.saveProject) } label:
+                    { Text("Save").foregroundColor(.gray) }
+                }
             }
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
