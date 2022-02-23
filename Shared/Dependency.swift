@@ -14,12 +14,15 @@ class Dependency: ObservableObject {
 
     private var bag = Set<AnyCancellable>()
 
-    @Published var notesRouter = Router(title: "Notes")
-    @Published var tasksRouter = Router(title: "Tasks")
-    @Published var projectsRouter = Router(title: "Projects")
+    @Published var notesRouter = Router(type: .notes)
+    @Published var tasksRouter = Router(type: .tasks)
+    @Published var projectsRouter = Router(type: .projects)
+
+    var routersWrapper: RouterWrapper?
 
     init() {
         bindRouters()
+        routersWrapper = RouterWrapper(routers: [notesRouter, tasksRouter, projectsRouter])
     }
 
     private func bindRouters() {

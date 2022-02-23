@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8CDAB101-111C-467C-B4FF-634748C53DB4"
+            uuid = "DD0678B5-4D2D-4C34-A3DE-466E957DE8C1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/NoteDetails/NoteDetailsVM.swift"
+            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "init(id:interactor:appstate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,32 +23,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "90F4106E-C0EE-46F0-BDD1-7AD87E24BFB6"
+            uuid = "9DE284FC-93F1-40C9-B174-BA28C962D51C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/NoteDetails/NoteDetailsVM.swift"
+            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "handleAction(action:)"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "bindAppState()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "21492765-9ACF-4492-8AC3-D0A399AB9677"
+            uuid = "BC640B1A-69CC-45F3-90C5-83AB1379E329"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/NoteDetails/NoteDetailsVM.swift"
+            filePath = "Shared/Router.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "bindAppState()"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "route(from:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4197EF42-4569-42FA-886A-0F06F6B89CA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/ScreenFactory.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "make(type:dependency:router:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

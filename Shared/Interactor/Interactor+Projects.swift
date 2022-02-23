@@ -9,7 +9,9 @@ import Foundation
 
 extension Interactor: ProjectsListInteractor,
                       ProjectDetailsInteractor {
-
+    func editProject(id: UUID, _ project: ProjectDTO) {
+        coreDataManager.editItem(id: id, newItem: Item(project))
+    }
     func fetchProject(id: UUID) {
         coreDataManager.actionSubject.send(.fetchProject(id: id))
     }
@@ -38,6 +40,7 @@ protocol ProjectDetailsInteractor: InteractorProtocol {
     func fetchProjects()
     func fetchRelatedItems(id: UUID)
     func saveProject(_ project: ProjectDTO)
+    func editProject(id: UUID, _ project: ProjectDTO)
     func saveTask(_ task: TaskDTO)
     func deleteProject(id: UUID)
 }

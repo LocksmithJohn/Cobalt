@@ -13,6 +13,9 @@ import SwiftUI
 class CoreDataManager {
 
     enum Action {
+        case fetchItem(id: UUID)
+        case editItem(id: UUID, item: Item)
+
         case saveTask(task: TaskDTO)
         case fetchTask(id: UUID)
         case fetchTasks
@@ -36,10 +39,11 @@ class CoreDataManager {
         bindAction()
     }
 
+    let itemSubject = PassthroughSubject<Item?, Never>()
+
     let projectSubject = PassthroughSubject<ProjectDTO?, Never>()
     let projectsSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
     let projectReducedSubject = PassthroughSubject<ProjectDTOReduced?, Never>()
-//    let projectsReducedSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
 
     let taskSubject = PassthroughSubject<TaskDTO?, Never>()
     let tasksSubject = PassthroughSubject<[TaskDTOReduced], Never>()
@@ -106,6 +110,10 @@ class CoreDataManager {
             fetchNote(id: id)
         case let .saveNote(note):
             saveItem(item: Item(note))
+        case let .fetchItem(id):
+            fetchItem(id: id)
+        case let .editItem(id, item):
+            editItem(id: id, newItem: item)
         }
     }
 
@@ -134,24 +142,4 @@ class CoreDataManager {
             .store(in: &cancellableBag)
     }
 
-    func saveItem(item: Item) {
-        let itemObject = ItemObject(context: managedContext)
-        itemObject.name = item.name
-        itemObject.itemDescription = item.itemDesrciption
-        itemObject.id = item.id
-        itemObject.state = item.status.rawValue
-        itemObject.type = item.type.rawValue
-        itemObject.relatedItemsData = item.relatedItems
-        saveContext()
-    }
-
-    func deleteItem(id: UUID) {
-        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
-        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
-
-        if let task_cd = try? managedContext.fetch(request).first {
-            managedContext.delete(task_cd)
-            saveContext()
-        }
-    }
 }

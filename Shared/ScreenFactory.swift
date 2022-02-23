@@ -35,6 +35,7 @@ class ScreenFactory {
             return AnyView(
                 NoteDetailsView(viewModel: VMFactory.noteDetails(dependency, id: id, router: router))
             )
+        default: return AnyView(EmptyView()) // tutaj not handled
         }
     }
 
@@ -47,6 +48,6 @@ class ScreenFactory {
                 return false
             }
         }
-        dependency.appState.isTabbarVisibleSubject.send(visible)
+        GlobalRouter.shared.tabbarVisible.send(visible)
     }
 }

@@ -14,6 +14,7 @@ enum ScreenType: Equatable {
     case projectDetails(id: UUID?)
     case notes
     case noteDetails(id: UUID?)
+    case transformView
 
     var title: String {
         switch self {
@@ -29,6 +30,8 @@ enum ScreenType: Equatable {
             return "Notes"
         case .noteDetails:
             return "Note"
+        case .transformView:
+            return "Transform Item"
         default:
             return "Error screen"
         }

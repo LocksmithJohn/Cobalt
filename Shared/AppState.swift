@@ -8,10 +8,20 @@
 import Combine
 import Foundation
 
-class AppState  {
 
-    let relatedTasksSubject = MYPassthroughSubject<[TaskDTOReduced]>()
+protocol AppStateProtocol {
+    var currentlyManagedItemSubject: PassthroughSubject<Item?, Never> { get }
+}
+
+class AppState: AppStateProtocol  {
+
     var cancellableBag = Set<AnyCancellable>()
+    let coreDataManager = CoreDataManager.shared
+    let relatedTasksSubject = MYPassthroughSubject<[TaskDTOReduced]>()
+
+    var currentlyManagedItemSubject: PassthroughSubject<Item?, Never> {
+        coreDataManager.itemSubject
+    }
 
     init() {
         coreDataManager.relatedItemsSubject
@@ -24,9 +34,10 @@ class AppState  {
             .store(in: &cancellableBag)
     }
 
-    let coreDataManager = CoreDataManager.shared
-    var isTabbarVisibleSubject = CurrentValueSubject<Bool, Never>(true)
+}
 
+enum PopOverType { // tutaj to przeneisc gdzies
+    case itemTransform(id: UUID)
 }
 
 

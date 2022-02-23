@@ -15,15 +15,17 @@ final class NoteDetailsVM: BaseVM {
         case back
         case saveNote
         case deleteNote
+        case showTransform
     }
 
     @Published var note: String = ""
 
+    var transformItemVM: TransformItemVM?
     let actionSubject = PassthroughSubject<Action, Never>()
+    let id: UUID?
 
     private let appstate: NoteDetailsAppState
     private let interactor: NoteDetailsInteractor
-    private let id: UUID?
     private var newNote = NoteDTO(newID: UUID())
 
     init(id: UUID?,
@@ -73,6 +75,11 @@ final class NoteDetailsVM: BaseVM {
 
             interactor.deleteNote(id: id)
             interactor.route(from: screenType, to: .tasks)
+        case .showTransform:
+            guard let id = id else { return }
+            print("filter 2 \(id) ")
+            GlobalRouter.shared.popOverType.send(.itemTransform(id: id))
+            Haptic.impact(.light)
         }
     }
 

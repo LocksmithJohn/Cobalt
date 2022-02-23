@@ -10,7 +10,7 @@ import SwiftUI
 struct TasksListView: View {
     var body: some View {
         Form {
-            ForEach(viewModel.tasks) { task in
+            ForEach(viewModel.tasks.reversed()) { task in
                 Label { Text(task.name) }
             icon: { Image(systemName: "square.fill").foregroundColor(.blue) }
                 .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }

@@ -30,12 +30,14 @@ final class TaskDetailsVM: BaseVM {
     private let interactor: TaskDetailsInteractor
     private let id: UUID?
     private var projectID: UUID?
-    private var newTask = TaskDTO(newID: UUID())
+    private var newTask = TaskDTO(newID: UUID()) // TODO: different solution tha in ProjectDetailsVM
+    private let isCreating: Bool
 
     init(id: UUID?,
          projectID: UUID?,
          interactor: TaskDetailsInteractor,
          appstate: TaskDetailsAppState) {
+        self.isCreating = id == nil
         self.interactor = interactor
         self.appstate = appstate
         self.id = id

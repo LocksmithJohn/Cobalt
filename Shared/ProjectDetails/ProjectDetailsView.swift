@@ -39,7 +39,6 @@ struct ProjectDetailsView: View {
                 } header: {
                     Text("Tasks:")
                 }
-
                 Section {
                     Button { viewModel.actionSubject.send(.deleteProject) } label:
                     { Text("Delete").foregroundColor(.gray) }
@@ -55,9 +54,9 @@ struct ProjectDetailsView: View {
             leftButtonAction: { viewModel.actionSubject.send(.back) })
         )
     }
-
+    
     @ObservedObject var viewModel: ProjectDetailsVM
-
+    
     init(viewModel: ProjectDetailsVM) {
         self.viewModel = viewModel
     }

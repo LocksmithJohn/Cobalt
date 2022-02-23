@@ -8,6 +8,23 @@
 import Foundation
 import SwiftUI
 
+enum RouterType: String {
+    case notes
+    case tasks
+    case projects
+
+    var initialScreen: ScreenType {
+        switch self {
+        case .notes:
+            return .notes
+        case .tasks:
+            return .tasks
+        case .projects:
+            return .projects
+        }
+    }
+}
+
 
 final class Router: ObservableObject {
 
@@ -16,14 +33,15 @@ final class Router: ObservableObject {
     }
 
     var previousModals: [Screen] = []
-    let title: String
+    let type: RouterType
     var modalsChanged: Bool {
         screens.filter { $0.isModal } !=
         previousModals.filter { $0.isModal }
     }
     
-    init(title: String) {
-        self.title = title
+    init(type: RouterType) {
+        self.type = type
+        send(.set([type.initialScreen]))
     }
 
     private func send(_ action: StackAction) {
@@ -72,7 +90,7 @@ final class Router: ObservableObject {
 
     private func printStactInfo() {
 //        if title == "Projects" {
-            print("screen     ----\(title) : Screens----")
+            print("screen     ----\(type) : Screens----")
             screens.reversed().forEach {
                 print("screen     |screen: \(String(describing: $0.type.title)) \($0.isModal ? "is Modal" : "")")
             }
@@ -85,7 +103,7 @@ final class Router: ObservableObject {
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
-        print("router: \(title) form: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
+        print("router: \(type) from: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
         switch typeFrom {
 
             // MARK: - initial tab bar screens
@@ -162,6 +180,15 @@ final class Router: ObservableObject {
                 send(.dismiss)
             } else {
                 send(.pop)
+            }
+        case .transformView:
+            switch typeTo {
+            case let .projectDetails(id):
+//                send(.set([.projectDetails(id: nil), .projects]))
+                send(.set([.projects, .projectDetails(id: id)]))
+
+            default:
+                break
             }
         default:
             print("WARING: ^ missing route ^ ")

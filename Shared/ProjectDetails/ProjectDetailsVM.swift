@@ -38,7 +38,7 @@ final class ProjectDetailsVM: BaseVM {
         self.isCreating = id == nil
         self.interactor = interactor
         self.appstate = appstate
-        self.id = id ?? UUID() // DOC: If this is creating project flow (not editing), create new project id here
+        self.id = id ?? UUID()
         super.init(screenType: .projectDetails(id: id))
 
         bindAppState()
@@ -76,10 +76,11 @@ final class ProjectDetailsVM: BaseVM {
             interactor.fetchProject(id: id)
             interactor.fetchRelatedItems(id: id)
         case .saveProject:
-
-            //            let projectRelations = ItemRelation.ppr.rawValue + taskID.uuidString + ","
-            // TODO: ptojekt nie dostaje zanych relacji, powinien?
-            interactor.saveProject(newProject)
+            if isCreating {
+                interactor.saveProject(newProject)
+            } else {
+                interactor.editProject(id: id, newProject)
+            }
             actionSubject.send(.back)
         case .back:
             interactor.route(from: screenType, to: .projects)

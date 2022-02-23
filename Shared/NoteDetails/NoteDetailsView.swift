@@ -8,18 +8,30 @@
 import SwiftUI
 
 struct NoteDetailsView: View {
+
+    @State var transformViewVisible = false // tutaj to do vm
+
     var body: some View {
-        VStack {
-            TextEditor(text: $viewModel.note)
-                .padding()
-            Form {
-                Section {
-                    Button { viewModel.actionSubject.send(.saveNote) } label:
-                    { Text("Save").foregroundColor(.gray) }
-                    Button { viewModel.actionSubject.send(.deleteNote) } label:
-                    { Text("Delete").foregroundColor(.gray) }
+        ZStack {
+            VStack {
+                TextEditor(text: $viewModel.note)
+                    .padding()
+                    .frame(height: 100)
+                Form {
+                    Section {
+                        Button {
+                            viewModel.actionSubject.send(.showTransform)
+
+                        } label:
+                        { Text("Change to:").foregroundColor(.white) }
+                        Button { viewModel.actionSubject.send(.saveNote) } label:
+                        { Text("Save").foregroundColor(.white) }
+                        Button { viewModel.actionSubject.send(.deleteNote) } label:
+                        { Text("Delete").foregroundColor(.white) }
+                    }
                 }
             }
+
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(

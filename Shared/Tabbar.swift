@@ -9,8 +9,6 @@ import SwiftUI
 
 struct Tabbar: View {
 
-
-    @State private var tabSelected = 0
     @ObservedObject private var viewModel: TabbarVM
 
     init(viewModel: TabbarVM) {
@@ -18,20 +16,26 @@ struct Tabbar: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            switch tabSelected {
-            case 0:
-                NotesNavigationController()
-                    .environmentObject(viewModel.dependency)
-            case 1:
-                TasksNavigationController()
-                    .environmentObject(viewModel.dependency)
-            default:
-                ProjectsNavigationController()
-                    .environmentObject(viewModel.dependency)
+        ZStack {
+            VStack(spacing: 0) {
+                switch viewModel.tabSelected {
+                case 0:
+                    NotesNavigationController()
+                        .environmentObject(viewModel.dependency)
+                case 1:
+                    TasksNavigationController()
+                        .environmentObject(viewModel.dependency)
+                default:
+                    ProjectsNavigationController()
+                        .environmentObject(viewModel.dependency)                }
+                if viewModel.isTabbarVisible {
+                    tabBarContent
+                }
             }
-            if viewModel.isTabbarVisible {
-                tabBarContent
+            .blur(radius: viewModel.popoverVM != nil ? 10 : 0)
+            if let popoverVM  = viewModel.popoverVM {
+                PopoverView(viewModel: popoverVM)
+                    .animation(.easeIn(duration: 0.1))
             }
         }
     }
@@ -67,15 +71,15 @@ struct Tabbar: View {
         VStack(spacing: 8) {
             Spacer()
             Image(systemName: iconName)
-                .foregroundColor(tabSelected == tag ? color : .gray)
+                .foregroundColor(viewModel.tabSelected == tag ? color : .gray)
                 .frame(height: 40)
             Text(text).font(.system(size: 14))
-                .foregroundColor(tabSelected == tag ? color : .gray)
+                .foregroundColor(viewModel.tabSelected == tag ? color : .gray)
         }
         .frame(width: 80, height: 80)
         .contentShape(Rectangle())
         .onTapGesture {
-            tabSelected = tag
+            viewModel.tabSelected = tag
             Haptic.impact(.light)
         }
     }

@@ -10,9 +10,9 @@ import UIKit
 
 struct Item: Identifiable { // TODO:  zmeinic na strukture
     let id: UUID
-    let name: String
+    var name: String
     let itemDesrciption: String
-    let type: ItemType
+    var type: ItemType
     let status: ItemStatus
     var relatedItems: String
     
@@ -66,16 +66,4 @@ struct Item: Identifiable { // TODO:  zmeinic na strukture
         self.relatedItems = ""
     }
 
-}
-
-enum ItemType: String {
-    case task
-    case project
-    case note
-    case waitFor
-}
-
-enum ItemRelation: String {
-    case sbt // subtask
-    case ppr // parent project
 }

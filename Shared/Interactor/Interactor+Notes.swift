@@ -22,6 +22,9 @@ extension Interactor: NotesListInteractor,
     func saveNote(_ note: NoteDTO) {
         coreDataManager.actionSubject.send(.saveNote(note: note))
     }
+    func editNote(id: UUID, _ note: NoteDTO) {
+        coreDataManager.editItem(id: id, newItem: Item(note))
+    }
     
 }
 
@@ -30,8 +33,10 @@ protocol NotesListInteractor: InteractorProtocol {
     func fetchNotes()
 }
 protocol NoteDetailsInteractor: InteractorProtocol {
+//    func fetchItem(id: UUID)
     func fetchNote(id: UUID)
     func fetchNotes()
     func deleteNote(id: UUID)
     func saveNote(_ note: NoteDTO)
+    func editNote(id: UUID, _ note: NoteDTO)
 }

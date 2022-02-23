@@ -54,6 +54,16 @@
 		CE338AF527B7DA1C005289D1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */; };
 		CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */; };
 		CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */; };
+		CE447CB527C07053005B0441 /* CoreDataManager+Deleting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CB427C07053005B0441 /* CoreDataManager+Deleting.swift */; };
+		CE447CB627C07053005B0441 /* CoreDataManager+Deleting.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CB427C07053005B0441 /* CoreDataManager+Deleting.swift */; };
+		CE447CB827C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CB727C0705D005B0441 /* CoreDataManager+Saving.swift */; };
+		CE447CB927C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CB727C0705D005B0441 /* CoreDataManager+Saving.swift */; };
+		CE447CBB27C071D0005B0441 /* CoreDataManager+Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CBA27C071D0005B0441 /* CoreDataManager+Editing.swift */; };
+		CE447CBC27C071D0005B0441 /* CoreDataManager+Editing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CBA27C071D0005B0441 /* CoreDataManager+Editing.swift */; };
+		CE447CBE27C07510005B0441 /* TransformItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CBD27C07510005B0441 /* TransformItemView.swift */; };
+		CE447CBF27C07510005B0441 /* TransformItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CBD27C07510005B0441 /* TransformItemView.swift */; };
+		CE447CC127C0752A005B0441 /* TransformItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CC027C0752A005B0441 /* TransformItemVM.swift */; };
+		CE447CC227C0752A005B0441 /* TransformItemVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE447CC027C0752A005B0441 /* TransformItemVM.swift */; };
 		CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */; };
 		CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */; };
 		CE61F6AE27B7FCC300A734EE /* ScreenFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */; };
@@ -71,12 +81,22 @@
 		CE61F6CD27B9B31C00A734EE /* TaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */; };
 		CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D027B9B36C00A734EE /* ItemStatus.swift */; };
 		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
+		CE723F9627C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */; };
+		CE723F9727C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */; };
 		CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */; };
 		CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */; };
 		CE9043EB27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
 		CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
 		CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */; };
 		CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */; };
+		CEA5FAFF27C2DE610011B373 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FAFE27C2DE610011B373 /* View+Ext.swift */; };
+		CEA5FB0027C2DE610011B373 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FAFE27C2DE610011B373 /* View+Ext.swift */; };
+		CEA5FB0527C2E8020011B373 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0427C2E8020011B373 /* GlobalRouter.swift */; };
+		CEA5FB0627C2E8020011B373 /* GlobalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0427C2E8020011B373 /* GlobalRouter.swift */; };
+		CEA5FB0827C306470011B373 /* PopoverVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0727C306470011B373 /* PopoverVM.swift */; };
+		CEA5FB0927C306470011B373 /* PopoverVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0727C306470011B373 /* PopoverVM.swift */; };
+		CEA5FB0B27C3065B0011B373 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0A27C3065B0011B373 /* PopoverView.swift */; };
+		CEA5FB0C27C3065B0011B373 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0A27C3065B0011B373 /* PopoverView.swift */; };
 		CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */; };
 		CECFD1A827BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */; };
 		CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */; };
@@ -135,6 +155,11 @@
 		CE338AF027B7D9F7005289D1 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		CE338AF427B7DA1C005289D1 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		CE344FBA27BBDC78000FF670 /* TaskDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTOReduced.swift; sourceTree = "<group>"; };
+		CE447CB427C07053005B0441 /* CoreDataManager+Deleting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Deleting.swift"; sourceTree = "<group>"; };
+		CE447CB727C0705D005B0441 /* CoreDataManager+Saving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Saving.swift"; sourceTree = "<group>"; };
+		CE447CBA27C071D0005B0441 /* CoreDataManager+Editing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Editing.swift"; sourceTree = "<group>"; };
+		CE447CBD27C07510005B0441 /* TransformItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformItemView.swift; sourceTree = "<group>"; };
+		CE447CC027C0752A005B0441 /* TransformItemVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformItemVM.swift; sourceTree = "<group>"; };
 		CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemObject+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ItemObject+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE61F6AD27B7FCC300A734EE /* ScreenFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenFactory.swift; sourceTree = "<group>"; };
@@ -152,10 +177,15 @@
 		CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTO.swift; sourceTree = "<group>"; };
 		CE61F6D027B9B36C00A734EE /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
 		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
+		CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterWrapper.swift; sourceTree = "<group>"; };
 		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
 		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		CE9043EA27BE73F200AADC63 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		CE9043ED27BE8A8900AADC63 /* TabbarVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarVM.swift; sourceTree = "<group>"; };
+		CEA5FAFE27C2DE610011B373 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		CEA5FB0427C2E8020011B373 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
+		CEA5FB0727C306470011B373 /* PopoverVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverVM.swift; sourceTree = "<group>"; };
+		CEA5FB0A27C3065B0011B373 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
 		CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataManager+Fetching.swift"; sourceTree = "<group>"; };
 		CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Ext.swift"; sourceTree = "<group>"; };
 		CECFD1AD27BFD21800CCDBC2 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
@@ -209,11 +239,10 @@
 				CE338A9D27B7A4E5005289D1 /* ContentView.swift */,
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
 				CE338AE727B7B773005289D1 /* StackAction.swift */,
-				CE338ABD27B7A5AE005289D1 /* Interactor.swift */,
-				CECFD1C327BFDF9500CCDBC2 /* Interactor+Tasks.swift */,
-				CECFD1C627BFDF9C00CCDBC2 /* Interactor+Projects.swift */,
-				CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */,
+				CEA5FAFD27C287730011B373 /* Interactor */,
+				CEA5FAFC27C278B50011B373 /* TransformItem */,
 				CE61F6B727B866ED00A734EE /* TasksList */,
+				CEA5FB0D27C306880011B373 /* Popover */,
 				CECFD1D227BFE9D800CCDBC2 /* NoteDetails */,
 				CECFD1B327BFD22F00CCDBC2 /* NotesList */,
 				CE61F6C627B9116E00A734EE /* ProjectDetails */,
@@ -224,13 +253,18 @@
 				CE8F04BE27BD35E20067D3EE /* NavigationControllers */,
 				CE338AC627B7A603005289D1 /* CoreDataManager.swift */,
 				CECFD1A627BFB23600CCDBC2 /* CoreDataManager+Fetching.swift */,
+				CE447CB427C07053005B0441 /* CoreDataManager+Deleting.swift */,
+				CE447CB727C0705D005B0441 /* CoreDataManager+Saving.swift */,
+				CE447CBA27C071D0005B0441 /* CoreDataManager+Editing.swift */,
 				CECFD1A927BFB26900CCDBC2 /* Type+Extensions */,
 				CE338AF027B7D9F7005289D1 /* ItemType.swift */,
 				CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */,
 				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
 				CE338AC927B7A634005289D1 /* TasksListInteractor.swift */,
 				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
+				CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */,
 				CE338ACF27B7A650005289D1 /* AppState.swift */,
+				CEA5FB0427C2E8020011B373 /* GlobalRouter.swift */,
 				CECFD1BA27BFD86F00CCDBC2 /* AppState+Tasks.swift */,
 				CECFD1BD27BFD87D00CCDBC2 /* AppState+Projects.swift */,
 				CECFD1C027BFD88500CCDBC2 /* AppState+Notes.swift */,
@@ -326,10 +360,40 @@
 			path = NavigationControllers;
 			sourceTree = "<group>";
 		};
+		CEA5FAFC27C278B50011B373 /* TransformItem */ = {
+			isa = PBXGroup;
+			children = (
+				CE447CBD27C07510005B0441 /* TransformItemView.swift */,
+				CE447CC027C0752A005B0441 /* TransformItemVM.swift */,
+			);
+			path = TransformItem;
+			sourceTree = "<group>";
+		};
+		CEA5FAFD27C287730011B373 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				CE338ABD27B7A5AE005289D1 /* Interactor.swift */,
+				CECFD1C327BFDF9500CCDBC2 /* Interactor+Tasks.swift */,
+				CECFD1C627BFDF9C00CCDBC2 /* Interactor+Projects.swift */,
+				CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		CEA5FB0D27C306880011B373 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				CEA5FB0727C306470011B373 /* PopoverVM.swift */,
+				CEA5FB0A27C3065B0011B373 /* PopoverView.swift */,
+			);
+			path = Popover;
+			sourceTree = "<group>";
+		};
 		CECFD1A927BFB26900CCDBC2 /* Type+Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */,
+				CEA5FAFE27C2DE610011B373 /* View+Ext.swift */,
 				CE9043EA27BE73F200AADC63 /* Array+Ext.swift */,
 				CECFD1AA27BFB28300CCDBC2 /* Combine+Ext.swift */,
 			);
@@ -469,6 +533,7 @@
 				CECFD1BE27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */,
 				CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
+				CEA5FB0B27C3065B0011B373 /* PopoverView.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */,
 				CE61F6C827B9622D00A734EE /* Haptic.swift in Sources */,
@@ -482,11 +547,17 @@
 				CE61F6B927B8782900A734EE /* TaskDetailsView.swift in Sources */,
 				CECFD1B527BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */,
 				CE338ACD27B7A63B005289D1 /* Dependency.swift in Sources */,
+				CE447CB527C07053005B0441 /* CoreDataManager+Deleting.swift in Sources */,
 				CECFD1AE27BFD21800CCDBC2 /* NotesListView.swift in Sources */,
+				CEA5FAFF27C2DE610011B373 /* View+Ext.swift in Sources */,
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
+				CE447CBE27C07510005B0441 /* TransformItemView.swift in Sources */,
+				CE447CBB27C071D0005B0441 /* CoreDataManager+Editing.swift in Sources */,
+				CE447CC127C0752A005B0441 /* TransformItemVM.swift in Sources */,
 				CE61F6BE27B8FA5C00A734EE /* ProjectsListView.swift in Sources */,
 				CE338ADF27B7A9D7005289D1 /* NavigationController.swift in Sources */,
+				CE447CB827C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */,
 				CECFD1B827BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
 				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
 				CECFD1C427BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
@@ -501,13 +572,16 @@
 				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
 				CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
+				CE723F9627C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
+				CEA5FB0827C306470011B373 /* PopoverVM.swift in Sources */,
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
 				CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
 				CECFD1CD27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */,
 				CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
+				CEA5FB0527C2E8020011B373 /* GlobalRouter.swift in Sources */,
 				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
 				CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
 			);
@@ -533,15 +607,24 @@
 				CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CECFD1CE27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
+				CE447CB927C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */,
 				CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,
+				CE447CBC27C071D0005B0441 /* CoreDataManager+Editing.swift in Sources */,
+				CE447CB627C07053005B0441 /* CoreDataManager+Deleting.swift in Sources */,
 				CE9043EC27BE73F200AADC63 /* Array+Ext.swift in Sources */,
 				CE338ACE27B7A63B005289D1 /* Dependency.swift in Sources */,
+				CEA5FB0C27C3065B0011B373 /* PopoverView.swift in Sources */,
+				CEA5FB0627C2E8020011B373 /* GlobalRouter.swift in Sources */,
 				CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,
 				CE338AAD27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CECFD1AC27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
+				CE447CC227C0752A005B0441 /* TransformItemVM.swift in Sources */,
+				CEA5FB0927C306470011B373 /* PopoverVM.swift in Sources */,
 				CECFD1C827BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
+				CE723F9727C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */,
+				CE447CBF27C07510005B0441 /* TransformItemView.swift in Sources */,
 				CECFD1B927BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
 				CECFD1B627BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */,
 				CE338AF227B7D9F7005289D1 /* ItemType.swift in Sources */,
@@ -552,6 +635,7 @@
 				CE338ADA27B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
 				CECFD1BC27BFD86F00CCDBC2 /* AppState+Tasks.swift in Sources */,
 				CE338ADD27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
+				CEA5FB0027C2DE610011B373 /* View+Ext.swift in Sources */,
 				CECFD1C227BFD88500CCDBC2 /* AppState+Notes.swift in Sources */,
 				CECFD1AF27BFD21800CCDBC2 /* NotesListView.swift in Sources */,
 				CE338AE327B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,

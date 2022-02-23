@@ -8,7 +8,16 @@
 import CoreData
 import Foundation
 
-extension CoreDataManager {
+extension CoreDataManager { // tutaj te rozszerzenia powinny byc prywatne
+
+    func fetchItem(id: UUID) {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+
+        if let itemObject = try? managedContext.fetch(request).first {
+            itemSubject.send(Item(itemObject: itemObject))
+        }
+    }
 
     func fetchTask(id: UUID) {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
