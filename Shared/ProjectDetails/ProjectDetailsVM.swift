@@ -19,11 +19,17 @@ final class ProjectDetailsVM: BaseVM {
         case saveProject
         case deleteProject
         case showAddingTask
+        case toggleDone
     }
 
     @Published var projectName: String = ""
     @Published var projectDescription: String = ""
+    @Published var projectStatus: ItemStatus = .new
+
+    @Published var nextActions: [TaskDTOReduced] = []
+    @Published var waitFors: [TaskDTOReduced] = []
     @Published var subtasks: [TaskDTOReduced] = []
+    @Published var isDone: Bool = false
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -51,13 +57,18 @@ final class ProjectDetailsVM: BaseVM {
             .sink { [weak self] project in
                 self?.projectName = project.name
                 self?.projectDescription = project.itemDescription ?? ""
+                self?.isDone = project.status == .done
+                self?.projectStatus = project.status
+                print("filter 1status: \(project.status)")
             }
             .store(in: &cancellableBag)
 
         appstate.relatedTasksSubject
             .compactMap { $0 }
             .sink { [weak self] tasks in
-                self?.subtasks = tasks
+                self?.nextActions = tasks.filter { $0.type == .nextAction }
+                self?.waitFors = tasks.filter { $0.type == .waitFor }
+                self?.subtasks = tasks.filter { $0.type == .task }
             }
             .store(in: &cancellableBag)
     }
@@ -90,6 +101,10 @@ final class ProjectDetailsVM: BaseVM {
             interactor.route(from: screenType, to: .projects)
         case .showAddingTask:
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: id))
+        case .toggleDone:
+            Haptic.impact(.medium)
+            interactor.toggleDone(item: newProject)
+            interactor.fetchProject(id: id)
         }
     }
 
@@ -98,7 +113,7 @@ final class ProjectDetailsVM: BaseVM {
                    name: projectName,
                    itemDesrciption: projectDescription,
                    type: .project,
-                   status: .new,
+                   status: projectStatus,
                    relatedItems: "")
     }
 

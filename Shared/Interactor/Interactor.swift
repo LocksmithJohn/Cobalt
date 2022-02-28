@@ -10,28 +10,24 @@ import Foundation
 
 protocol InteractorProtocol {
     var coreDataManager: CoreDataManager { get }
-    var routerWrapper: RouterWrapper? { get }
     var cancellableBag: Set<AnyCancellable> { get set }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType)
-    func routeWrapped(from typeFrom: ScreenType?, to typeTo: ScreenType, with routerType: RouterType)
-    func route(tab: Int)
     func fetchItem(id : UUID)
     func editItem(id: UUID, item: Item)
+    func toggleDone(item: ItemProtocol)
+    func updateType(item: ItemProtocol, type: ItemType)
 }
 
 class Interactor {
 
     let coreDataManager = CoreDataManager.shared
-    let routerWrapper: RouterWrapper?
     var cancellableBag = Set<AnyCancellable>()
 
     private let router: Router?
 
-    init(router: Router? = nil,
-         routerWrapper: RouterWrapper? = nil) {
+    init(router: Router? = nil) {
         self.router = router
-        self.routerWrapper = routerWrapper
     }
 
     func fetchItem(id: UUID) {
@@ -42,19 +38,34 @@ class Interactor {
         coreDataManager.actionSubject.send(.editItem(id: id, item: item))
     }
 
+//    func toggleDone(task: TaskDTOReduced) {
+//        let newState: ItemStatus = task.status == .new ? .done : .new
+//        coreDataManager.editItem(id: task.id, status: newState)
+//    }
+
+    func toggleDone(item: ItemProtocol) {
+        let newState: ItemStatus = item.status == .new ? .done : .new
+        coreDataManager.editItem(id: item.id, status: newState)
+    }
+
+    func updateType(item: ItemProtocol, type: ItemType) {
+        coreDataManager.editItem(id: item.id, type: type)
+    }
+
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
         router?.route(from: typeFrom, to: typeTo)
     }
 
-    func routeWrapped(from typeFrom: ScreenType?, to typeTo: ScreenType, with routerType: RouterType) {
-        guard let router = (routerWrapper?.routers.first { $0.type == routerType }) else { return }
+    // poniższe dwie metodki wywalic do Global routera
+//    func globalRoute(from typeFrom: ScreenType?, to typeTo: ScreenType, with routerType: RouterType) {
+//        guard let router = (GlobalRouter.shared.routers.first { $0.type == routerType }) else { return }
+//
+//        router.route(from: typeFrom, to: typeTo)
+//    }
 
-        router.route(from: typeFrom, to: typeTo)
-    }
-
-    func route(tab: Int) {
-        routerWrapper?.tabSubject.send(tab)
-    }
+//    func route(tab: Int) {
+//        GlobalRouter.shared.tabSubject.send(tab)
+//    }
 
 }
 

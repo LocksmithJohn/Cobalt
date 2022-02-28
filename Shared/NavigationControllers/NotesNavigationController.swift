@@ -19,7 +19,7 @@ struct NotesNavigationController: NavigationController {
     }
 
     func setInitialView() {
-        dependency.notesRouter.route(from: nil, to: .notes)
+//        dependency.notesRouter.route(from: nil, to: .notes)
     }
 
 }

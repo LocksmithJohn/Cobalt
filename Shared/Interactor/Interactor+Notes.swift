@@ -9,7 +9,6 @@ import Foundation
 
 extension Interactor: NotesListInteractor,
                       NoteDetailsInteractor {
-
     func fetchNotes() {
         coreDataManager.actionSubject.send(.fetchNotes)
     }
@@ -33,7 +32,6 @@ protocol NotesListInteractor: InteractorProtocol {
     func fetchNotes()
 }
 protocol NoteDetailsInteractor: InteractorProtocol {
-//    func fetchItem(id: UUID)
     func fetchNote(id: UUID)
     func fetchNotes()
     func deleteNote(id: UUID)

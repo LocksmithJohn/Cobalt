@@ -8,13 +8,19 @@
 import Foundation
 import UIKit
 
-struct Item: Identifiable { // TODO:  zmeinic na strukture
-    let id: UUID
+protocol ItemProtocol {
+    var id: UUID { get set }
+    var name: String { get set }
+    var status: ItemStatus { get set }
+}
+
+struct Item: ItemProtocol, Identifiable {
+    var id: UUID
     var name: String
     let itemDesrciption: String
     var type: ItemType
-    let status: ItemStatus
-    var relatedItems: String
+    var status: ItemStatus
+    var relatedItems: String // tutaj zmienic na slownik
     
     init(id: UUID,
          name: String,

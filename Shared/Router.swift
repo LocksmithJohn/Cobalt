@@ -103,7 +103,7 @@ final class Router: ObservableObject {
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
-        print("router: \(type) from: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
+        print("routerr: \(type) from: \(typeFrom?.title ?? "-") to: \(typeTo.title)")
         switch typeFrom {
 
             // MARK: - initial tab bar screens
@@ -184,9 +184,9 @@ final class Router: ObservableObject {
         case .transformView:
             switch typeTo {
             case let .projectDetails(id):
-//                send(.set([.projectDetails(id: nil), .projects]))
                 send(.set([.projects, .projectDetails(id: id)]))
-
+            case let .taskDetails(id, _):
+                send(.set([.tasks, .taskDetails(id: id, projectID: nil)]))
             default:
                 break
             }

@@ -14,9 +14,34 @@ final class GlobalRouter {
 
     var tabbarVisible = CurrentValueSubject<Bool, Never>(true)
     var popOverType = PassthroughSubject<PopOverType?, Never>()
+    let tabSubject = PassthroughSubject<Int, Never>()
+
+    private var cancellableBag = Set<AnyCancellable>()
+    private (set) var routers: [Router] = []
 
     private init() {}
 
-    tutaj wrzucic funkcjonalnosc router wrappera, router wrapper usunac,
+    func populateRouters(routers: [Router]) {
+        self.routers = routers
+    }
+
+    func routeWithTab(tab: Int,
+                      typeFrom: ScreenType?,
+                      typeTo: ScreenType,
+                      routerType: RouterType) {
+        print("router1 tFrom: \(typeFrom?.title ?? "-"), tTo: \(typeTo.title), tab: \(tab), router: \(routerType.rawValue)")
+        guard let router = (GlobalRouter.shared.routers
+                                .first { $0.type == routerType })
+        else { return }
+
+        tabSubject
+            .first()
+            .sink { _ in
+                print("router2 tFrom: \(typeFrom?.title ?? "-"), tTo: \(typeTo.title), tab: \(tab), router: \(routerType.rawValue)")
+                router.route(from: typeFrom, to: typeTo)
+            }
+            .store(in: &cancellableBag)
+        tabSubject.send(tab)
+    }
 
 }

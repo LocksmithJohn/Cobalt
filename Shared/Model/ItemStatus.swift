@@ -10,17 +10,19 @@ import Foundation
 enum ItemStatus: String {
     case new
     case inProgress
-    case waitFor
-//    case delegated
     case done
     case deleted
 }
 
-enum ItemType: String {
+enum ItemType: String, Equatable {
+
     case task
+    case nextAction
+    case waitFor
     case project
     case note
     case reference
+
 }
 
 enum ItemRelation: String {

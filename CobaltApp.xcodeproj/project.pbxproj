@@ -81,8 +81,8 @@
 		CE61F6CD27B9B31C00A734EE /* TaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */; };
 		CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D027B9B36C00A734EE /* ItemStatus.swift */; };
 		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
-		CE723F9627C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */; };
-		CE723F9727C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */; };
+		CE723FAC27C99E04003F6DD8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723FAB27C99E04003F6DD8 /* StatusView.swift */; };
+		CE723FAD27C99E04003F6DD8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723FAB27C99E04003F6DD8 /* StatusView.swift */; };
 		CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */; };
 		CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */; };
 		CE9043EB27BE73F200AADC63 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9043EA27BE73F200AADC63 /* Array+Ext.swift */; };
@@ -177,7 +177,7 @@
 		CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTO.swift; sourceTree = "<group>"; };
 		CE61F6D027B9B36C00A734EE /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
 		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
-		CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterWrapper.swift; sourceTree = "<group>"; };
+		CE723FAB27C99E04003F6DD8 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
 		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		CE9043EA27BE73F200AADC63 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
@@ -239,6 +239,7 @@
 				CE338A9D27B7A4E5005289D1 /* ContentView.swift */,
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
 				CE338AE727B7B773005289D1 /* StackAction.swift */,
+				CE723FAB27C99E04003F6DD8 /* StatusView.swift */,
 				CEA5FAFD27C287730011B373 /* Interactor */,
 				CEA5FAFC27C278B50011B373 /* TransformItem */,
 				CE61F6B727B866ED00A734EE /* TasksList */,
@@ -262,7 +263,6 @@
 				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
 				CE338AC927B7A634005289D1 /* TasksListInteractor.swift */,
 				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
-				CE723F9527C4FCFC003F6DD8 /* RouterWrapper.swift */,
 				CE338ACF27B7A650005289D1 /* AppState.swift */,
 				CEA5FB0427C2E8020011B373 /* GlobalRouter.swift */,
 				CECFD1BA27BFD86F00CCDBC2 /* AppState+Tasks.swift */,
@@ -562,6 +562,7 @@
 				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
 				CECFD1C427BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
 				CECFD1C727BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
+				CE723FAC27C99E04003F6DD8 /* StatusView.swift in Sources */,
 				CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CE61F6AC27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift in Sources */,
@@ -572,7 +573,6 @@
 				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
 				CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
-				CE723F9627C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
@@ -617,13 +617,13 @@
 				CEA5FB0627C2E8020011B373 /* GlobalRouter.swift in Sources */,
 				CE338ABF27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE338AE027B7A9D7005289D1 /* NavigationController.swift in Sources */,
+				CE723FAD27C99E04003F6DD8 /* StatusView.swift in Sources */,
 				CE338AAD27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CECFD1AC27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
 				CE447CC227C0752A005B0441 /* TransformItemVM.swift in Sources */,
 				CEA5FB0927C306470011B373 /* PopoverVM.swift in Sources */,
 				CECFD1C827BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
-				CE723F9727C4FCFC003F6DD8 /* RouterWrapper.swift in Sources */,
 				CE447CBF27C07510005B0441 /* TransformItemView.swift in Sources */,
 				CECFD1B927BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
 				CECFD1B627BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */,
@@ -771,7 +771,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -801,7 +801,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -26,7 +26,7 @@ final class TabbarVM: ObservableObject {
     }
 
     private func bindTabsRouting() {
-        dependency.routersWrapper?.tabSubject
+        GlobalRouter.shared.tabSubject
             .sink(receiveValue: { [weak self] tab in
                 self?.tabSelected = tab
             })
@@ -49,7 +49,7 @@ final class TabbarVM: ObservableObject {
                 case let .itemTransform(id):
                     self.popoverVM = TransformItemVM(
                         id: id,
-                        interactor: Interactor(routerWrapper: self.dependency.routersWrapper),
+                        interactor: Interactor(),
                         appstate: self.dependency.appState)
                 case .none:
                     self.popoverVM = nil

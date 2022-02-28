@@ -19,15 +19,14 @@ struct NoteDetailsView: View {
                     .frame(height: 100)
                 Form {
                     Section {
-                        Button {
-                            viewModel.actionSubject.send(.showTransform)
-
-                        } label:
-                        { Text("Change to:").foregroundColor(.white) }
                         Button { viewModel.actionSubject.send(.saveNote) } label:
                         { Text("Save").foregroundColor(.white) }
-                        Button { viewModel.actionSubject.send(.deleteNote) } label:
-                        { Text("Delete").foregroundColor(.white) }
+                        if !viewModel.isCreating {
+                            Button { viewModel.actionSubject.send(.deleteNote) } label:
+                            { Text("Delete").foregroundColor(.white) }
+                            Button { viewModel.actionSubject.send(.showTransform) } label:
+                            { Text("Change to:").foregroundColor(.white) }
+                        }
                     }
                 }
             }

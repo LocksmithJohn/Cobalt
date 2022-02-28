@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct ProjectDTO: Identifiable {
+struct ProjectDTO: ItemProtocol, Identifiable {
 
     var id: UUID
-    let name: String
+    var name: String
     let itemDescription: String?
     let type: ItemType
-    let status: ItemStatus
+    var status: ItemStatus
     var relatedItems: String?
 
     init(id: UUID,

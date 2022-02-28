@@ -9,12 +9,11 @@ import SwiftUI
 
 struct ProjectsListView: View {
     var body: some View {
-        Form {
+        ScrollView {
             ForEach(viewModel.projects) { project in
-                Label { Text(project.name) }
-            icon: { Image(systemName: "square.fill").foregroundColor(.green) }
-                .onTapGesture { viewModel.actionSubject.send(.goToProject(id: project.id)) }
-
+                ProjectRowView(project: project) {
+                    viewModel.actionSubject.send(.goToProject(id: project.id))
+                }
             }
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
@@ -29,5 +28,21 @@ struct ProjectsListView: View {
 
     init(viewModel: ProjectsListVM) {
         self.viewModel = viewModel
+    }
+}
+
+struct ProjectRowView: View { // tutaj to przeniesc
+
+    let project: ProjectDTOReduced
+    let tapAction: () -> Void
+
+    var body: some View {
+        HStack(spacing: 40) {
+            Text(project.name).padding()
+            Spacer()
+        }
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(8)
+        .onTapGesture { tapAction() }
     }
 }

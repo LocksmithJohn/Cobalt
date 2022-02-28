@@ -7,18 +7,21 @@
 
 import Foundation
 
-struct NoteDTOReduced: Identifiable {
+struct NoteDTOReduced: ItemProtocol, Identifiable {
 
-    let id: UUID
-    let name: String
+    var id: UUID
+    var name: String
+    var status: ItemStatus
 
     init(itemObject: ItemObject) {
         self.id = itemObject.id
         self.name = itemObject.name ?? "tutaj118"
+        self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
     }
 
     init(item: Item) {
         self.id = item.id
         self.name = item.name
+        self.status = item.status
     }
 }

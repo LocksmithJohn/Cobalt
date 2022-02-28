@@ -27,4 +27,5 @@ protocol ProjectsListAppState {
 protocol ProjectDetailsAppState {
     var projectDetailsSubject: PassthroughSubject<ProjectDTO?, Never> { get }
     var relatedTasksSubject: PassthroughSubject<[TaskDTOReduced], Never> { get }
+    var relatedNextActionsSubject: PassthroughSubject<[TaskDTOReduced], Never> { get }
 }

@@ -7,12 +7,13 @@
 
 import UIKit
 
-struct NoteDTO: Identifiable {
+struct NoteDTO: ItemProtocol, Identifiable {
 
-    let id: UUID
+    var id: UUID
     var name: String
     var itemDescription: String?
     var type: ItemType
+    var status: ItemStatus
 
     init(id: UUID,
          name: String,
@@ -22,6 +23,7 @@ struct NoteDTO: Identifiable {
         self.name = name
         self.itemDescription = itemDesrciption
         self.type = type
+        self.status = .new
     }
 
     init(itemObject: ItemObject) {
@@ -29,6 +31,7 @@ struct NoteDTO: Identifiable {
         self.name = itemObject.name ?? ""
         self.itemDescription = itemObject.itemDescription
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .note
+        self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
     }
 
     init(newID: UUID) {
@@ -36,5 +39,6 @@ struct NoteDTO: Identifiable {
         self.name = ""
         self.itemDescription = ""
         self.type = .note
+        self.status = .new
     }
 }

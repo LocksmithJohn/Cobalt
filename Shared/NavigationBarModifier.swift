@@ -46,7 +46,7 @@ struct NavigationBarModifier: ViewModifier {
             content
                 .navigationBarBackButtonHidden(true)
                 .navigationBarHidden(true)
-        }
+        }.background(Color("background"))
     }
 
 }

@@ -18,11 +18,9 @@ class Dependency: ObservableObject {
     @Published var tasksRouter = Router(type: .tasks)
     @Published var projectsRouter = Router(type: .projects)
 
-    var routersWrapper: RouterWrapper?
-
     init() {
         bindRouters()
-        routersWrapper = RouterWrapper(routers: [notesRouter, tasksRouter, projectsRouter])
+        GlobalRouter.shared.populateRouters(routers: [notesRouter, tasksRouter, projectsRouter])
     }
 
     private func bindRouters() {

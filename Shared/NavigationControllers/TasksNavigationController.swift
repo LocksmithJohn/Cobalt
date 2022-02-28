@@ -19,7 +19,7 @@ struct TasksNavigationController: NavigationController {
     }
 
     func setInitialView() {
-        dependency.tasksRouter.route(from: nil, to: .tasks)
+//        dependency.tasksRouter.route(from: nil, to: .tasks)
     }
 
 }

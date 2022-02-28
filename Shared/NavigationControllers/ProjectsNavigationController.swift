@@ -19,8 +19,6 @@ struct ProjectsNavigationController: NavigationController {
     }
 
     func setInitialView() {
-        print("filter: ---- projects: setInitialView()")
-
 //        dependency.projectsRouter.route(from: nil, to: .projects)
     }
 

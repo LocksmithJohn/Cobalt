@@ -22,7 +22,8 @@ final class NoteDetailsVM: BaseVM {
 
     var transformItemVM: TransformItemVM?
     let actionSubject = PassthroughSubject<Action, Never>()
-    let id: UUID?
+    let id: UUID
+    let isCreating: Bool
 
     private let appstate: NoteDetailsAppState
     private let interactor: NoteDetailsInteractor
@@ -31,9 +32,10 @@ final class NoteDetailsVM: BaseVM {
     init(id: UUID?,
          interactor: NoteDetailsInteractor,
          appstate: NoteDetailsAppState) {
+        self.isCreating = id == nil
         self.interactor = interactor
         self.appstate = appstate
-        self.id = id
+        self.id = id ?? UUID()
         super.init(screenType: .noteDetails(id: id))
 
         bindAppState()
@@ -60,24 +62,22 @@ final class NoteDetailsVM: BaseVM {
     private func handleAction(action: Action) {
         switch action {
         case .onAppear:
-            if let id = id {
-                interactor.fetchNote(id: id)
-            }
+            interactor.fetchNote(id: id)
         case .saveNote:
             newNote.name = note
-            interactor.saveNote(newNote)
+            if isCreating {
+                interactor.saveNote(newNote)
+            } else {
+                interactor.editItem(id: id, item: Item(newNote))
+            }
             actionSubject.send(.back)
         case .back:
             interactor.route(from: screenType, to: .notes)
             interactor.fetchNotes()
         case .deleteNote:
-            guard let id = id else { return }
-
             interactor.deleteNote(id: id)
             interactor.route(from: screenType, to: .tasks)
         case .showTransform:
-            guard let id = id else { return }
-            print("filter 2 \(id) ")
             GlobalRouter.shared.popOverType.send(.itemTransform(id: id))
             Haptic.impact(.light)
         }

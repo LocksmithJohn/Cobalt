@@ -7,13 +7,15 @@
 
 import Foundation
 
-struct ProjectDTOReduced: Identifiable {
+struct ProjectDTOReduced: ItemProtocol, Identifiable {
 
-    let id: UUID
-    let name: String
+    var id: UUID
+    var name: String
+    var status: ItemStatus
 
     init(itemObject: ItemObject) {
         self.id = itemObject.id
         self.name = itemObject.name ?? "tutaj538"
+        self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
     }
 }

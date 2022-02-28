@@ -24,5 +24,23 @@ extension CoreDataManager {
         }
     }
 
+    func editItem(id: UUID,
+                  status: ItemStatus? = nil,
+                  type: ItemType? = nil) {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+
+        if let itemObject = try? managedContext.fetch(request).first {
+            itemObject.id = id
+            if let status = status {
+                itemObject.state = status.rawValue
+            }
+            if let type = type {
+                itemObject.type = type.rawValue
+            }
+            saveContext()
+        }
+    }
+
 }
 

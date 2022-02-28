@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-struct TaskDTO: Identifiable {
+struct TaskDTO: ItemProtocol, Identifiable {
 
-    let id: UUID
+    var id: UUID
     var name: String
     var itemDescription: String?
     var type: ItemType

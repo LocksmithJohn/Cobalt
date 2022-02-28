@@ -66,22 +66,10 @@ final class TransformItemVM: PopoverVM {
         case .onAppear:
             interactor.fetchItem(id: id)
         case .saveItem:
-            prepareItem()
-            guard let item = newItem else { return }
+            guard let newItem = newItem else { return }
 
-            GlobalRouter.shared.popOverType.send(nil)
-            interactor.editItem(id: id, item: item)
-            if previousItem?.type != newItem?.type {
-                interactor.routerWrapper?.tabSubject
-                    .sink(receiveValue: { [weak self] tab in
-                        if tab == 2 {
-                            self?.interactor.routeWrapped(from: .transformView, to: .projectDetails(id: item.id), with: .projects)
-                        }
-                    })
-                    .store(in: &interactor.cancellableBag)
-                print("router: tab route(tab: 2)")
-                interactor.route(tab: 2)
-            }
+            interactor.editItem(id: id, item: newItem)
+            goToItemDetails(item: newItem)
         case .backgroundTapped:
             GlobalRouter.shared.popOverType.send(nil)
         case let .typeSelected(type):
@@ -89,13 +77,29 @@ final class TransformItemVM: PopoverVM {
         }
     }
 
-    private func prepareItem() {
-        switch (previousItem?.type, newItem?.type) {
-        case (.note, .task):
-            newItem?.name = String(previousItem?.name.prefix(30) ?? "") + "..."
-        default:
-            break
-        }
+    private func goToItemDetails(item: Item) {
+        GlobalRouter.shared.popOverType.send(nil)
+        let routing: (RouterType, ScreenType, Int) = {
+            switch item.type {
+            case .project:
+                return (.projects, .projectDetails(id: item.id), 2)
+            default:
+                return (.tasks, .taskDetails(id: item.id, projectID: nil), 1)
+            }
+        }()
+        GlobalRouter.shared.routeWithTab(tab: routing.2,
+                                         typeFrom: .transformView,
+                                         typeTo: routing.1,
+                                         routerType: routing.0)
     }
+
+//    private func prepareItem() {
+//        switch (previousItem?.type, newItem?.type) {
+//        case (.note, .task):
+//            newItem?.name = String(previousItem?.name.prefix(10) ?? "") + "..."
+//        default:
+//            break
+//        }
+//    }
 
 }

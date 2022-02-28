@@ -14,12 +14,18 @@ final class TasksListVM: BaseVM {
         case onAppear
         case addTask
         case goToTask(id: UUID)
+        case toggleDone(task: TaskDTOReduced)
     }
 
-    @Published var tasks: [TaskDTOReduced] = []
+    @Published var allTasks: [TaskDTOReduced] = []
+    @Published var nextActionTasks: [TaskDTOReduced] = []
+    @Published var visibleTasks: [TaskDTOReduced] = []
+    @Published var tasksDone: [TaskDTOReduced] = []
+    @Published var waitingFors: [TaskDTOReduced] = []
+
+    @Published var filterTab: Int = 0
 
     let actionSubject = PassthroughSubject<Action, Never>()
-
     private let appstate: TasksListAppState
     private let interactor: TasksListInteractor
 
@@ -36,7 +42,25 @@ final class TasksListVM: BaseVM {
     private func bindAppState() {
         appstate.tasksListSubject
             .sink { [weak self] tasks in
-                self?.tasks = tasks
+                guard let self = self else { return }
+
+                self.allTasks = tasks
+                self.waitingFors = tasks.filter { $0.type == .waitFor }
+                self.nextActionTasks = tasks.filter { $0.type == .nextAction }
+            }
+            .store(in: &cancellableBag)
+
+        $filterTab
+            .sink { [weak self] filter in
+                guard let self = self else { return }
+                switch filter {
+                case 0:
+                    self.visibleTasks = self.nextActionTasks
+                case 1:
+                    self.visibleTasks = self.tasksDone
+                default:
+                    self.visibleTasks = self.allTasks
+                }
             }
             .store(in: &cancellableBag)
     }
@@ -57,6 +81,23 @@ final class TasksListVM: BaseVM {
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: nil))
         case let .goToTask(id):
             interactor.route(from: screenType, to: .taskDetails(id: id, projectID: nil))
+        case let .toggleDone(task):
+            Haptic.impact(.medium)
+            interactor.toggleDone(item: task)
+            interactor.fetchTasks()
         }
     }
+
+//    private func fillTasks(_ tasks: [TaskDTOReduced], tab: Int) {
+//        print("filter  tab: \(tab)")
+//        self.tasksNew = tasks.filter { $0.status == (tab == 0 ? .new : .done) }
+//        //        tasksDone = tasks.filter { $0.status == .done }
+//    }
+
+    //    private var filteredStatus: ItemStatus {
+    //        switch filter {
+    //        case 0: return .new
+    //        default: return .done
+    //        }
+    //    }
 }
