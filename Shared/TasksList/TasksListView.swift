@@ -12,32 +12,16 @@ struct TasksListView: View {
     @State var doneVisible = false // tutaj do vm
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 8) {
-                Picker("What is your favorite color?", selection: $viewModel.filterTab) {
-                    Text("Actions").tag(0)
-                    Text("Waiting for").tag(1)
-                    Text("All").tag(2)
+        VStack {
+            segmentedPicker
+                .padding(.horizontal)
+            ScrollView {
+                VStack(spacing: 8) {
+                    activeTasksList
+                        .padding()
+                    doneTasksList
+                        .padding()
                 }
-                .pickerStyle(.segmented)
-                ForEach(viewModel.visibleTasks.reversed()) { task in
-                    TaskRowView(task: task, tapAction: {
-                        viewModel.actionSubject.send(.toggleDone(task: task))
-                    })
-                        .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
-                }
-                HStack {
-                    Button { doneVisible.toggle() } label: { Text("Done Tasks") }
-                    Spacer()
-                }
-//                if doneVisible {
-//                    ForEach(viewModel.visibleTasks.reversed()) { task in
-//                        TaskRowView(task: task, tapAction: {
-//                            viewModel.actionSubject.send(.toggleDone(task: task))
-//                        })
-//                            .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
-//                    }
-//                }
             }
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
@@ -53,22 +37,55 @@ struct TasksListView: View {
     init(viewModel: TasksListVM) {
         self.viewModel = viewModel
     }
-}
 
-struct TaskRowView: View { // tutaj to przeniesc
+    private var segmentedPicker: some View {
+        Picker("What is your favorite color?", selection: $viewModel.filterTab) {
+            Text("All").tag(0)
+            Text("Waiting for").tag(1)
+            Text("Actions").tag(2)
+        }
+        .pickerStyle(.segmented)
+    }
 
-    let task: TaskDTOReduced
-    let tapAction: () -> Void
+    private var activeTasksList: some View {
+        VStack(spacing: 8) {
+            ForEach(viewModel.allActiveTasks.reversed()) { task in
+                TaskRowView(task: task, switchAction: {
+                    viewModel.actionSubject.send(.toggleDone(task: task))
+                })
+                    .contentShape(Rectangle())
+                    .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
+            }
+        }
+    }
 
-    var body: some View {
-        HStack(spacing: 40) {
-            Image(systemName: task.status == .done ? "checkmark.square.fill" : "square")
-                .padding()
-                .onTapGesture { tapAction() }
-            Text(task.name)
+    private var doneTasksList: some View {
+        VStack(spacing: 8) {
+            if !viewModel.allDoneTasks.isEmpty {
+                doneButtonRow
+            }
+            if doneVisible {
+                ForEach(viewModel.allDoneTasks.reversed()) { task in
+                    TaskRowView(task: task, switchAction: {
+                        viewModel.actionSubject.send(.toggleDone(task: task))
+                    })
+                        .contentShape(Rectangle())
+                        .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
+                }
+            }
+        }
+    }
+
+    private var doneButtonRow: some View {
+        HStack {
+            Button { doneVisible.toggle() } label:
+            { Text("Done Tasks") }
+            .padding(3)
+            .background(Color("object"))
+            .cornerRadius(6)
+            .foregroundColor(.white)
             Spacer()
         }
-        .background(Color.gray.opacity(0.2))
-        .cornerRadius(8)
+        .padding(.leading, 8)
     }
 }

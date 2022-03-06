@@ -12,6 +12,7 @@ enum ItemStatus: String {
     case inProgress
     case done
     case deleted
+    case someDay
 }
 
 enum ItemType: String, Equatable {

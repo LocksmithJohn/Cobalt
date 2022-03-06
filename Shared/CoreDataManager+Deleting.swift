@@ -20,19 +20,19 @@ extension CoreDataManager {
         }
     }
 
-//    func deleteItem(id: UUID) {
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemObject")
-//        fetchRequest.includesPropertyValues = false
-//        do {
-//            let items = try managedContext.fetch(fetchRequest) as! [NSManagedObject]
-//            for item in items {
-//                managedContext.delete(item)
-//            }
-//
-//            try managedContext.save()
-//
-//        } catch {
-//        }
-//    }
+    func deleteAllTasks() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ItemObject")
+        fetchRequest.includesPropertyValues = false
+        do {
+            let items = try managedContext.fetch(fetchRequest) as! [NSManagedObject]
+            for item in items {
+                managedContext.delete(item)
+            }
+
+            try managedContext.save()
+
+        } catch {
+        }
+    }
 
 }

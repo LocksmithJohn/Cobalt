@@ -13,6 +13,7 @@ final class NoteDetailsVM: BaseVM {
     enum Action {
         case onAppear
         case back
+        case cancel
         case saveNote
         case deleteNote
         case showTransform
@@ -66,7 +67,9 @@ final class NoteDetailsVM: BaseVM {
         case .saveNote:
             newNote.name = note
             if isCreating {
-                interactor.saveNote(newNote)
+                if !newNote.name.isEmpty {
+                    interactor.saveNote(newNote)
+                }
             } else {
                 interactor.editItem(id: id, item: Item(newNote))
             }
@@ -80,8 +83,15 @@ final class NoteDetailsVM: BaseVM {
         case .showTransform:
             GlobalRouter.shared.popOverType.send(.itemTransform(id: id))
             Haptic.impact(.light)
+        case .cancel:
+            cancelAction()
         }
     }
 
+    private func cancelAction() {
+        interactor.deleteNote(id: id)
+        interactor.route(from: screenType, to: .notes)
+        interactor.fetchNotes()
+    }
 
 }

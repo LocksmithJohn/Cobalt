@@ -9,13 +9,8 @@ import SwiftUI
 
 struct ProjectsListView: View {
     var body: some View {
-        ScrollView {
-            ForEach(viewModel.projects) { project in
-                ProjectRowView(project: project) {
-                    viewModel.actionSubject.send(.goToProject(id: project.id))
-                }
-            }
-        }
+        scrollView
+            .padding(.horizontal)
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
@@ -28,6 +23,16 @@ struct ProjectsListView: View {
 
     init(viewModel: ProjectsListVM) {
         self.viewModel = viewModel
+    }
+
+    private var scrollView: some View {
+        ScrollView {
+            ForEach(viewModel.projects) { project in
+                ProjectRowView(project: project) {
+                    viewModel.actionSubject.send(.goToProject(id: project.id))
+                }
+            }
+        }
     }
 }
 
@@ -42,7 +47,7 @@ struct ProjectRowView: View { // tutaj to przeniesc
             Spacer()
         }
         .background(Color.gray.opacity(0.2))
-        .cornerRadius(8)
+        .cornerRadius(12)
         .onTapGesture { tapAction() }
     }
 }

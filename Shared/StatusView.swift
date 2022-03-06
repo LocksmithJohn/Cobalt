@@ -14,13 +14,17 @@ struct StatusView: View {
     var body: some View {
         HStack {
             Text(status.rawValue)
-                .padding()
-                .padding(.bottom, 3)
+                .font(.system(size: 14))
+                .foregroundColor(.white)
+                .padding(4)
+                .padding(.horizontal, 8)
+                .background(Color.green.opacity(0.3))
+                .cornerRadius(6)
+                .overlay(RoundedRectangle(cornerRadius: 6)
+                            .stroke(Color.green, lineWidth: 1))
         }
-        .frame(height: 22)
-        .background(Color.gray.opacity(0.4))
-        .cornerRadius(6)
-//        .overlay(RoundedRectangle(cornerRadius: 6)
-//                    .stroke(Color.gray, lineWidth: 2))
+//        .frame(height: 22)
+//        .background(Color.gray.opacity(0.4))
+//        .cornerRadius(6)
     }
 }

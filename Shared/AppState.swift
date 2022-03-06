@@ -17,8 +17,9 @@ class AppState: AppStateProtocol  {
 
     var cancellableBag = Set<AnyCancellable>()
     let coreDataManager = CoreDataManager.shared
-    let relatedTasksSubject = MYPassthroughSubject<[TaskDTOReduced]>()
-    let relatedNextActionsSubject = MYPassthroughSubject<[TaskDTOReduced]>()
+    let relatedItemsSubject = MYPassthroughSubject<[TaskDTOReduced]>()
+//    let relatedNextActionsSubject = MYPassthroughSubject<[TaskDTOReduced]>()
+//    let relatedWaitForsSubject = MYPassthroughSubject<[TaskDTOReduced]>()
 
     var currentlyManagedItemSubject: PassthroughSubject<Item?, Never> {
         coreDataManager.itemSubject
@@ -29,9 +30,10 @@ class AppState: AppStateProtocol  {
             .map { myitems -> [TaskDTOReduced] in
                 myitems.map { TaskDTOReduced(item: $0) }
             }
-            .sink { [weak self] tasksReduced in
-                self?.relatedTasksSubject.send(tasksReduced.filter { $0.type == .task })
-                self?.relatedNextActionsSubject.send(tasksReduced.filter { $0.type == .nextAction })
+            .sink { [weak self] itemsReduced in
+                self?.relatedItemsSubject.send(itemsReduced)
+//                self?.relatedNextActionsSubject.send(tasksReduced.filter { $0.type == .nextAction })
+//                self?.relatedWaitForsSubject.send(tasksReduced.filter { $0.type == .waitFor })
             }
             .store(in: &cancellableBag)
     }

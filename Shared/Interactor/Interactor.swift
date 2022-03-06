@@ -15,8 +15,9 @@ protocol InteractorProtocol {
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType)
     func fetchItem(id : UUID)
     func editItem(id: UUID, item: Item)
-    func toggleDone(item: ItemProtocol)
-    func updateType(item: ItemProtocol, type: ItemType)
+    func toggleDone(item: ItemProtocol) // tutaj nie wystarczy ID?
+    func updateType(id: UUID, type: ItemType)
+    func deleteAll()
 }
 
 class Interactor {
@@ -35,38 +36,25 @@ class Interactor {
     }
 
     func editItem(id: UUID, item: Item) {
-        coreDataManager.actionSubject.send(.editItem(id: id, item: item))
+       coreDataManager.actionSubject.send(.editItem(id: id, item: item))
     }
-
-//    func toggleDone(task: TaskDTOReduced) {
-//        let newState: ItemStatus = task.status == .new ? .done : .new
-//        coreDataManager.editItem(id: task.id, status: newState)
-//    }
 
     func toggleDone(item: ItemProtocol) {
         let newState: ItemStatus = item.status == .new ? .done : .new
         coreDataManager.editItem(id: item.id, status: newState)
     }
 
-    func updateType(item: ItemProtocol, type: ItemType) {
-        coreDataManager.editItem(id: item.id, type: type)
+    func updateType(id: UUID, type: ItemType) {
+        coreDataManager.editItem(id: id, type: type)
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
         router?.route(from: typeFrom, to: typeTo)
     }
 
-    // poniższe dwie metodki wywalic do Global routera
-//    func globalRoute(from typeFrom: ScreenType?, to typeTo: ScreenType, with routerType: RouterType) {
-//        guard let router = (GlobalRouter.shared.routers.first { $0.type == routerType }) else { return }
-//
-//        router.route(from: typeFrom, to: typeTo)
-//    }
-
-//    func route(tab: Int) {
-//        GlobalRouter.shared.tabSubject.send(tab)
-//    }
-
+    func deleteAll() {
+        coreDataManager.deleteAllTasks()
+    }
 }
 
 

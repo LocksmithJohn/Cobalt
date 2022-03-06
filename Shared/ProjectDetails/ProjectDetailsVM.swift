@@ -18,8 +18,10 @@ final class ProjectDetailsVM: BaseVM {
         case back
         case saveProject
         case deleteProject
+        case toggleDoneProject
         case showAddingTask
-        case toggleDone
+        case taskSelected(id: UUID)
+        case toggleDoneTask(task: TaskDTOReduced)
     }
 
     @Published var projectName: String = ""
@@ -29,6 +31,7 @@ final class ProjectDetailsVM: BaseVM {
     @Published var nextActions: [TaskDTOReduced] = []
     @Published var waitFors: [TaskDTOReduced] = []
     @Published var subtasks: [TaskDTOReduced] = []
+    @Published var doneTasks: [TaskDTOReduced] = []
     @Published var isDone: Bool = false
 
     let actionSubject = PassthroughSubject<Action, Never>()
@@ -63,12 +66,16 @@ final class ProjectDetailsVM: BaseVM {
             }
             .store(in: &cancellableBag)
 
-        appstate.relatedTasksSubject
+        appstate.relatedItemsSubject
             .compactMap { $0 }
             .sink { [weak self] tasks in
-                self?.nextActions = tasks.filter { $0.type == .nextAction }
-                self?.waitFors = tasks.filter { $0.type == .waitFor }
-                self?.subtasks = tasks.filter { $0.type == .task }
+                tasks.forEach { task in
+                    print("task: \(task.name) - \(task.type.rawValue) - \(task.status.rawValue)")
+                }
+                self?.nextActions = tasks.filter { $0.type == .nextAction && $0.status != .done }
+                self?.waitFors = tasks.filter { $0.type == .waitFor && $0.status != .done }
+                self?.subtasks = tasks.filter { $0.type == .task && $0.status != .done }
+                self?.doneTasks = tasks.filter { $0.status == .done }
             }
             .store(in: &cancellableBag)
     }
@@ -101,10 +108,15 @@ final class ProjectDetailsVM: BaseVM {
             interactor.route(from: screenType, to: .projects)
         case .showAddingTask:
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: id))
-        case .toggleDone:
+        case .toggleDoneProject:
             Haptic.impact(.medium)
             interactor.toggleDone(item: newProject)
             interactor.fetchProject(id: id)
+        case let .taskSelected(taskId):
+            interactor.route(from: screenType, to: .taskDetails(id: taskId, projectID: id))
+        case let .toggleDoneTask(task):
+            interactor.toggleDone(item: task)
+            interactor.fetchRelatedItems(id: id)
         }
     }
 

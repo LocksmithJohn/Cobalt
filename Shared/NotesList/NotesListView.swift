@@ -10,17 +10,28 @@ import Foundation
 
 struct NotesListView: View {
     var body: some View {
-        Form {
-            ForEach(viewModel.notes) { note in
-                Section {
-                    Text(note.name)
-                }
-                .onTapGesture { viewModel.actionSubject.send(.goToNote(id: note.id)) }
-            }
+        VStack {
+            notesScrollView
+                .padding(.horizontal)
+//            Button {
+//                viewModel.actionSubject.send(.addNote)
+//            } label: {
+//                Text("Add")
+//            }
+//            .buttonStyle(CustomButtonStyle())
+//            .padding(.horizontal)
+
+            Text("What's on your mind? ...")
+                .font(.system(size: 32))
+                .foregroundColor(.gray)
+                .padding()
+                .onTapGesture { viewModel.actionSubject.send(.addNote) }
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
+            leftImageView: AnyView(Image(systemName: "trash")),
+            leftButtonAction: { viewModel.actionSubject.send(.deleteAll) },
             rightImageView: AnyView(Image(systemName: "plus")),
             rightButtonAction: { viewModel.actionSubject.send(.addNote) })
         )
@@ -30,5 +41,38 @@ struct NotesListView: View {
 
     init(viewModel: NotesListVM) {
         self.viewModel = viewModel
+    }
+
+    private var notesScrollView: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 16) {
+                ForEach(viewModel.notes) { note in
+                    NoteRowView(note: note, tapAction: {
+                        viewModel.actionSubject.send(.goToNote(id: note.id))
+                    })
+                }
+            }
+        }
+    }
+}
+
+struct NoteRowView: View { // tutaj to przeniesc
+
+    let note: NoteDTOReduced
+    let tapAction: () -> Void
+
+    var body: some View {
+        HStack(spacing: 40) {
+            Text(note.name)
+            Spacer()
+        }
+        .padding(.vertical, 6)
+        .padding(.horizontal, 10)
+        .frame(maxWidth: .infinity, maxHeight: 80)
+        .background(Color("object"))
+        .cornerRadius(8)
+        .onTapGesture {
+            tapAction()
+        }
     }
 }

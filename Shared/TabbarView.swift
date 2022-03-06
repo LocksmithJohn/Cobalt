@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Tabbar: View {
+struct TabbarView: View {
 
     @ObservedObject private var viewModel: TabbarVM
 
@@ -22,12 +22,16 @@ struct Tabbar: View {
                 case 0:
                     NotesNavigationController()
                         .environmentObject(viewModel.dependency)
+                        .background(Color("background"))
                 case 1:
                     TasksNavigationController()
                         .environmentObject(viewModel.dependency)
+                        .background(Color("background"))
                 default:
                     ProjectsNavigationController()
-                        .environmentObject(viewModel.dependency)                }
+                        .environmentObject(viewModel.dependency)
+                        .background(Color("background"))
+                }
                 if viewModel.isTabbarVisible {
                     tabBarContent
                 }
@@ -61,7 +65,7 @@ struct Tabbar: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
         }
-        .background(Color.black.ignoresSafeArea())
+        .background(Color("background").ignoresSafeArea())
     }
 
     private func tabItem(iconName: String,

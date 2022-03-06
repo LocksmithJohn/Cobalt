@@ -14,6 +14,7 @@ final class NotesListVM: BaseVM {
         case onAppear
         case addNote
         case goToNote(id: UUID)
+        case deleteAll
     }
 
     @Published var notes: [NoteDTOReduced] = []
@@ -57,6 +58,8 @@ final class NotesListVM: BaseVM {
             interactor.route(from: screenType, to: .noteDetails(id: nil))
         case let .goToNote(id):
             interactor.route(from: screenType, to: .noteDetails(id: id))
+        case .deleteAll:
+            interactor.deleteAll()
         }
     }
 }

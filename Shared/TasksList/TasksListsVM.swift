@@ -19,9 +19,22 @@ final class TasksListVM: BaseVM {
 
     @Published var allTasks: [TaskDTOReduced] = []
     @Published var nextActionTasks: [TaskDTOReduced] = []
-    @Published var visibleTasks: [TaskDTOReduced] = []
+    @Published var allDoneTasks: [TaskDTOReduced] = []
+    @Published var allActiveTasks: [TaskDTOReduced] = [] {
+        didSet {
+            waitingFors.forEach { task in
+                print("filter visibleTasks for: \(task.type.rawValue)")
+            }
+        }
+    }
     @Published var tasksDone: [TaskDTOReduced] = []
-    @Published var waitingFors: [TaskDTOReduced] = []
+    @Published var waitingFors: [TaskDTOReduced] = [] {
+        didSet {
+            waitingFors.forEach { task in
+                print("filter wait for: \(task.name)")
+            }
+        }
+    }
 
     @Published var filterTab: Int = 0
 
@@ -43,26 +56,39 @@ final class TasksListVM: BaseVM {
         appstate.tasksListSubject
             .sink { [weak self] tasks in
                 guard let self = self else { return }
+                print("filter alltask ------------------------")
 
+                tasks.forEach { task in
+                    print("filter task: \(task.type.rawValue), \(task.name)")
+                }
                 self.allTasks = tasks
                 self.waitingFors = tasks.filter { $0.type == .waitFor }
                 self.nextActionTasks = tasks.filter { $0.type == .nextAction }
+                self.updateListForTab(self.filterTab)
             }
             .store(in: &cancellableBag)
 
         $filterTab
-            .sink { [weak self] filter in
+            .sink { [weak self] tab in
                 guard let self = self else { return }
-                switch filter {
-                case 0:
-                    self.visibleTasks = self.nextActionTasks
-                case 1:
-                    self.visibleTasks = self.tasksDone
-                default:
-                    self.visibleTasks = self.allTasks
-                }
+
+                self.updateListForTab(tab)
             }
             .store(in: &cancellableBag)
+    }
+
+    private func updateListForTab(_ tab: Int) {
+        switch tab {
+        case 0:
+            allActiveTasks = allTasks.filter { $0.status != .done }
+            allDoneTasks = allTasks.filter { $0.status == .done }
+        case 1:
+            allActiveTasks = waitingFors.filter { $0.status != .done }
+            allDoneTasks = waitingFors.filter { $0.status == .done }
+        default:
+            allActiveTasks = nextActionTasks.filter { $0.status != .done }
+            allDoneTasks = nextActionTasks.filter { $0.status == .done }
+        }
     }
 
     private func bindAction() {
@@ -87,17 +113,4 @@ final class TasksListVM: BaseVM {
             interactor.fetchTasks()
         }
     }
-
-//    private func fillTasks(_ tasks: [TaskDTOReduced], tab: Int) {
-//        print("filter  tab: \(tab)")
-//        self.tasksNew = tasks.filter { $0.status == (tab == 0 ? .new : .done) }
-//        //        tasksDone = tasks.filter { $0.status == .done }
-//    }
-
-    //    private var filteredStatus: ItemStatus {
-    //        switch filter {
-    //        case 0: return .new
-    //        default: return .done
-    //        }
-    //    }
 }
