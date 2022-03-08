@@ -83,6 +83,10 @@
 		CE61F6CD27B9B31C00A734EE /* TaskDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */; };
 		CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D027B9B36C00A734EE /* ItemStatus.swift */; };
 		CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */; };
+		CE67A25C27D530B700E9CFF2 /* MoreNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67A25B27D530B600E9CFF2 /* MoreNavigationController.swift */; };
+		CE67A25D27D530B700E9CFF2 /* MoreNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67A25B27D530B600E9CFF2 /* MoreNavigationController.swift */; };
+		CE67A25F27D5339C00E9CFF2 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67A25E27D5339C00E9CFF2 /* MoreView.swift */; };
+		CE67A26027D5339C00E9CFF2 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE67A25E27D5339C00E9CFF2 /* MoreView.swift */; };
 		CE723FAC27C99E04003F6DD8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723FAB27C99E04003F6DD8 /* StatusView.swift */; };
 		CE723FAD27C99E04003F6DD8 /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE723FAB27C99E04003F6DD8 /* StatusView.swift */; };
 		CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */; };
@@ -180,6 +184,8 @@
 		CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDTO.swift; sourceTree = "<group>"; };
 		CE61F6D027B9B36C00A734EE /* ItemStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemStatus.swift; sourceTree = "<group>"; };
 		CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTO.swift; sourceTree = "<group>"; };
+		CE67A25B27D530B600E9CFF2 /* MoreNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreNavigationController.swift; sourceTree = "<group>"; };
+		CE67A25E27D5339C00E9CFF2 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		CE723FAB27C99E04003F6DD8 /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
 		CE8F04BA27BC72660067D3EE /* ProjectDTOReduced.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDTOReduced.swift; sourceTree = "<group>"; };
 		CE8F04BC27BD0AF70067D3EE /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -245,6 +251,7 @@
 				CE723FAB27C99E04003F6DD8 /* StatusView.swift */,
 				CEA5FAFD27C287730011B373 /* Interactor */,
 				CEA5FAFC27C278B50011B373 /* TransformItem */,
+				CE67A26127D535D100E9CFF2 /* MoreView */,
 				CE61F6B727B866ED00A734EE /* TasksList */,
 				CEA5FB0D27C306880011B373 /* Popover */,
 				CECFD1D227BFE9D800CCDBC2 /* NoteDetails */,
@@ -305,8 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				CE338AC027B7A5B7005289D1 /* TasksListView.swift */,
-				CE0F51D227D23B730026AE4A /* TaskRowView.swift */,
 				CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */,
+				CE0F51D227D23B730026AE4A /* TaskRowView.swift */,
 			);
 			path = TasksList;
 			sourceTree = "<group>";
@@ -353,12 +360,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CE67A26127D535D100E9CFF2 /* MoreView */ = {
+			isa = PBXGroup;
+			children = (
+				CE67A25E27D5339C00E9CFF2 /* MoreView.swift */,
+			);
+			path = MoreView;
+			sourceTree = "<group>";
+		};
 		CE8F04BE27BD35E20067D3EE /* NavigationControllers */ = {
 			isa = PBXGroup;
 			children = (
 				CE338ADB27B7A99D005289D1 /* ProjectsNavigationController.swift */,
 				CE61F6B527B83CC200A734EE /* NotesNavigationController.swift */,
 				CE61F6B327B83CB200A734EE /* TasksNavigationController.swift */,
+				CE67A25B27D530B600E9CFF2 /* MoreNavigationController.swift */,
 				CE338ADE27B7A9D7005289D1 /* NavigationController.swift */,
 			);
 			path = NavigationControllers;
@@ -556,6 +572,7 @@
 				CECFD1AE27BFD21800CCDBC2 /* NotesListView.swift in Sources */,
 				CEA5FAFF27C2DE610011B373 /* View+Ext.swift in Sources */,
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
+				CE67A25F27D5339C00E9CFF2 /* MoreView.swift in Sources */,
 				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
 				CE447CBE27C07510005B0441 /* TransformItemView.swift in Sources */,
 				CE447CBB27C071D0005B0441 /* CoreDataManager+Editing.swift in Sources */,
@@ -576,6 +593,7 @@
 				CE61F6D127B9B36C00A734EE /* ItemStatus.swift in Sources */,
 				CE8F04BB27BC72660067D3EE /* ProjectDTOReduced.swift in Sources */,
 				CE61F6C327B9114200A734EE /* ProjectDetailsView.swift in Sources */,
+				CE67A25C27D530B700E9CFF2 /* MoreNavigationController.swift in Sources */,
 				CE61F6BB27B8783300A734EE /* TaskDetailsVM.swift in Sources */,
 				CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemType.swift in Sources */,
@@ -609,9 +627,11 @@
 				CE338AEC27B7B890005289D1 /* BaseVM.swift in Sources */,
 				CE338AE627B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CECFD1BF27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */,
+				CE67A26027D5339C00E9CFF2 /* MoreView.swift in Sources */,
 				CE338ACB27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CE9043EF27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CECFD1CE27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */,
+				CE67A25D27D530B700E9CFF2 /* MoreNavigationController.swift in Sources */,
 				CE338ABC27B7A5A7005289D1 /* Router.swift in Sources */,
 				CE447CB927C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */,
 				CE338AF627B7DA1C005289D1 /* Model.xcdatamodeld in Sources */,

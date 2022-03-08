@@ -35,6 +35,10 @@ class ScreenFactory {
             return AnyView(
                 NoteDetailsView(viewModel: VMFactory.noteDetails(dependency, id: id, router: router))
             )
+        case .more:
+            return AnyView(
+                MoreView()
+            )
         default: return AnyView(EmptyView()) // tutaj not handled
         }
     }
@@ -42,7 +46,7 @@ class ScreenFactory {
     static func handleTabbarVisibility(sType: ScreenType, dependency: Dependency) {
         var visible: Bool {
             switch sType {
-            case .tasks, .projects, .notes:
+            case .tasks, .projects, .notes, .more:
                 return true
             default:
                 return false

@@ -15,7 +15,8 @@ protocol InteractorProtocol {
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType)
     func fetchItem(id : UUID)
     func editItem(id: UUID, item: Item)
-    func toggleDone(item: ItemProtocol) // tutaj nie wystarczy ID?
+//    func toggleDone(item: ItemProtocol) // tutaj nie wystarczy ID?
+    func toggleDone(id: UUID, status: ItemStatus)
     func updateType(id: UUID, type: ItemType)
     func deleteAll()
 }
@@ -39,9 +40,9 @@ class Interactor {
        coreDataManager.actionSubject.send(.editItem(id: id, item: item))
     }
 
-    func toggleDone(item: ItemProtocol) {
-        let newState: ItemStatus = item.status == .new ? .done : .new
-        coreDataManager.editItem(id: item.id, status: newState)
+    func toggleDone(id: UUID, status: ItemStatus) {
+        let newState: ItemStatus = status == .new ? .done : .new
+        coreDataManager.editItem(id: id, status: newState)
     }
 
     func updateType(id: UUID, type: ItemType) {

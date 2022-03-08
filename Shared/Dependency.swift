@@ -17,6 +17,7 @@ class Dependency: ObservableObject {
     @Published var notesRouter = Router(type: .notes)
     @Published var tasksRouter = Router(type: .tasks)
     @Published var projectsRouter = Router(type: .projects)
+    @Published var moreRouter = Router(type: .more)
 
     init() {
         bindRouters()
@@ -25,9 +26,10 @@ class Dependency: ObservableObject {
 
     private func bindRouters() {
         #if os(iOS)
-        Publishers.Merge3(notesRouter.$screens,
+        Publishers.Merge4(notesRouter.$screens,
                           tasksRouter.$screens,
-                          projectsRouter.$screens)
+                          projectsRouter.$screens,
+                          moreRouter.$screens)
             .sink { [weak self] _ in
                 self?.objectWillChange.send()
             }

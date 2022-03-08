@@ -51,7 +51,7 @@ struct TasksListView: View {
         VStack(spacing: 8) {
             ForEach(viewModel.allActiveTasks.reversed()) { task in
                 TaskRowView(task: task, switchAction: {
-                    viewModel.actionSubject.send(.toggleDone(task: task))
+                    viewModel.actionSubject.send(.toggleDone(id: task.id, status: task.status))
                 })
                     .contentShape(Rectangle())
                     .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
@@ -67,7 +67,7 @@ struct TasksListView: View {
             if doneVisible {
                 ForEach(viewModel.allDoneTasks.reversed()) { task in
                     TaskRowView(task: task, switchAction: {
-                        viewModel.actionSubject.send(.toggleDone(task: task))
+                        viewModel.actionSubject.send(.toggleDone(id: task.id, status: task.status))
                     })
                         .contentShape(Rectangle())
                         .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }

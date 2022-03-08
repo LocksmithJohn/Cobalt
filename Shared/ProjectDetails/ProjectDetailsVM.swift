@@ -110,12 +110,12 @@ final class ProjectDetailsVM: BaseVM {
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: id))
         case .toggleDoneProject:
             Haptic.impact(.medium)
-            interactor.toggleDone(item: newProject)
+            interactor.toggleDone(id: newProject.id, status: newProject.status)
             interactor.fetchProject(id: id)
         case let .taskSelected(taskId):
             interactor.route(from: screenType, to: .taskDetails(id: taskId, projectID: id))
         case let .toggleDoneTask(task):
-            interactor.toggleDone(item: task)
+            interactor.toggleDone(id: task.id, status: task.status)
             interactor.fetchRelatedItems(id: id)
         }
     }

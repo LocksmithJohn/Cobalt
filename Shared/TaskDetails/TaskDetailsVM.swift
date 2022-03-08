@@ -161,7 +161,7 @@ final class TaskDetailsVM: BaseVM {
     private func toggleDoneAction() {
         Haptic.impact(.medium)
         interactor.editItem(id: id, item: Item(temporaryTask))
-        interactor.toggleDone(item: temporaryTask)
+        interactor.toggleDone(id: temporaryTask.id, status: temporaryTask.status)
         interactor.fetchTask(id: id)
     }
 

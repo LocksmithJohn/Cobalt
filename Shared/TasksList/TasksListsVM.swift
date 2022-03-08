@@ -14,7 +14,7 @@ final class TasksListVM: BaseVM {
         case onAppear
         case addTask
         case goToTask(id: UUID)
-        case toggleDone(task: TaskDTOReduced)
+        case toggleDone(id: UUID, status: ItemStatus)
     }
 
     @Published var allTasks: [TaskDTOReduced] = []
@@ -107,9 +107,9 @@ final class TasksListVM: BaseVM {
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: nil))
         case let .goToTask(id):
             interactor.route(from: screenType, to: .taskDetails(id: id, projectID: nil))
-        case let .toggleDone(task):
+        case let .toggleDone(id, status):
             Haptic.impact(.medium)
-            interactor.toggleDone(item: task)
+            interactor.toggleDone(id: id, status: status)
             interactor.fetchTasks()
         }
     }

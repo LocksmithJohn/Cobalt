@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6265D46E-701F-46B4-8A82-E30A092448BA"
+            uuid = "F6113343-E9B6-4036-B050-DE1980A2EB64"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
+            filePath = "Shared/Router.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "handleAction(action:)"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "route(from:to:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

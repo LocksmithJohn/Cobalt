@@ -22,9 +22,7 @@ struct StatusView: View {
                 .cornerRadius(6)
                 .overlay(RoundedRectangle(cornerRadius: 6)
                             .stroke(Color.green, lineWidth: 1))
+            
         }
-//        .frame(height: 22)
-//        .background(Color.gray.opacity(0.4))
-//        .cornerRadius(6)
     }
 }

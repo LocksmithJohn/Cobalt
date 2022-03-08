@@ -27,8 +27,12 @@ struct TabbarView: View {
                     TasksNavigationController()
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
-                default:
+                case 2:
                     ProjectsNavigationController()
+                        .environmentObject(viewModel.dependency)
+                        .background(Color("background"))
+                default:
+                    MoreNavigationController()
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
                 }
@@ -53,7 +57,7 @@ struct TabbarView: View {
                         color: .yellow)
                 Spacer()
                 tabItem(iconName: "list.bullet",
-                        text: "Tasks",
+                        text: "Actions",
                         tag: 1,
                         color: .blue)
                 Spacer()
@@ -61,6 +65,10 @@ struct TabbarView: View {
                         text: "Projects",
                         tag: 2,
                         color: .green)
+                tabItem(iconName: "ellipsis",
+                        text: "More",
+                        tag: 3,
+                        color: .white)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
