@@ -7,37 +7,42 @@
 
 import SwiftUI
 
-enum FocusableField: Hashable { // tutaj przeniesc
-    case name
-}
-
 struct TaskDetailsView: View {
 
     @FocusState private var focus: FocusableField?
 
     var body: some View {
-            VStack(spacing: 8) {
-                header
+        VStack(spacing: 8) {
+            header
+                .padding(.horizontal)
+                .padding(.bottom, 22)
+            if projectViewVisible {
+                projectsView
                     .padding(.horizontal)
-                    .padding(.bottom, 22)
-                if projectViewVisible {
-                    projectsView
-                        .padding(.horizontal)
-                }
-                taskTypeView
-                    .padding(.horizontal)
-                    .padding(.bottom, 16)
-                descriptionView
-                    .padding(.horizontal)
-                Spacer()
-                bottomButtons
-                    .padding()
+            }
+            taskTypeView
+                .padding(.horizontal)
+                .padding(.bottom, 16)
+            descriptionView
+                .padding(.horizontal)
+            Spacer()
+            bottomButtons
+                .padding()
         }
+        .padding(.top, 50)
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { focus = .name }
             viewModel.actionSubject.send(.onAppear)
+            if viewModel.isCreating {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { focus = .first }
+            }
         }
-        .focused($focus, equals: .name)
+        .alert("Delete?", isPresented: $viewModel.isDeleteAlertVisible) {
+            Button("Yes", role: .destructive) {
+                viewModel.actionSubject.send(.deleteTask)
+            }
+            Button("Cancel", role: .cancel) {}
+        }
+        .focused($focus, equals: .first)
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
             leftImageView: AnyView(Image(systemName: "plus")),
@@ -86,7 +91,7 @@ struct TaskDetailsView: View {
                 { Text("Cancel").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
             } else {
-                Button { viewModel.actionSubject.send(.deleteTask) } label:
+                Button { viewModel.actionSubject.send(.showDeleteAlert) } label:
                 { Text("Delete").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
             }

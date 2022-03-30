@@ -34,7 +34,10 @@ struct NavigationBarModifier: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        VStack {
+        ZStack(alignment: .top) {
+            content
+                .navigationBarBackButtonHidden(true)
+                .navigationBarHidden(true)
             NavigationBar(syncDate: syncDate ?? .constant(nil),
                           title: title,
                           leftImageView: leftImageView,
@@ -42,10 +45,6 @@ struct NavigationBarModifier: ViewModifier {
                           rightImageView: rightImageView,
                           rightButtonAction: rightButtonAction,
                           mainColor: mainColor)
-            Spacer()
-            content
-                .navigationBarBackButtonHidden(true)
-                .navigationBarHidden(true)
         }.background(Color("background"))
     }
 

@@ -32,4 +32,12 @@ class VMFactory {
         NotesListVM(interactor: Interactor(router: router),
                     appstate: dependency.appState)
     }
+
+    static func more(_ dependency: Dependency, router: Router) -> MoreVM {
+        MoreVM(interactor: Interactor(router: router), appstate: dependency.appState)
+    }
+
+    static func search(_ dependency: Dependency, router: Router) -> SearchVM {
+        SearchVM(interactor: Interactor(router: router), appstate: dependency.appState)
+    }
 }

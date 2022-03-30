@@ -13,14 +13,6 @@ struct NotesListView: View {
         VStack {
             notesScrollView
                 .padding(.horizontal)
-//            Button {
-//                viewModel.actionSubject.send(.addNote)
-//            } label: {
-//                Text("Add")
-//            }
-//            .buttonStyle(CustomButtonStyle())
-//            .padding(.horizontal)
-
             Text("What's on your mind? ...")
                 .font(.system(size: 32))
                 .foregroundColor(.gray)
@@ -30,10 +22,13 @@ struct NotesListView: View {
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
-            leftImageView: AnyView(Image(systemName: "trash")),
-            leftButtonAction: { viewModel.actionSubject.send(.deleteAll) },
+            leftImageView: AnyView(Image(systemName: "square.lefthalf.filled")),
+            leftButtonAction: {
+                GlobalRouter.shared.settingsVisible.send(true)
+            },
             rightImageView: AnyView(Image(systemName: "plus")),
-            rightButtonAction: { viewModel.actionSubject.send(.addNote) })
+            rightButtonAction: { viewModel.actionSubject.send(.addNote) },
+            mainColor: Color.yellow)
         )
     }
 
@@ -45,34 +40,13 @@ struct NotesListView: View {
 
     private var notesScrollView: some View {
         ScrollView(showsIndicators: false) {
-            VStack(spacing: 16) {
+            VStack(spacing: 6) {
                 ForEach(viewModel.notes) { note in
                     NoteRowView(note: note, tapAction: {
                         viewModel.actionSubject.send(.goToNote(id: note.id))
                     })
                 }
             }
-        }
-    }
-}
-
-struct NoteRowView: View { // tutaj to przeniesc
-
-    let note: NoteDTOReduced
-    let tapAction: () -> Void
-
-    var body: some View {
-        HStack(spacing: 40) {
-            Text(note.name)
-            Spacer()
-        }
-        .padding(.vertical, 6)
-        .padding(.horizontal, 10)
-        .frame(maxWidth: .infinity, maxHeight: 80)
-        .background(Color("object"))
-        .cornerRadius(8)
-        .onTapGesture {
-            tapAction()
-        }
+        }.padding(.top, 50)
     }
 }

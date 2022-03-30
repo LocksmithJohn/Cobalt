@@ -45,12 +45,19 @@ final class TabbarVM: ObservableObject {
         GlobalRouter.shared.popOverType
             .sink { [weak self] type in
                 guard let self = self else { return }
+
                 switch type {
                 case let .itemTransform(id):
                     self.popoverVM = TransformItemVM(
                         id: id,
                         interactor: Interactor(),
                         appstate: self.dependency.appState)
+                case let .addItemToProject(id):
+                    self.popoverVM = AddItemToProjectVM(
+                        id: id,
+                        interactor: Interactor(router: self.dependency.projectsRouter),
+                        appstate: self.dependency.appState
+                    )
                 case .none:
                     self.popoverVM = nil
                 }

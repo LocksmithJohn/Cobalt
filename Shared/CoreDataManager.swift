@@ -14,6 +14,7 @@ class CoreDataManager {
 
     enum Action {
         case fetchItem(id: UUID)
+        case fetchItemsReduced
         case editItem(id: UUID, item: Item)
 
         case saveTask(task: TaskDTO)
@@ -40,6 +41,7 @@ class CoreDataManager {
     }
 
     let itemSubject = PassthroughSubject<Item?, Never>()
+    let itemsReducedSubject = MYPassthroughSubject<[ItemReduced]>()
 
     let projectSubject = PassthroughSubject<ProjectDTO?, Never>()
     let projectsSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
@@ -86,6 +88,8 @@ class CoreDataManager {
 
     private func handleAction(action: Action) {
         switch action {
+        case .fetchItemsReduced:
+            fetchItemsReduced()
         case let .fetchTask(id):
             fetchTask(id: id)
         case .fetchTasks:

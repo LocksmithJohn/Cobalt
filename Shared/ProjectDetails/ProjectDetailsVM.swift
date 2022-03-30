@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 final class ProjectDetailsVM: BaseVM {
-    // tutaj musi byc mozliwosc zapisu nowego projektu oraz updatu istniejącego
-    // itemy powiązane nie są zapisywane tutaj, ale na swoich ekranach z przekazanym ID z tego projektu
 
     enum Action {
         case onAppear
@@ -20,6 +18,7 @@ final class ProjectDetailsVM: BaseVM {
         case deleteProject
         case toggleDoneProject
         case showAddingTask
+        case showAddingItem
         case taskSelected(id: UUID)
         case toggleDoneTask(task: TaskDTOReduced)
     }
@@ -62,7 +61,6 @@ final class ProjectDetailsVM: BaseVM {
                 self?.projectDescription = project.itemDescription ?? ""
                 self?.isDone = project.status == .done
                 self?.projectStatus = project.status
-                print("filter 1status: \(project.status)")
             }
             .store(in: &cancellableBag)
 
@@ -107,6 +105,7 @@ final class ProjectDetailsVM: BaseVM {
             interactor.deleteProject(id: id)
             interactor.route(from: screenType, to: .projects)
         case .showAddingTask:
+            Haptic.impact(.medium)
             interactor.route(from: screenType, to: .taskDetails(id: nil, projectID: id))
         case .toggleDoneProject:
             Haptic.impact(.medium)
@@ -117,6 +116,9 @@ final class ProjectDetailsVM: BaseVM {
         case let .toggleDoneTask(task):
             interactor.toggleDone(id: task.id, status: task.status)
             interactor.fetchRelatedItems(id: id)
+        case .showAddingItem:
+            Haptic.impact(.medium)
+            GlobalRouter.shared.popOverType.send(.addItemToProject(id: id) )
         }
     }
 

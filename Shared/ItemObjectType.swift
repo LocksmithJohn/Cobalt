@@ -1,5 +1,5 @@
 //
-//  ItemType.swift
+//  ItemObjectType.swift
 //  CobaltApp
 //
 //  Created by Jan Slusarz on 12/02/2022.

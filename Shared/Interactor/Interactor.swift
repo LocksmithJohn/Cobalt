@@ -15,7 +15,6 @@ protocol InteractorProtocol {
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType)
     func fetchItem(id : UUID)
     func editItem(id: UUID, item: Item)
-//    func toggleDone(item: ItemProtocol) // tutaj nie wystarczy ID?
     func toggleDone(id: UUID, status: ItemStatus)
     func updateType(id: UUID, type: ItemType)
     func deleteAll()

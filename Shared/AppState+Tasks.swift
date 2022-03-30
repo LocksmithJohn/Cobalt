@@ -10,27 +10,27 @@ import Foundation
 
 extension AppState: TasksListAppState,
                     TaskDetailsAppState {
-    var projectsReducedSubject: PassthroughSubject<[ProjectDTOReduced], Never> {
+    var projectsReducedSubject: MYPassthroughSubject<[ProjectDTOReduced]> {
         coreDataManager.projectsSubject
     }
-    var projectReducedSubject: PassthroughSubject<ProjectDTOReduced?, Never> {
+    var projectReducedSubject: MYPassthroughSubject<ProjectDTOReduced?> {
         coreDataManager.projectReducedSubject
     }
-    var taskDetailsSubject: PassthroughSubject<TaskDTO?, Never> {
+    var taskDetailsSubject: MYPassthroughSubject<TaskDTO?> {
         coreDataManager.taskSubject
     }
-    var tasksListSubject: PassthroughSubject<[TaskDTOReduced], Never> {
+    var tasksListSubject: MYPassthroughSubject<[TaskDTOReduced]> {
         coreDataManager.tasksSubject
     }
     
 }
 
 protocol TasksListAppState {
-    var tasksListSubject: PassthroughSubject<[TaskDTOReduced], Never> { get }
+    var tasksListSubject: MYPassthroughSubject<[TaskDTOReduced]> { get }
 }
 
 protocol TaskDetailsAppState {
-    var taskDetailsSubject: PassthroughSubject<TaskDTO?, Never> { get }
-    var projectsReducedSubject: PassthroughSubject<[ProjectDTOReduced], Never> { get }
-    var projectReducedSubject: PassthroughSubject<ProjectDTOReduced?, Never> { get }
+    var taskDetailsSubject: MYPassthroughSubject<TaskDTO?> { get }
+    var projectsReducedSubject: MYPassthroughSubject<[ProjectDTOReduced]> { get }
+    var projectReducedSubject: MYPassthroughSubject<ProjectDTOReduced?> { get }
 }

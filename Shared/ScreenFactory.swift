@@ -37,9 +37,16 @@ class ScreenFactory {
             )
         case .more:
             return AnyView(
-                MoreView()
+                MoreView(viewModel: VMFactory.more(dependency, router: router))
+                    .background(Color.red.ignoresSafeArea())
             )
-        default: return AnyView(EmptyView()) // tutaj not handled
+        case .search:
+            return AnyView(
+                SearchView(viewModel: VMFactory.search(dependency, router: router))
+            )
+        case .transformView, .addItem:
+            print("factory not allowed view")
+            return AnyView(EmptyView())
         }
     }
 

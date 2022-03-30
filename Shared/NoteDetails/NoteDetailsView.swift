@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NoteDetailsView: View {
 
-    @State var transformViewVisible = false // tutaj to do vm
     @FocusState private var focus: FocusableField?
 
     var body: some View {
@@ -19,7 +18,7 @@ struct NoteDetailsView: View {
                     TextEditor(text: $viewModel.note)
                         .font(.system(size: 32))
                         .padding()
-                        .focused($focus, equals: .name)
+                        .focused($focus, equals: .first)
                     Text(viewModel.note)
                         .font(.system(size: 32))
                         .opacity(0)
@@ -41,7 +40,7 @@ struct NoteDetailsView: View {
         .onAppear {
             viewModel.actionSubject.send(.onAppear)
             if viewModel.isCreating {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { focus = .name }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { focus = .first }
             }
         }
         .modifier(NavigationBarModifier(

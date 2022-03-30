@@ -56,17 +56,3 @@ struct TransformItemView: View {
         self.viewModel = viewModel
     }
 }
-
-
-struct CustomButtonStyle: ButtonStyle { // tutaj przeniesc
-    var color: Color = .gray
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .frame(maxWidth: .infinity)
-            .frame(height: 40)
-        //            .padding(4)
-            .background(color)
-            .foregroundColor(.white)
-            .cornerRadius(7)
-    }
-}

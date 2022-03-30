@@ -64,9 +64,7 @@ final class Router: ObservableObject {
             screen.isModal = true
             screens.append(screen)
         case .dismiss:
-//            objectWillChange.send()
             screens.removeLast()
-//            printStactInfo()
         case .pop:
             guard !screens.isEmpty else { return }
             screens.removeLast()
@@ -92,13 +90,11 @@ final class Router: ObservableObject {
     }
 
     private func printStactInfo() {
-//        if title == "Projects" {
             print("screen     ----\(type) : Screens----")
             screens.reversed().forEach {
                 print("screen     |screen: \(String(describing: $0.type.title)) \($0.isModal ? "is Modal" : "")")
             }
             print("screen     -----------------")
-//        }
     }
 
     func pop() {
@@ -184,6 +180,8 @@ final class Router: ObservableObject {
             } else {
                 send(.pop)
             }
+
+            // MARK: - Transform flow
         case .transformView:
             switch typeTo {
             case let .projectDetails(id):
@@ -193,6 +191,14 @@ final class Router: ObservableObject {
             default:
                 break
             }
+
+            // MARK: - More flow
+        case .more:
+            send(.present(typeTo))
+
+            // MARK: - Search flow
+        case .search:
+            send(.dismiss)
         default:
             print("WARING: ^ missing route ^ ")
         }

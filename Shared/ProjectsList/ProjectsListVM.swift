@@ -15,7 +15,8 @@ final class ProjectsListVM: BaseVM {
         case goToProject(id: UUID)
     }
 
-    @Published var projects: [ProjectDTOReduced] = []
+    @Published var doneProjects: [ProjectDTOReduced] = []
+    @Published var notDoneProjects: [ProjectDTOReduced] = []
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -35,7 +36,8 @@ final class ProjectsListVM: BaseVM {
     private func bindAppState() {
         appstate.projectsListSubject
             .sink { [weak self] projects in
-                self?.projects = projects
+                self?.doneProjects = projects.filter { $0.status == .done }
+                self?.notDoneProjects = projects.filter { $0.status != .done }
             }
             .store(in: &cancellableBag)
     }

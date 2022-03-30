@@ -11,7 +11,7 @@ struct ProjectDTO: ItemProtocol, Identifiable {
 
     var id: UUID
     var name: String
-    let itemDescription: String?
+    var itemDescription: String?
     let type: ItemType
     var status: ItemStatus
     var relatedItems: String?

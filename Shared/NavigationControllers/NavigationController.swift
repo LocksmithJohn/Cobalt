@@ -81,10 +81,8 @@ extension NavigationController {
                     rootViewController?.presentedViewController?.present(modalVC, animated: true)
                 }
             }
-
         }
     }
-
 }
 
 final class NavigationStackCoordinator: NSObject, UINavigationControllerDelegate {}

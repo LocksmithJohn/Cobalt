@@ -9,26 +9,25 @@ import SwiftUI
 
 struct TasksListView: View {
 
-    @State var doneVisible = false // tutaj do vm
-
     var body: some View {
-        VStack {
-            segmentedPicker
-                .padding(.horizontal)
+        ZStack(alignment: .top) {
             ScrollView {
                 VStack(spacing: 8) {
                     activeTasksList
-                        .padding()
                     doneTasksList
-                        .padding()
                 }
+                .padding(.top, 90)
             }
+            segmentedPicker
+                .padding(.horizontal)
+                .padding(.top, 50)
         }
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
             rightImageView: AnyView(Image(systemName: "plus")),
-            rightButtonAction: { viewModel.actionSubject.send(.addTask) })
+            rightButtonAction: { viewModel.actionSubject.send(.addTask) },
+            mainColor: Color.blue)
         )
     }
 
@@ -40,9 +39,9 @@ struct TasksListView: View {
 
     private var segmentedPicker: some View {
         Picker("What is your favorite color?", selection: $viewModel.filterTab) {
-            Text("All").tag(0)
-            Text("Waiting for").tag(1)
-            Text("Actions").tag(2)
+            Text("Waiting for").tag(0)
+            Text("Actions").tag(1)
+            Text("All").tag(2)
         }
         .pickerStyle(.segmented)
     }
@@ -50,11 +49,14 @@ struct TasksListView: View {
     private var activeTasksList: some View {
         VStack(spacing: 8) {
             ForEach(viewModel.allActiveTasks.reversed()) { task in
-                TaskRowView(task: task, switchAction: {
+                TaskRowView(task: task,
+                            smallIcon: false,
+                            switchAction: {
                     viewModel.actionSubject.send(.toggleDone(id: task.id, status: task.status))
                 })
                     .contentShape(Rectangle())
                     .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
+                    .padding(.leading, 28)
             }
         }
     }
@@ -63,14 +65,18 @@ struct TasksListView: View {
         VStack(spacing: 8) {
             if !viewModel.allDoneTasks.isEmpty {
                 doneButtonRow
+                    .padding(.leading, 28)
             }
-            if doneVisible {
+            if viewModel.doneVisible {
                 ForEach(viewModel.allDoneTasks.reversed()) { task in
-                    TaskRowView(task: task, switchAction: {
+                    TaskRowView(task: task,
+                                smallIcon: false,
+                                switchAction: {
                         viewModel.actionSubject.send(.toggleDone(id: task.id, status: task.status))
                     })
                         .contentShape(Rectangle())
                         .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
+                        .padding(.leading, 28)
                 }
             }
         }
@@ -78,14 +84,10 @@ struct TasksListView: View {
 
     private var doneButtonRow: some View {
         HStack {
-            Button { doneVisible.toggle() } label:
-            { Text("Done Tasks") }
-            .padding(3)
-            .background(Color("object"))
-            .cornerRadius(6)
+            Button { viewModel.doneVisible.toggle() } label:
+            { Text("Done") }
             .foregroundColor(.white)
             Spacer()
         }
-        .padding(.leading, 8)
     }
 }

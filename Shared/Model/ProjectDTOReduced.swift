@@ -18,4 +18,10 @@ struct ProjectDTOReduced: ItemProtocol, Identifiable {
         self.name = itemObject.name ?? "tutaj538"
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
     }
+
+    init() {
+        self.id = UUID()
+        self.name = "Znaleźć ofertę internetu mobilnego dla kart sim oraz esim"
+        self.status = .inProgress
+    }
 }

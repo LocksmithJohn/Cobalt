@@ -8,22 +8,56 @@
 import SwiftUI
 
 struct MoreView: View {
+
+    @State var searchText = ""
+
     var body: some View {
-        Form {
-            Section {
-                row(title: "Areas of focus")
-                row(title: "Someday/Maybe")
-                row(title: "Control lists")
-                row(title: "References")
+        VStack {
+            Form {
+                Section("Things") {
+                    row(title: "Areas of focus")
+                    row(title: "Someday/Maybe")
+                    row(title: "Control lists")
+                    row(title: "References")
+                }
+                Section("Settings") {
+                    row(title: "Profile")
+                    row(title: "Pro")
+                }
+            }
+            .background(Color("background").ignoresSafeArea())
+            HStack {
+                Text("Search ...")
+                    .font(.system(size: 32))
+                    .foregroundColor(.gray)
+                    .padding()
+                Spacer()
+            }
+            .padding()
+            .contentShape(Rectangle())
+            .onTapGesture { viewModel.actionSubject.send(.showSearch) }
+        }
+        .modifier(NavigationBarModifier(
+            "",
+            rightImageView: AnyView(Image(systemName: "square.righthalf.filled")),
+            rightButtonAction: { GlobalRouter.shared.settingsVisible.send(false) })
+        )
+    }
+
+    private func row(title: String, imageName: String? = nil) -> some View {
+        HStack {
+            Text(title)
+            Spacer()
+            if let imageName = imageName {
+                Image(systemName: imageName)
             }
         }
     }
 
-    private func row(title: String) -> some View {
-        HStack {
-            Text(title)
-            Spacer()
-            Image(systemName: "chevron.forward")
-        }
+    @ObservedObject private var viewModel: MoreVM
+
+    init(viewModel: MoreVM) {
+        self.viewModel = viewModel
+        UIScrollView.appearance().backgroundColor = .clear
     }
 }

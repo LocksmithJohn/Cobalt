@@ -23,18 +23,17 @@ struct TabbarView: View {
                     NotesNavigationController()
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
+                        .ignoresSafeArea()
                 case 1:
                     TasksNavigationController()
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
-                case 2:
+                        .ignoresSafeArea()
+                default:
                     ProjectsNavigationController()
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
-                default:
-                    MoreNavigationController()
-                        .environmentObject(viewModel.dependency)
-                        .background(Color("background"))
+                        .ignoresSafeArea()
                 }
                 if viewModel.isTabbarVisible {
                     tabBarContent
@@ -65,10 +64,6 @@ struct TabbarView: View {
                         text: "Projects",
                         tag: 2,
                         color: .green)
-                tabItem(iconName: "ellipsis",
-                        text: "More",
-                        tag: 3,
-                        color: .white)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)

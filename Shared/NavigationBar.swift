@@ -27,20 +27,28 @@ struct NavigationBar: View {
             if let title = title {
                 Text(title)
                     .foregroundColor(mainColor)
-                    .padding()
-//                    .addIdentifier(identifier)
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 12)
+                    .background(Color("background").cornerRadius(8))
+                    .frame(height: 40)
             }
             HStack {
                 if let leftButtonImage = leftImageView {
-                    Button(action: { leftButtonAction?() },
-                           label: { leftButtonImage })
-                        .padding()
+                    ZStack {
+                        itemBackground(size: CGSize(width: 30, height: 30))
+                        Button(action: { leftButtonAction?() },
+                               label: { leftButtonImage.foregroundColor(mainColor) })
+                            .padding()
+                    }
                 }
                 Spacer()
                 if let rightButtonImage = rightImageView {
-                    Button(action: { rightButtonAction?() },
-                           label: { rightButtonImage })
-                        .padding()
+                    ZStack {
+                        itemBackground(size: CGSize(width: 30, height: 30))
+                        Button(action: { rightButtonAction?() },
+                               label: { rightButtonImage.foregroundColor(mainColor) })
+                            .padding()
+                    }
                 }
             }
             if let date = syncDate {
@@ -53,11 +61,13 @@ struct NavigationBar: View {
             }
         }
         .frame(height: Constants.height)
+//                .background(Color.red)
+    }
+
+    private func itemBackground(size: CGSize) -> some View {
+        VStack{}
+        .frame(width: size.width, height: size.height)
+        .background(Color("background").opacity(1))
+        .cornerRadius(8)
     }
 }
-//
-//extension View {
-//    func addIdentifier(_ identifier: Identifier) -> ModifiedContent<Self, AccessibilityAttachmentModifier> {
-//        accessibilityIdentifier(identifier.rawValue)
-//    }
-//}

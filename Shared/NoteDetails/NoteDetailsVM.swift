@@ -16,10 +16,12 @@ final class NoteDetailsVM: BaseVM {
         case cancel
         case saveNote
         case deleteNote
+        case showDeleteAlert
         case showTransform
     }
 
     @Published var note: String = ""
+    @Published var isDeleteAlertVisible = false
 
     var transformItemVM: TransformItemVM?
     let actionSubject = PassthroughSubject<Action, Never>()
@@ -85,6 +87,8 @@ final class NoteDetailsVM: BaseVM {
             Haptic.impact(.light)
         case .cancel:
             cancelAction()
+        case .showDeleteAlert:
+            isDeleteAlertVisible = true
         }
     }
 

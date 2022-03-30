@@ -12,9 +12,10 @@ final class GlobalRouter {
 
     static let shared = GlobalRouter()
 
-    var tabbarVisible = CurrentValueSubject<Bool, Never>(true)
-    var popOverType = PassthroughSubject<PopOverType?, Never>()
-    let tabSubject = PassthroughSubject<Int, Never>()
+    var tabbarVisible = MYCurrentValueSubject<Bool>(true)
+    var settingsVisible = MYCurrentValueSubject<Bool>(false)
+    var popOverType = MYPassthroughSubject<PopoverType?>()
+    let tabSubject = MYPassthroughSubject<Int>()
 
     private var cancellableBag = Set<AnyCancellable>()
     private (set) var routers: [Router] = []

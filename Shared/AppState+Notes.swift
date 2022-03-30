@@ -10,20 +10,20 @@ import Foundation
 
 extension AppState: NotesListAppState,
                     NoteDetailsAppState {
-    var notesListSubject: PassthroughSubject<[NoteDTOReduced], Never> {
+    var notesListSubject: MYPassthroughSubject<[NoteDTOReduced]> {
         coreDataManager.notesSubject
     }
 
-    var noteDetailsSubject: PassthroughSubject<NoteDTO?, Never> {
+    var noteDetailsSubject: MYPassthroughSubject<NoteDTO?> {
         coreDataManager.noteSubject
     }
 
 }
 
 protocol NotesListAppState {
-    var notesListSubject: PassthroughSubject<[NoteDTOReduced], Never> { get }
+    var notesListSubject: MYPassthroughSubject<[NoteDTOReduced]> { get }
 }
 
 protocol NoteDetailsAppState {
-    var noteDetailsSubject: PassthroughSubject<NoteDTO?, Never> { get }
+    var noteDetailsSubject: MYPassthroughSubject<NoteDTO?> { get }
 }

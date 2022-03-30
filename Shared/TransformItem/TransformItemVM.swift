@@ -47,7 +47,6 @@ final class TransformItemVM: PopoverVM {
         appstate.currentlyManagedItemSubject
             .first()
             .sink { [weak self] item in
-                print("filter 1 \(item?.id) : \(item?.type.rawValue)")
                 self?.previousItem = item
             }
             .store(in: &cancellableBag)

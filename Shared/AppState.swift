@@ -39,9 +39,3 @@ class AppState: AppStateProtocol  {
     }
 
 }
-
-enum PopOverType { // tutaj to przeneisc gdzies
-    case itemTransform(id: UUID)
-}
-
-

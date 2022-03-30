@@ -20,23 +20,11 @@ final class TasksListVM: BaseVM {
     @Published var allTasks: [TaskDTOReduced] = []
     @Published var nextActionTasks: [TaskDTOReduced] = []
     @Published var allDoneTasks: [TaskDTOReduced] = []
-    @Published var allActiveTasks: [TaskDTOReduced] = [] {
-        didSet {
-            waitingFors.forEach { task in
-                print("filter visibleTasks for: \(task.type.rawValue)")
-            }
-        }
-    }
+    @Published var allActiveTasks: [TaskDTOReduced] = []
     @Published var tasksDone: [TaskDTOReduced] = []
-    @Published var waitingFors: [TaskDTOReduced] = [] {
-        didSet {
-            waitingFors.forEach { task in
-                print("filter wait for: \(task.name)")
-            }
-        }
-    }
-
-    @Published var filterTab: Int = 0
+    @Published var waitingFors: [TaskDTOReduced] = []
+    @Published var doneVisible = true
+    @Published var filterTab: Int = 1
 
     let actionSubject = PassthroughSubject<Action, Never>()
     private let appstate: TasksListAppState
@@ -80,14 +68,14 @@ final class TasksListVM: BaseVM {
     private func updateListForTab(_ tab: Int) {
         switch tab {
         case 0:
-            allActiveTasks = allTasks.filter { $0.status != .done }
-            allDoneTasks = allTasks.filter { $0.status == .done }
-        case 1:
             allActiveTasks = waitingFors.filter { $0.status != .done }
             allDoneTasks = waitingFors.filter { $0.status == .done }
-        default:
+        case 1:
             allActiveTasks = nextActionTasks.filter { $0.status != .done }
             allDoneTasks = nextActionTasks.filter { $0.status == .done }
+        default:
+            allActiveTasks = allTasks.filter { $0.status != .done }
+            allDoneTasks = allTasks.filter { $0.status == .done }
         }
     }
 
@@ -108,7 +96,6 @@ final class TasksListVM: BaseVM {
         case let .goToTask(id):
             interactor.route(from: screenType, to: .taskDetails(id: id, projectID: nil))
         case let .toggleDone(id, status):
-            Haptic.impact(.medium)
             interactor.toggleDone(id: id, status: status)
             interactor.fetchTasks()
         }

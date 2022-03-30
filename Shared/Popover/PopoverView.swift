@@ -18,6 +18,8 @@ struct PopoverView: View {
     var body: some View {
         if let viewModel = viewModel as? TransformItemVM {
             TransformItemView(viewModel: viewModel)
+        } else if let viewModel = viewModel as? AddItemToProjectVM {
+            AddItemToProjectView(viewModel: viewModel)
         } else {
             EmptyView()
         }

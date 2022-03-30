@@ -17,6 +17,7 @@ final class TaskDetailsVM: BaseVM {
         case saveTask
         case deleteTask
         case selectedProject(id: UUID)
+        case showDeleteAlert
         case toggleDone
         case toggleWaitingFor
         case toggleNextAction
@@ -26,11 +27,11 @@ final class TaskDetailsVM: BaseVM {
     @Published var taskDescription: String = ""
     @Published var isDone: Bool = false
     @Published var taskType: ItemType = .task
-
     @Published var projects: [ProjectDTOReduced] = []
     @Published var relatedProject: ProjectDTOReduced?
+    @Published var isDeleteAlertVisible = false
 
-    let actionSubject = PassthroughSubject<Action, Never>()
+    let actionSubject = MYPassthroughSubject<Action>()
     let isCreating: Bool
 
     private var taskStatus: ItemStatus = .new
@@ -71,12 +72,14 @@ final class TaskDetailsVM: BaseVM {
                 }
             }
             .store(in: &cancellableBag)
+
         appstate.projectsReducedSubject
             .compactMap { $0 }
             .sink { [weak self] projects in
                 self?.projects = projects
             }
             .store(in: &cancellableBag)
+
         appstate.projectReducedSubject
             .compactMap { $0 }
             .sink { [weak self] relatedProject in
@@ -104,6 +107,7 @@ final class TaskDetailsVM: BaseVM {
         case .toggleWaitingFor: toggleWaitingForAction()
         case .toggleNextAction: toggleNextAction()
         case .cancel: cancelAction()
+        case .showDeleteAlert: isDeleteAlertVisible = true
         }
     }
 

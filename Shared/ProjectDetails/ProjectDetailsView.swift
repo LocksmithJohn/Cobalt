@@ -9,31 +9,39 @@ import SwiftUI
 
 struct ProjectDetailsView: View {
     var body: some View {
-        VStack {
-            header
-                .padding(.horizontal, 24)
+        ZStack(alignment: .bottom) {
             ScrollView {
-                addTaskButton
-                    .padding(.horizontal, 24)
-                if !viewModel.nextActions.isEmpty {
-                    tasksView(viewModel.nextActions, title: "Next actions:")
+                VStack {
+                    header
+                        .padding(.horizontal, 16)
+                    textSectionView(title: "Description")
                         .padding(.horizontal, 24)
-                }
-                if !viewModel.waitFors.isEmpty {
-                    tasksView(viewModel.waitFors, title: "Wait fors:")
+                    textSectionView(title: "Acceptance criteria")
                         .padding(.horizontal, 24)
-                }
-                if !viewModel.subtasks.isEmpty {
-                    tasksView(viewModel.subtasks, title: "Tasks:")
+                    addTaskButton
                         .padding(.horizontal, 24)
-                }
-                if !viewModel.doneTasks.isEmpty {
-                    tasksView(viewModel.doneTasks, title: "Done:")
+                    if !viewModel.nextActions.isEmpty {
+                        tasksView(viewModel.nextActions, title: "Next actions")
+                            .padding(.horizontal, 24)
+                    }
+                    if !viewModel.waitFors.isEmpty {
+                        tasksView(viewModel.waitFors, title: "Wait fors")
+                            .padding(.horizontal, 24)
+                    }
+                    if !viewModel.subtasks.isEmpty {
+                        tasksView(viewModel.subtasks, title: "Tasks")
+                            .padding(.horizontal, 24)
+                    }
+                    textSectionView(title: "Notes")
                         .padding(.horizontal, 24)
+                    if !viewModel.doneTasks.isEmpty {
+                        tasksView(viewModel.doneTasks, title: "Done")
+                            .padding(.horizontal, 24)
+                    }
+                    Spacer()
                 }
-                descriptionView
-                    .padding(.horizontal, 24)
-                Spacer()
+                .padding(.top, 50)
+                .animation(.easeIn(duration: 0.05))
             }
             bottomButtons
                 .padding()
@@ -41,9 +49,12 @@ struct ProjectDetailsView: View {
         .background(Color("background"))
         .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
-            viewModel.screenType.title,
-            leftImageView: AnyView(Image(systemName: "plus")),
-            leftButtonAction: { viewModel.actionSubject.send(.back) })
+            "Project",
+            leftImageView: AnyView(Image(systemName: "chevron.backward")),
+            leftButtonAction: { viewModel.actionSubject.send(.back) },
+            rightImageView: AnyView(Image(systemName: "plus")),
+            rightButtonAction: { viewModel.actionSubject.send(.showAddingItem) },
+            mainColor: Color.green)
         )
     }
 
@@ -56,17 +67,16 @@ struct ProjectDetailsView: View {
     }
 
     private func tasksView(_ tasks: [TaskDTOReduced], title: String) -> some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Text(title)
-                    .font(.system(size: 18))
+                    .font(.system(size: 14))
                     .foregroundColor(.gray)
                 Spacer()
             }
-            .padding(.bottom, 8)
-            VStack(spacing: 10) {
+            VStack(spacing: 0) {
                 ForEach(tasks) { task in
-                    TaskRowView(task: task) {
+                    TaskRowView(task: task, smallIcon: true) {
                         viewModel.actionSubject.send(.toggleDoneTask(task: task))
                     }
                     .contentShape(Rectangle())
@@ -80,13 +90,15 @@ struct ProjectDetailsView: View {
 
     private var addTaskButton: some View {
         HStack {
-            Button { viewModel.actionSubject.send(.showAddingTask) } label: {
-                Text("Add Task")
-                    .font(.system(size: 18))
+            Button {
+                viewModel.actionSubject.send(.showAddingTask)
+            } label: {
+                Text("Add task")
+                    .font(.system(size: 14, weight: .bold))
                     .padding(.horizontal, 6)
                     .padding(.vertical, 3)
-                    .foregroundColor(.white)
-                    .background(Color("object"))
+                    .foregroundColor(Color("background"))
+                    .background(Color.green)
                     .cornerRadius(6)
             }
             Spacer()
@@ -94,10 +106,11 @@ struct ProjectDetailsView: View {
         .padding(.vertical, 8)
     }
 
-    private var descriptionView: some View {
-        VStack {
+    private func textSectionView(title: String) -> some View {
+        VStack(spacing: 0) {
             HStack {
-                Text("Notes:").foregroundColor(.gray)
+                Text(title)
+                    .foregroundColor(.gray)
                 Spacer()
             }
             ZStack {
@@ -106,24 +119,25 @@ struct ProjectDetailsView: View {
                     .opacity(0)
                     .padding(.all, 8)
             }
+            .padding(.leading, 30)
             .background(Color("background"))
         }
     }
 
     private var header: some View {
         HStack(alignment: .top) {
-            Image(systemName: viewModel.isDone ? "checkmark.square.fill" : "square")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .onTapGesture { viewModel.actionSubject.send(.toggleDoneProject) }
-                .padding(.top, 5)
-            VStack(alignment: .leading) {
-                ZStack {
-                    TextField(viewModel.projectName, text: $viewModel.projectName)
+            VStack(alignment: .leading, spacing: 0) {
+                ZStack(alignment: .topLeading) {
+                    Text(viewModel.projectName.isEmpty ? "Project name..." : viewModel.projectName)
                         .font(.title)
-                        .lineLimit(2)
+                        .opacity(viewModel.projectName.isEmpty ? 0.5 : 0)
+                        .padding(.all, 5)
+                        .multilineTextAlignment(.leading)
+                    TextEditor(text: $viewModel.projectName)
+                        .font(.title)
                 }
                 StatusView(status: viewModel.projectStatus)
+                    .padding(.leading, 8)
             }
         }
     }
@@ -135,17 +149,12 @@ struct ProjectDetailsView: View {
                 { Text("Delete").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
                 Button { viewModel.actionSubject.send(.saveProject) } label:
-                { Text("Save").foregroundColor(.white) }
-                .buttonStyle(CustomButtonStyle(color: .green.opacity(0.4)))
+                { Text("Save").foregroundColor(.green) }
+                .buttonStyle(CustomButtonStyle(color: Color("object")))
             }
-            Button { viewModel.actionSubject.send(.back) } label:
-            {
-                ZStack {
-                    Image(systemName: "chevron.backward")
-                    Text("Back")
-                }
-            }
-            .buttonStyle(CustomButtonStyle(color: Color("object")))
+            .padding(8)
+            .cornerRadius(8)
+            .background(Color("background"))
         }
     }
 }
