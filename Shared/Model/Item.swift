@@ -20,20 +20,20 @@ struct Item: ItemProtocol, Identifiable {
     let itemDesrciption: String
     var type: ItemType
     var status: ItemStatus
-    var relatedItems: String // tutaj zmienic na slownik
+    var relatedItems: Relations
     
     init(id: UUID,
          name: String,
          itemDesrciption: String,
          type: ItemType,
          status: ItemStatus,
-         relatedItems: String) {
+         relatedItems: Relations?) {
         self.id = id
         self.name = name
         self.itemDesrciption = itemDesrciption
         self.type = type
         self.status = status
-        self.relatedItems = relatedItems
+        self.relatedItems = relatedItems ?? Relations()
     }
 
     init(itemObject: ItemObject) {
@@ -42,7 +42,7 @@ struct Item: ItemProtocol, Identifiable {
                   itemDesrciption: itemObject.itemDescription ?? "tutaj765",
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new,
-                  relatedItems: itemObject.relatedItemsData ?? "tutaj987654")
+                  relatedItems: itemObject.relatedItemsData?.relations())
     }
 
     init(_ taskDTO: TaskDTO) {
@@ -51,7 +51,7 @@ struct Item: ItemProtocol, Identifiable {
         self.itemDesrciption = taskDTO.itemDescription ?? ""
         self.type = taskDTO.type
         self.status = taskDTO.status
-        self.relatedItems = taskDTO.relatedItems ?? ""
+        self.relatedItems = taskDTO.relatedItems
     }
 
     init(_ projectDTO: ProjectDTO) {
@@ -60,7 +60,7 @@ struct Item: ItemProtocol, Identifiable {
         self.itemDesrciption = projectDTO.itemDescription ?? ""
         self.type = projectDTO.type
         self.status = projectDTO.status
-        self.relatedItems = projectDTO.relatedItems ?? ""
+        self.relatedItems = projectDTO.relatedItems
     }
 
     init(_ noteDTO: NoteDTO) {
@@ -69,7 +69,7 @@ struct Item: ItemProtocol, Identifiable {
         self.itemDesrciption = noteDTO.itemDescription ?? ""
         self.type = noteDTO.type
         self.status = .new
-        self.relatedItems = ""
+        self.relatedItems = Relations()
     }
 
 }

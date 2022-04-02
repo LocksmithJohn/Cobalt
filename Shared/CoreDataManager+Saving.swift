@@ -15,7 +15,7 @@ extension CoreDataManager {
         itemObject.id = item.id
         itemObject.state = item.status.rawValue
         itemObject.type = item.type.rawValue
-        itemObject.relatedItemsData = item.relatedItems
+        itemObject.relatedItemsData = item.relatedItems.textData()
         saveContext()
     }
 }

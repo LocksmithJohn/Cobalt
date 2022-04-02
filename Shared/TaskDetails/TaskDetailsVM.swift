@@ -17,6 +17,7 @@ final class TaskDetailsVM: BaseVM {
         case saveTask
         case deleteTask
         case selectedProject(id: UUID)
+        case fetchParentProject(id: UUID)
         case showDeleteAlert
         case toggleDone
         case toggleWaitingFor
@@ -39,6 +40,7 @@ final class TaskDetailsVM: BaseVM {
     private let interactor: TaskDetailsInteractor
     private let id: UUID
     private var projectID: UUID?
+    private var relatedItems = Relations()
 
     init(id: UUID?,
          projectID: UUID?,
@@ -66,9 +68,9 @@ final class TaskDetailsVM: BaseVM {
                 self?.taskStatus = task.status
                 self?.isDone = task.status == .done
                 self?.taskType = task.type
-                if let projectID = task.relatedItems?.getUUIDs().first?.id { // TODO: - ta operacje nie moze byc tutaj
+                if let projectID = task.relatedItems.getParentProjectId() {
                     self?.projectID = projectID
-                    self?.interactor.fetchProjectReduced(id: projectID) // TODO: - interactor musi byc w akcjach
+                    self?.actionSubject.send(.fetchParentProject(id: projectID))
                 }
             }
             .store(in: &cancellableBag)
@@ -102,12 +104,13 @@ final class TaskDetailsVM: BaseVM {
         case .saveTask: saveTaskAction()
         case .back: backAction()
         case .deleteTask: deleteTaskAction()
-        case let .selectedProject(id): selectedProject(id)
+        case let .selectedProject(id): selectedProjectAction(id)
         case .toggleDone: toggleDoneAction()
         case .toggleWaitingFor: toggleWaitingForAction()
         case .toggleNextAction: toggleNextAction()
         case .cancel: cancelAction()
         case .showDeleteAlert: isDeleteAlertVisible = true
+        case let .fetchParentProject(id): fetchParentProject(id)
         }
     }
 
@@ -155,7 +158,7 @@ final class TaskDetailsVM: BaseVM {
         interactor.route(from: screenType, to: .tasks)
     }
 
-    private func selectedProject(_ id: UUID) {
+    private func selectedProjectAction(_ id: UUID) {
         projectID = id
         if let projectID = projectID {
             interactor.fetchProjectReduced(id: projectID)
@@ -195,19 +198,22 @@ final class TaskDetailsVM: BaseVM {
         interactor.fetchTasks()
     }
 
+    private func fetchParentProject(_ id: UUID) {
+        interactor.fetchProjectReduced(id: id)
+    }
+
     //MARK: - Other
 
     private var temporaryTask: TaskDTO {
-        var newTask = TaskDTO(id: id,
+        if let projectID = projectID {
+            relatedItems.addRelation(is: .sbt, of: projectID)
+        }
+        let newTask = TaskDTO(id: id,
                               name: taskName,
                               itemDesrciption: taskDescription,
                               type: taskType,
                               status: taskStatus,
-                              relatedItems: "")
-
-        if let projectIDString = projectID?.uuidString {
-            newTask.relatedItems = ItemRelation.sbt.rawValue + projectIDString + "," // tutaj przeniesc tworzenie relacji gdzie indziej
-        }
+                              relatedItems: relatedItems)
         return newTask
     }
 

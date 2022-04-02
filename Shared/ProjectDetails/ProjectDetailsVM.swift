@@ -128,7 +128,7 @@ final class ProjectDetailsVM: BaseVM {
                    itemDesrciption: projectDescription,
                    type: .project,
                    status: projectStatus,
-                   relatedItems: "")
+                   relatedItems: Relations()) // tutaj nie czyszcza sie relacje?
     }
 
 }
