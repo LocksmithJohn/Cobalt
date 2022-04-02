@@ -118,6 +118,10 @@
 		CEA5FB0927C306470011B373 /* PopoverVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0727C306470011B373 /* PopoverVM.swift */; };
 		CEA5FB0B27C3065B0011B373 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0A27C3065B0011B373 /* PopoverView.swift */; };
 		CEA5FB0C27C3065B0011B373 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5FB0A27C3065B0011B373 /* PopoverView.swift */; };
+		CEC7904927F7A46C0031CF98 /* ExpandingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904827F7A46C0031CF98 /* ExpandingTextView.swift */; };
+		CEC7904B27F7B7940031CF98 /* SmallObjectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */; };
+		CEC7904D27F8C0B60031CF98 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904C27F8C0B60031CF98 /* ItemType.swift */; };
+		CEC7904F27F8C0C40031CF98 /* ItemRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */; };
 		CECC279B27F4F499000E4BCC /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */; };
 		CECC279C27F4F499000E4BCC /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */; };
 		CECC279E27F4F55A000E4BCC /* FocusableField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279D27F4F55A000E4BCC /* FocusableField.swift */; };
@@ -229,6 +233,10 @@
 		CEA5FB0427C2E8020011B373 /* GlobalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalRouter.swift; sourceTree = "<group>"; };
 		CEA5FB0727C306470011B373 /* PopoverVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverVM.swift; sourceTree = "<group>"; };
 		CEA5FB0A27C3065B0011B373 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		CEC7904827F7A46C0031CF98 /* ExpandingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingTextView.swift; sourceTree = "<group>"; };
+		CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallObjectModifier.swift; sourceTree = "<group>"; };
+		CEC7904C27F8C0B60031CF98 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRelation.swift; sourceTree = "<group>"; };
 		CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		CECC279D27F4F55A000E4BCC /* FocusableField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableField.swift; sourceTree = "<group>"; };
 		CECC27A027F4F5C4000E4BCC /* PopoverType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverType.swift; sourceTree = "<group>"; };
@@ -311,6 +319,7 @@
 				CE338AF027B7D9F7005289D1 /* ItemObjectType.swift */,
 				CE338AF327B7DA1C005289D1 /* Model.xcdatamodeld */,
 				CE338AED27B7D9C9005289D1 /* DateManager.swift */,
+				CEC7904827F7A46C0031CF98 /* ExpandingTextView.swift */,
 				CE338AC927B7A634005289D1 /* TasksListInteractor.swift */,
 				CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */,
 				CE338ACC27B7A63B005289D1 /* Dependency.swift */,
@@ -328,6 +337,7 @@
 				CE61F6AF27B7FE4E00A734EE /* VMFactory.swift */,
 				CE338AE427B7B6A5005289D1 /* ScreenType.swift */,
 				CE338AD827B7A77F005289D1 /* NavigationBarModifier.swift */,
+				CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */,
 				CE338AEA27B7B890005289D1 /* BaseVM.swift */,
 				CE338AE127B7A9FC005289D1 /* StackScreenViewController.swift */,
 				CE61F6C927B9B2F900A734EE /* Model */,
@@ -406,6 +416,8 @@
 				CE338AD227B7A68D005289D1 /* Item.swift */,
 				CE5AC24E27DE4A3F009C55E8 /* ItemReduced.swift */,
 				CE61F6D027B9B36C00A734EE /* ItemStatus.swift */,
+				CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */,
+				CEC7904C27F8C0B60031CF98 /* ItemType.swift */,
 				CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */,
 				CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */,
 				CECFD1B427BFD3AD00CCDBC2 /* NoteDTO.swift */,
@@ -608,6 +620,7 @@
 			files = (
 				CECFD1CA27BFDFA300CCDBC2 /* Interactor+Notes.swift in Sources */,
 				CECFD1BB27BFD86F00CCDBC2 /* AppState+Tasks.swift in Sources */,
+				CEC7904D27F8C0B60031CF98 /* ItemType.swift in Sources */,
 				CE338AAE27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CE61F6B027B7FE4E00A734EE /* VMFactory.swift in Sources */,
 				CE338AEE27B7D9C9005289D1 /* DateManager.swift in Sources */,
@@ -623,6 +636,7 @@
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */,
 				CE0F51D327D23B730026AE4A /* TaskRowView.swift in Sources */,
+				CEC7904F27F8C0C40031CF98 /* ItemRelation.swift in Sources */,
 				CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */,
 				CECFD1BE27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */,
 				CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */,
@@ -668,6 +682,7 @@
 				CECFD1C727BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE723FAC27C99E04003F6DD8 /* StatusView.swift in Sources */,
 				CE5AC24627DDD9CD009C55E8 /* Interactor+More.swift in Sources */,
+				CEC7904927F7A46C0031CF98 /* ExpandingTextView.swift in Sources */,
 				CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
 				CECC279E27F4F55A000E4BCC /* FocusableField.swift in Sources */,
@@ -688,6 +703,7 @@
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
 				CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
 				CECFD1CD27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */,
+				CEC7904B27F7B7940031CF98 /* SmallObjectModifier.swift in Sources */,
 				CECFD1AB27BFB28300CCDBC2 /* Combine+Ext.swift in Sources */,
 				CEA5FB0527C2E8020011B373 /* GlobalRouter.swift in Sources */,
 				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,

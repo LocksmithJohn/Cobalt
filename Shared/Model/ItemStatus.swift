@@ -14,19 +14,3 @@ enum ItemStatus: String {
     case deleted
     case someDay
 }
-
-enum ItemType: String, Equatable {
-
-    case task
-    case nextAction
-    case waitFor
-    case project
-    case note
-    case reference
-
-}
-
-enum ItemRelation: String {
-    case sbt // subtask
-    case ppr // parent project
-}

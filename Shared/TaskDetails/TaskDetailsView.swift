@@ -10,21 +10,21 @@ import SwiftUI
 struct TaskDetailsView: View {
 
     @FocusState private var focus: FocusableField?
+    @State var textEditorHeight : CGFloat = 20
 
     var body: some View {
-        VStack(spacing: 8) {
-            header
+        VStack(spacing: 10) {
+
+            ExpandingTextView(text: $viewModel.taskName,
+                              charsLimit: 100)
                 .padding(.horizontal)
-                .padding(.bottom, 22)
-            if projectViewVisible {
-                projectsView
-                    .padding(.horizontal)
-            }
+                .padding(.top, 10)
+            taskDetails
+                .padding(.horizontal, 20)
             taskTypeView
-                .padding(.horizontal)
-                .padding(.bottom, 16)
+                .padding(.horizontal, 21)
             descriptionView
-                .padding(.horizontal)
+                .padding(.horizontal, 18)
             Spacer()
             bottomButtons
                 .padding()
@@ -52,35 +52,60 @@ struct TaskDetailsView: View {
 
     @ObservedObject private var viewModel: TaskDetailsVM
     @State private var projectListExpanded = false
-    @State private var projectViewVisible = true
 
     init(viewModel: TaskDetailsVM) {
         self.viewModel = viewModel
         UITextView.appearance().backgroundColor = .clear
+        UIScrollView.appearance().isScrollEnabled = false
     }
 
-    private var header: some View {
-        HStack(spacing: 16) {
-            Image(systemName: viewModel.isDone ? "checkmark.circle.fill" : "circle")
-                .resizable()
-                .frame(width: 24, height: 24)
-                .onTapGesture { viewModel.actionSubject.send(.toggleDone) }
-            TextField(viewModel.taskName, text: $viewModel.taskName, prompt: Text("Task name ..."))
-                .foregroundColor(.blue)
-                .font(.title)
+    private func customTextEdit(fonSize: CGFloat) -> some View {
+            ZStack(alignment: .topLeading) {
+                Text(viewModel.taskName)
+                    .font(.system(size: fonSize))
+                    .foregroundColor(.white)
+                    .opacity(0.3)
+                    .padding(0)
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ViewHeightKey.self,
+                                               value: $0.frame(in: .local).size.height)
+                    })
+                TextEditor(text: $viewModel.taskName)
+                    .padding(0)
+                    .font(.system(size: fonSize))
+                    .focused($focus, equals: .first)
+                    .foregroundColor(.white)
+                    .offset(x: -5, y: -5)
+                    .frame(height: max(40,textEditorHeight))
+
+//                if viewModel.taskName.isEmpty {
+//                    Text("Task name...")
+//                        .font(.system(size: 32))
+//                        .foregroundColor(.gray)
+//                        .padding()
+//                        .offset(x: 12, y: 8)
+//                }
+            }
+//            .frame(maxHeight: 100)
+            .onPreferenceChange(ViewHeightKey.self) { textEditorHeight = $0 }    }
+
+    private var taskDetails: some View {
+        HStack(alignment: .top) {
+            StatusView(status: viewModel.taskStatus)
+            parentProject
         }
     }
 
     private var descriptionView: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Text("Notes:")
-                .foregroundColor(.gray)
-                .offset(y: 3)
+        ZStack(alignment: .topLeading) {
+            if viewModel.taskDescription.isEmpty {
+                Text("Notes:")
+                    .foregroundColor(.gray)
+                    .offset(x: 5, y: 8)
+            }
             TextEditor(text: $viewModel.taskDescription)
-                .foregroundColor(.gray)
+                .foregroundColor(.white)
                 .frame(height: 200)
-                .background(Color("background"))
-                .offset(x: -4)
         }
     }
 
@@ -105,49 +130,62 @@ struct TaskDetailsView: View {
         var isSelected: Bool {
             viewModel.taskType == type
         }
-        return Text(text)
-            .font(.system(size: 14))
-            .foregroundColor(isSelected ? .white : .gray)
-            .padding(4)
-            .padding(.horizontal, 8)
-            .overlay(RoundedRectangle(cornerRadius: 6)
-                        .stroke(isSelected ? Color.blue : Color.gray, lineWidth: 1))
+        return HStack {
+            checkCircle(isSelected)
+            Text(text)
+                .font(.system(size: 16))
+                .foregroundColor(isSelected ? .white : .gray)
+                .padding(4)
+                .padding(.horizontal, 8)
+        }
     }
 
     private var taskTypeView: some View {
         HStack {
-            typeView(text: "Next action", type: .nextAction)
-                .onTapGesture {
-                    viewModel.actionSubject.send(.toggleNextAction)
-                    Haptic.impact(.medium)
-                }
-            typeView(text: "Wait for", type: .waitFor)
-                .onTapGesture {
-                    viewModel.actionSubject.send(.toggleWaitingFor)
-                    Haptic.impact(.medium)
-                }
+            VStack(alignment: .leading) {
+                typeView(text: "Next action", type: .nextAction)
+                    .onTapGesture {
+                        viewModel.actionSubject.send(.toggleNextAction)
+                        Haptic.impact(.medium)
+                    }
+                typeView(text: "Wait for", type: .waitFor)
+                    .onTapGesture {
+                        viewModel.actionSubject.send(.toggleWaitingFor)
+                        Haptic.impact(.medium)
+                    }
+            }
             Spacer()
         }
     }
 
-    private var projectsView: some View {
+    private var parentProject: some View {
         VStack {
             HStack {
                 Text(viewModel.relatedProject?.name ?? " ... ")
-                    .font(.system(size: 14))
-                    .padding(.horizontal, 8)
-                    .padding(4)
-                    .foregroundColor(Color.green)
-                    .overlay(RoundedRectangle(cornerRadius: 6)
-                                .stroke(Color.green, lineWidth: 1))
+                    .modifier(SmallObjectModifier())
+                    .cornerRadius(6)
                     .onTapGesture {
                         projectListExpanded.toggle()
+                        Haptic.impact(.medium)
                     }
                 Spacer()
             }
             if projectListExpanded {
                 projectsList
+                    .modifier(SmallObjectModifier())
+                    .frame(minHeight: 60)
             }
+        }
+    }
+
+    private func checkCircle(_ isChecked: Bool) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color("inactive"))
+                .frame(width: 20, height: 20)
+            RoundedRectangle(cornerRadius: 5)
+                .fill(isChecked ? Color.gray : Color("background"))
+                .frame(width: 14, height: 14)
         }
     }
 
@@ -161,13 +199,20 @@ struct TaskDetailsView: View {
                             .onTapGesture {
                                 viewModel.actionSubject.send(.selectedProject(id: project.id))
                                 projectListExpanded = false
+                                Haptic.impact(.medium)
                             }
                             .foregroundColor(project.id == viewModel.relatedProject?.id ? .white : .gray)
                         Spacer()
                     }
                 }
-                Spacer()
             }
         }
+    }
+}
+
+struct ViewHeightKey: PreferenceKey {
+    static var defaultValue: CGFloat { 0 }
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value = value + nextValue()
     }
 }

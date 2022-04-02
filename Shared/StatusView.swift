@@ -20,9 +20,6 @@ struct StatusView: View {
                 .padding(.horizontal, 8)
                 .background(Color("object"))
                 .cornerRadius(6)
-//                .overlay(RoundedRectangle(cornerRadius: 6)
-//                            .stroke(Color.green, lineWidth: 1))
-            
         }
     }
 }

@@ -25,8 +25,9 @@ final class TaskDetailsVM: BaseVM {
 
     @Published var taskName: String = ""
     @Published var taskDescription: String = ""
+    @Published var taskStatus: ItemStatus = .new
     @Published var isDone: Bool = false
-    @Published var taskType: ItemType = .task
+    @Published var taskType: ItemType = .nextAction
     @Published var projects: [ProjectDTOReduced] = []
     @Published var relatedProject: ProjectDTOReduced?
     @Published var isDeleteAlertVisible = false
@@ -34,7 +35,6 @@ final class TaskDetailsVM: BaseVM {
     let actionSubject = MYPassthroughSubject<Action>()
     let isCreating: Bool
 
-    private var taskStatus: ItemStatus = .new
     private let appstate: TaskDetailsAppState
     private let interactor: TaskDetailsInteractor
     private let id: UUID
