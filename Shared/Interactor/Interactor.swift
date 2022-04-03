@@ -17,6 +17,7 @@ protocol InteractorProtocol {
     func editItem(id: UUID, item: Item)
     func toggleDone(id: UUID, status: ItemStatus)
     func updateType(id: UUID, type: ItemType)
+    func updateStatus(id: UUID, status: ItemStatus)
     func deleteAll()
 }
 
@@ -46,6 +47,10 @@ class Interactor {
 
     func updateType(id: UUID, type: ItemType) {
         coreDataManager.editItem(id: id, type: type)
+    }
+
+    func updateStatus(id: UUID, status: ItemStatus) {
+        coreDataManager.editItem(id: id, status: status)
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {

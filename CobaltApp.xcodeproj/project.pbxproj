@@ -122,6 +122,8 @@
 		CEC7904B27F7B7940031CF98 /* SmallObjectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */; };
 		CEC7904D27F8C0B60031CF98 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904C27F8C0B60031CF98 /* ItemType.swift */; };
 		CEC7904F27F8C0C40031CF98 /* ItemRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */; };
+		CEC7905127F984760031CF98 /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7905027F984760031CF98 /* SettingRowView.swift */; };
+		CEC7905327F984DE0031CF98 /* SmallCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7905227F984DE0031CF98 /* SmallCheckBoxView.swift */; };
 		CECC279B27F4F499000E4BCC /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */; };
 		CECC279C27F4F499000E4BCC /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */; };
 		CECC279E27F4F55A000E4BCC /* FocusableField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279D27F4F55A000E4BCC /* FocusableField.swift */; };
@@ -237,6 +239,8 @@
 		CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallObjectModifier.swift; sourceTree = "<group>"; };
 		CEC7904C27F8C0B60031CF98 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
 		CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRelation.swift; sourceTree = "<group>"; };
+		CEC7905027F984760031CF98 /* SettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
+		CEC7905227F984DE0031CF98 /* SmallCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCheckBoxView.swift; sourceTree = "<group>"; };
 		CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
 		CECC279D27F4F55A000E4BCC /* FocusableField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableField.swift; sourceTree = "<group>"; };
 		CECC27A027F4F5C4000E4BCC /* PopoverType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverType.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 		CE338A9627B7A4E4005289D1 = {
 			isa = PBXGroup;
 			children = (
+				CEC7905227F984DE0031CF98 /* SmallCheckBoxView.swift */,
 				CE61F6C727B9622D00A734EE /* Haptic.swift */,
 				CE61F6A927B7DDE000A734EE /* ItemObject+CoreDataClass.swift */,
 				CE61F6AA27B7DDE000A734EE /* ItemObject+CoreDataProperties.swift */,
@@ -386,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				CE61F6B827B8782900A734EE /* TaskDetailsView.swift */,
+				CEC7905027F984760031CF98 /* SettingRowView.swift */,
 				CE61F6BA27B8783300A734EE /* TaskDetailsVM.swift */,
 			);
 			path = TaskDetails;
@@ -676,6 +682,7 @@
 				CE5AC24427DDD8E0009C55E8 /* AppState+More.swift in Sources */,
 				CE0FE99D27EFD4FE003E2937 /* AddItemToProjectView.swift in Sources */,
 				CE447CB827C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */,
+				CEC7905327F984DE0031CF98 /* SmallCheckBoxView.swift in Sources */,
 				CECFD1B827BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
 				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
 				CECFD1C427BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
@@ -698,6 +705,7 @@
 				CECFD1A727BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
 				CE338AF127B7D9F7005289D1 /* ItemObjectType.swift in Sources */,
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
+				CEC7905127F984760031CF98 /* SettingRowView.swift in Sources */,
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
 				CEA5FB0827C306470011B373 /* PopoverVM.swift in Sources */,
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,

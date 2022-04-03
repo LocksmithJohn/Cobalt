@@ -136,7 +136,10 @@ struct ProjectDetailsView: View {
                     TextEditor(text: $viewModel.projectName)
                         .font(.title)
                 }
-                StatusView(status: viewModel.projectStatus)
+                StatusView(status: viewModel.projectStatus,
+                           selectAction: { status in
+                    viewModel.actionSubject.send(.changeStatus(status: status))
+                })
                     .padding(.leading, 8)
             }
         }

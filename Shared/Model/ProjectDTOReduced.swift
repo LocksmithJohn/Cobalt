@@ -21,7 +21,7 @@ struct ProjectDTOReduced: ItemProtocol, Identifiable {
 
     init() {
         self.id = UUID()
-        self.name = "Znaleźć ofertę internetu mobilnego dla kart sim oraz esim"
+        self.name = "Znaleźć ofertę internetu mobilnego dla kart sim oraz esim tutaj"
         self.status = .inProgress
     }
 }

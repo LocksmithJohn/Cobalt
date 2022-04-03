@@ -16,12 +16,13 @@ final class TaskDetailsVM: BaseVM {
         case cancel
         case saveTask
         case deleteTask
-        case selectedProject(id: UUID)
+        case selectedProject(id: UUID?)
         case fetchParentProject(id: UUID)
         case showDeleteAlert
         case toggleDone
         case toggleWaitingFor
         case toggleNextAction
+        case changeStatus(status: ItemStatus)
     }
 
     @Published var taskName: String = ""
@@ -39,7 +40,11 @@ final class TaskDetailsVM: BaseVM {
     private let appstate: TaskDetailsAppState
     private let interactor: TaskDetailsInteractor
     private let id: UUID
-    private var projectID: UUID?
+    private var projectID: UUID? {
+        didSet {
+            print(projectID)
+        }
+    }
     private var relatedItems = Relations()
 
     init(id: UUID?,
@@ -83,7 +88,7 @@ final class TaskDetailsVM: BaseVM {
             .store(in: &cancellableBag)
 
         appstate.projectReducedSubject
-            .compactMap { $0 }
+//            .compactMap { $0 }
             .sink { [weak self] relatedProject in
                 self?.relatedProject = relatedProject
             }
@@ -111,6 +116,7 @@ final class TaskDetailsVM: BaseVM {
         case .cancel: cancelAction()
         case .showDeleteAlert: isDeleteAlertVisible = true
         case let .fetchParentProject(id): fetchParentProject(id)
+        case let .changeStatus(status): changeStatus(status: status)
         }
     }
 
@@ -158,11 +164,9 @@ final class TaskDetailsVM: BaseVM {
         interactor.route(from: screenType, to: .tasks)
     }
 
-    private func selectedProjectAction(_ id: UUID) {
+    private func selectedProjectAction(_ id: UUID?) {
         projectID = id
-        if let projectID = projectID {
-            interactor.fetchProjectReduced(id: projectID)
-        }
+        interactor.fetchProjectReduced(id: projectID ?? UUID())
     }
 
     private func toggleDoneAction() {
@@ -200,6 +204,11 @@ final class TaskDetailsVM: BaseVM {
 
     private func fetchParentProject(_ id: UUID) {
         interactor.fetchProjectReduced(id: id)
+    }
+
+    private func changeStatus(status: ItemStatus) {
+        interactor.updateStatus(id: id, status: status)
+        interactor.fetchTask(id: id)
     }
 
     //MARK: - Other

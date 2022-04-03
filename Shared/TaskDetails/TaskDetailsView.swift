@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TaskDetailsView: View {
-
+    
     @FocusState private var focus: FocusableField?
     @State var textEditorHeight : CGFloat = 20
-
+    
     var body: some View {
         VStack(spacing: 10) {
-
+            
             ExpandingTextView(text: $viewModel.taskName,
                               charsLimit: 100)
                 .padding(.horizontal)
@@ -49,53 +49,54 @@ struct TaskDetailsView: View {
             leftButtonAction: { viewModel.actionSubject.send(.back) })
         )
     }
-
+    
     @ObservedObject private var viewModel: TaskDetailsVM
     @State private var projectListExpanded = false
-
+    
     init(viewModel: TaskDetailsVM) {
         self.viewModel = viewModel
         UITextView.appearance().backgroundColor = .clear
         UIScrollView.appearance().isScrollEnabled = false
     }
-
+    
     private func customTextEdit(fonSize: CGFloat) -> some View {
-            ZStack(alignment: .topLeading) {
-                Text(viewModel.taskName)
-                    .font(.system(size: fonSize))
-                    .foregroundColor(.white)
-                    .opacity(0.3)
-                    .padding(0)
-                    .background(GeometryReader {
-                        Color.clear.preference(key: ViewHeightKey.self,
-                                               value: $0.frame(in: .local).size.height)
-                    })
-                TextEditor(text: $viewModel.taskName)
-                    .padding(0)
-                    .font(.system(size: fonSize))
-                    .focused($focus, equals: .first)
-                    .foregroundColor(.white)
-                    .offset(x: -5, y: -5)
-                    .frame(height: max(40,textEditorHeight))
-
-//                if viewModel.taskName.isEmpty {
-//                    Text("Task name...")
-//                        .font(.system(size: 32))
-//                        .foregroundColor(.gray)
-//                        .padding()
-//                        .offset(x: 12, y: 8)
-//                }
-            }
-//            .frame(maxHeight: 100)
-            .onPreferenceChange(ViewHeightKey.self) { textEditorHeight = $0 }    }
-
+        ZStack(alignment: .topLeading) {
+            Text(viewModel.taskName)
+                .font(.system(size: fonSize))
+                .foregroundColor(.white)
+                .opacity(0.3)
+                .padding(0)
+                .background(GeometryReader {
+                    Color.clear.preference(key: ViewHeightKey.self,
+                                           value: $0.frame(in: .local).size.height)
+                })
+            TextEditor(text: $viewModel.taskName)
+                .padding(0)
+                .font(.system(size: fonSize))
+                .focused($focus, equals: .first)
+                .foregroundColor(.white)
+                .offset(x: -5, y: -5)
+                .frame(height: max(40,textEditorHeight))
+            
+            //                if viewModel.taskName.isEmpty {
+            //                    Text("Task name...")
+            //                        .font(.system(size: 32))
+            //                        .foregroundColor(.gray)
+            //                        .padding()
+            //                        .offset(x: 12, y: 8)
+            //                }
+        }
+        .onPreferenceChange(ViewHeightKey.self) { textEditorHeight = $0 }    }
+    
     private var taskDetails: some View {
         HStack(alignment: .top) {
-            StatusView(status: viewModel.taskStatus)
+            StatusView(status: viewModel.taskStatus) { status in
+                viewModel.actionSubject.send(.changeStatus(status: status))
+            }
             parentProject
         }
     }
-
+    
     private var descriptionView: some View {
         ZStack(alignment: .topLeading) {
             if viewModel.taskDescription.isEmpty {
@@ -108,7 +109,7 @@ struct TaskDetailsView: View {
                 .frame(height: 200)
         }
     }
-
+    
     private var bottomButtons: some View {
         HStack {
             if viewModel.isCreating {
@@ -125,13 +126,13 @@ struct TaskDetailsView: View {
             .buttonStyle(CustomButtonStyle(color: .blue.opacity(0.4)))
         }
     }
-
+    
     private func typeView(text: String, type: ItemType) -> some View {
         var isSelected: Bool {
             viewModel.taskType == type
         }
         return HStack {
-            checkCircle(isSelected)
+            SmallCheckBoxView(isChecked: isSelected)
             Text(text)
                 .font(.system(size: 16))
                 .foregroundColor(isSelected ? .white : .gray)
@@ -139,7 +140,7 @@ struct TaskDetailsView: View {
                 .padding(.horizontal, 8)
         }
     }
-
+    
     private var taskTypeView: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -157,7 +158,7 @@ struct TaskDetailsView: View {
             Spacer()
         }
     }
-
+    
     private var parentProject: some View {
         VStack {
             HStack {
@@ -177,33 +178,34 @@ struct TaskDetailsView: View {
             }
         }
     }
-
-    private func checkCircle(_ isChecked: Bool) -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color("inactive"))
-                .frame(width: 20, height: 20)
-            RoundedRectangle(cornerRadius: 5)
-                .fill(isChecked ? Color.gray : Color("background"))
-                .frame(width: 14, height: 14)
-        }
-    }
-
+    
     private var projectsList: some View {
         ScrollView {
-            VStack(spacing: 6) {
-                ForEach(viewModel.projects) { project in
-                    HStack {
-                        Text(project.name)
-                            .padding(.leading, 8)
-                            .onTapGesture {
-                                viewModel.actionSubject.send(.selectedProject(id: project.id))
-                                projectListExpanded = false
-                                Haptic.impact(.medium)
-                            }
-                            .foregroundColor(project.id == viewModel.relatedProject?.id ? .white : .gray)
-                        Spacer()
+            VStack(spacing: 12) {
+                Text("In project:")
+                    .font(.system(size: 16))
+                    .foregroundColor(.gray)
+                SettingRowView(name: "- no project - ",
+                               isChecked: viewModel.relatedProject == nil,
+                               action: {
+                    viewModel.actionSubject.send(.selectedProject(id: nil))
+                    Haptic.impact(.medium)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        projectListExpanded = false
+                        Haptic.impact(.light)
                     }
+                })
+                ForEach(viewModel.projects) { project in
+                    SettingRowView(name: project.name,
+                                   isChecked: project.id == viewModel.relatedProject?.id,
+                                   action: {
+                        viewModel.actionSubject.send(.selectedProject(id: project.id))
+                        Haptic.impact(.medium)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            projectListExpanded = false
+                            Haptic.impact(.light)
+                        }
+                    })
                 }
             }
         }

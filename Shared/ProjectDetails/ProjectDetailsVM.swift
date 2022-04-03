@@ -21,6 +21,7 @@ final class ProjectDetailsVM: BaseVM {
         case showAddingItem
         case taskSelected(id: UUID)
         case toggleDoneTask(task: TaskDTOReduced)
+        case changeStatus(status: ItemStatus)
     }
 
     @Published var projectName: String = ""
@@ -119,7 +120,15 @@ final class ProjectDetailsVM: BaseVM {
         case .showAddingItem:
             Haptic.impact(.medium)
             GlobalRouter.shared.popOverType.send(.addItemToProject(id: id) )
+        case let .changeStatus(status): changeStatus(status: status)
         }
+    }
+
+    //MARK: - Actions
+
+    private func changeStatus(status: ItemStatus) {
+        interactor.updateStatus(id: id, status: status)
+        interactor.fetchProject(id: id)
     }
 
     private var newProject: ProjectDTO {

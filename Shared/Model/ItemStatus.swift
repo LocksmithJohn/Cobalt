@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ItemStatus: String {
+enum ItemStatus: String, CaseIterable {
     case new
     case inProgress
     case done

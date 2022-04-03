@@ -49,10 +49,14 @@ extension CoreDataManager { // tutaj te rozszerzenia powinny byc prywatne
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id.uuidString)
 
-        if let itemObject = try? managedContext.fetch(request).first {
-            if reduced {
+        if reduced {
+            if let itemObject = try? managedContext.fetch(request).first {
                 projectReducedSubject.send(ProjectDTOReduced(itemObject: itemObject))
             } else {
+                projectReducedSubject.send(nil)
+            }
+        } else {
+            if let itemObject = try? managedContext.fetch(request).first {
                 projectSubject.send(ProjectDTO(itemObject: itemObject))
             }
         }
