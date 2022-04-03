@@ -17,7 +17,8 @@ extension ItemObject {
     }
 
     @NSManaged public var id: UUID
-    @NSManaged public var itemDescription: String?
+    @NSManaged public var itemDescriptionShort: String?
+    @NSManaged public var itemDescriptionLong: String?
     @NSManaged public var name: String?
     @NSManaged public var state: String?
     @NSManaged public var type: String?

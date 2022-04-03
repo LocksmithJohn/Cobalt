@@ -2,13 +2,14 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ItemObject" representedClassName="ItemObject" syncable="YES">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="itemDescription" optional="YES" attributeType="String"/>
+        <attribute name="itemDescriptionLong" optional="YES" attributeType="String"/>
+        <attribute name="itemDescriptionShort" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="relatedItemsData" optional="YES" attributeType="String"/>
         <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="ItemObject" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="ItemObject" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

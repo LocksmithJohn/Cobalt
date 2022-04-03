@@ -11,7 +11,8 @@ extension CoreDataManager {
     func saveItem(item: Item) {
         let itemObject = ItemObject(context: managedContext)
         itemObject.name = item.name
-        itemObject.itemDescription = item.itemDesrciption
+        itemObject.itemDescriptionShort = item.itemDescriptionShort
+        itemObject.itemDescriptionLong = item.itemDescriptionLong
         itemObject.id = item.id
         itemObject.state = item.status.rawValue
         itemObject.type = item.type.rawValue

@@ -17,20 +17,23 @@ protocol ItemProtocol {
 struct Item: ItemProtocol, Identifiable {
     var id: UUID
     var name: String
-    let itemDesrciption: String
+    let itemDescriptionShort: String
+    let itemDescriptionLong: String
     var type: ItemType
     var status: ItemStatus
     var relatedItems: Relations
     
     init(id: UUID,
          name: String,
-         itemDesrciption: String,
+         itemDescriptionShort: String,
+         itemDescriptionLong: String,
          type: ItemType,
          status: ItemStatus,
          relatedItems: Relations?) {
         self.id = id
         self.name = name
-        self.itemDesrciption = itemDesrciption
+        self.itemDescriptionShort = itemDescriptionShort
+        self.itemDescriptionLong = itemDescriptionLong
         self.type = type
         self.status = status
         self.relatedItems = relatedItems ?? Relations()
@@ -39,7 +42,8 @@ struct Item: ItemProtocol, Identifiable {
     init(itemObject: ItemObject) {
         self.init(id: itemObject.id,
                   name: itemObject.name ?? "tutaj176",
-                  itemDesrciption: itemObject.itemDescription ?? "tutaj765",
+                  itemDescriptionShort: itemObject.itemDescriptionShort ?? "tutaj765",
+                  itemDescriptionLong: itemObject.itemDescriptionLong ?? "tutaj765",
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new,
                   relatedItems: itemObject.relatedItemsData?.relations())
@@ -48,7 +52,8 @@ struct Item: ItemProtocol, Identifiable {
     init(_ taskDTO: TaskDTO) {
         self.id = taskDTO.id
         self.name = taskDTO.name
-        self.itemDesrciption = taskDTO.itemDescription ?? ""
+        self.itemDescriptionLong = taskDTO.taskDescription ?? ""
+        self.itemDescriptionShort = ""
         self.type = taskDTO.type
         self.status = taskDTO.status
         self.relatedItems = taskDTO.relatedItems
@@ -57,7 +62,8 @@ struct Item: ItemProtocol, Identifiable {
     init(_ projectDTO: ProjectDTO) {
         self.id = projectDTO.id
         self.name = projectDTO.name
-        self.itemDesrciption = projectDTO.itemDescription ?? ""
+        self.itemDescriptionLong = projectDTO.projectNotes ?? ""
+        self.itemDescriptionShort = projectDTO.projectAC ?? ""
         self.type = projectDTO.type
         self.status = projectDTO.status
         self.relatedItems = projectDTO.relatedItems
@@ -66,7 +72,8 @@ struct Item: ItemProtocol, Identifiable {
     init(_ noteDTO: NoteDTO) {
         self.id = noteDTO.id
         self.name = noteDTO.name
-        self.itemDesrciption = noteDTO.itemDescription ?? ""
+        self.itemDescriptionShort = noteDTO.noteDescription ?? ""
+        self.itemDescriptionLong = ""
         self.type = noteDTO.type
         self.status = .new
         self.relatedItems = Relations()

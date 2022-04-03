@@ -15,7 +15,8 @@ extension CoreDataManager {
 
         if let itemObject = try? managedContext.fetch(request).first {
             itemObject.name = newItem.name
-            itemObject.itemDescription = newItem.itemDesrciption
+            itemObject.itemDescriptionLong = newItem.itemDescriptionLong
+            itemObject.itemDescriptionShort = newItem.itemDescriptionShort
             itemObject.id = id
             itemObject.state = newItem.status.rawValue
             itemObject.type = newItem.type.rawValue

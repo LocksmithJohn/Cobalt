@@ -11,17 +11,17 @@ struct NoteDTO: ItemProtocol, Identifiable {
 
     var id: UUID
     var name: String
-    var itemDescription: String?
+    var noteDescription: String?
     var type: ItemType
     var status: ItemStatus
 
     init(id: UUID,
          name: String,
-         itemDesrciption: String?,
+         noteDescription: String?,
          type: ItemType) {
         self.id = id
         self.name = name
-        self.itemDescription = itemDesrciption
+        self.noteDescription = noteDescription
         self.type = type
         self.status = .new
     }
@@ -29,7 +29,7 @@ struct NoteDTO: ItemProtocol, Identifiable {
     init(itemObject: ItemObject) {
         self.id = itemObject.id
         self.name = itemObject.name ?? ""
-        self.itemDescription = itemObject.itemDescription
+        self.noteDescription = itemObject.itemDescriptionLong
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .note
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
     }
@@ -37,7 +37,7 @@ struct NoteDTO: ItemProtocol, Identifiable {
     init(newID: UUID) {
         self.id = newID
         self.name = ""
-        self.itemDescription = ""
+        self.noteDescription = ""
         self.type = .note
         self.status = .new
     }

@@ -16,7 +16,7 @@ struct StatusView: View {
     @State private var isListVisible = false
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text(status.rawValue)
                 .font(.system(size: 14))
                 .foregroundColor(.white)
@@ -25,7 +25,7 @@ struct StatusView: View {
                 .background(Color("object"))
                 .cornerRadius(6)
                 .onTapGesture {
-                    isListVisible = true
+                    isListVisible.toggle()
                 }
             if isListVisible {
                 ForEach(allStatuses, id: \.self) { st in

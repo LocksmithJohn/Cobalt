@@ -69,7 +69,7 @@ final class TaskDetailsVM: BaseVM {
             .compactMap { $0 }
             .sink { [weak self] task in
                 self?.taskName = task.name
-                self?.taskDescription = task.itemDescription ?? ""
+                self?.taskDescription = task.taskDescription ?? ""
                 self?.taskStatus = task.status
                 self?.isDone = task.status == .done
                 self?.taskType = task.type
@@ -219,7 +219,7 @@ final class TaskDetailsVM: BaseVM {
         }
         let newTask = TaskDTO(id: id,
                               name: taskName,
-                              itemDesrciption: taskDescription,
+                              taskDescription: taskDescription,
                               type: taskType,
                               status: taskStatus,
                               relatedItems: relatedItems)

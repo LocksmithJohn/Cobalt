@@ -14,12 +14,11 @@ struct ProjectDetailsView: View {
                 VStack {
                     header
                         .padding(.horizontal, 16)
-                    textSectionView(title: "Description")
-                        .padding(.horizontal, 24)
-                    textSectionView(title: "Acceptance criteria")
+                    textSectionView(title: "Acceptance criteria",
+                                    text: $viewModel.projectAC)
                         .padding(.horizontal, 24)
                     addTaskButton
-                        .padding(.horizontal, 24)
+                        .padding(.leading, 23)
                     if !viewModel.nextActions.isEmpty {
                         tasksView(viewModel.nextActions, title: "Next actions")
                             .padding(.horizontal, 24)
@@ -32,7 +31,8 @@ struct ProjectDetailsView: View {
                         tasksView(viewModel.subtasks, title: "Tasks")
                             .padding(.horizontal, 24)
                     }
-                    textSectionView(title: "Notes")
+                    textSectionView(title: "Notes",
+                                    text: $viewModel.projectNotes)
                         .padding(.horizontal, 24)
                     if !viewModel.doneTasks.isEmpty {
                         tasksView(viewModel.doneTasks, title: "Done")
@@ -106,26 +106,31 @@ struct ProjectDetailsView: View {
         .padding(.vertical, 8)
     }
 
-    private func textSectionView(title: String) -> some View {
-        VStack(spacing: 0) {
-            HStack {
-                Text(title)
-                    .foregroundColor(.gray)
-                Spacer()
+    @ViewBuilder
+    private func textSectionView(title: String,
+                                 text: Binding<String>) -> some View {
+        if text.wrappedValue.isEmpty {
+            EmptyView()
+        } else {
+            VStack(spacing: 0) {
+                HStack {
+                    Text(title)
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                ZStack {
+                    TextEditor(text: text)
+                    Text(viewModel.projectAC)
+                        .opacity(0)
+                        .padding(.all, 8)
+                }
+                .padding(.leading, 30)
+                .background(Color("background"))
             }
-            ZStack {
-                TextEditor(text: $viewModel.projectDescription)
-                Text(viewModel.projectDescription)
-                    .opacity(0)
-                    .padding(.all, 8)
-            }
-            .padding(.leading, 30)
-            .background(Color("background"))
         }
     }
 
     private var header: some View {
-        HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 0) {
                 ZStack(alignment: .topLeading) {
                     Text(viewModel.projectName.isEmpty ? "Project name..." : viewModel.projectName)
@@ -140,9 +145,8 @@ struct ProjectDetailsView: View {
                            selectAction: { status in
                     viewModel.actionSubject.send(.changeStatus(status: status))
                 })
-                    .padding(.leading, 8)
+                .padding(.leading, 6)
             }
-        }
     }
 
     private var bottomButtons: some View {

@@ -14,14 +14,12 @@ final class AddItemToProjectVM: PopoverVM {
         case onDisappear
         case backgroundTapped
         case addACTapped
-        case addDescriptionTapped
         case addNoteTapped
         case okButtonTapped
     }
 
     enum InputType {
         case ac
-        case description
         case note
     }
 
@@ -75,19 +73,26 @@ final class AddItemToProjectVM: PopoverVM {
         case .addACTapped:
             isTextInputVisible = true
             inputType = .ac
-        case .addDescriptionTapped:
-            isTextInputVisible = true
-            inputType = .description
         case .addNoteTapped:
             isTextInputVisible = true
             inputType = .note
-        case .okButtonTapped:
-            project?.itemDescription = text
-            if let project = project {
-                interactor.editProject(id: projectID, project)
-            }
-            GlobalRouter.shared.popOverType.send(nil)
+        case .okButtonTapped: okButtonAction()
         }
+    }
+
+    //MARK: - Actions
+
+    private func okButtonAction() {
+        switch inputType {
+        case .ac:
+            project?.projectAC = text
+        case .note:
+            project?.projectNotes = text
+        }
+        if let project = project {
+            interactor.editProject(id: projectID, project)
+        }
+        GlobalRouter.shared.popOverType.send(nil)
     }
     
 }

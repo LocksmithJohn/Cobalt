@@ -25,7 +25,8 @@ final class ProjectDetailsVM: BaseVM {
     }
 
     @Published var projectName: String = ""
-    @Published var projectDescription: String = ""
+    @Published var projectAC: String = ""
+    @Published var projectNotes: String = ""
     @Published var projectStatus: ItemStatus = .new
 
     @Published var nextActions: [TaskDTOReduced] = []
@@ -59,7 +60,8 @@ final class ProjectDetailsVM: BaseVM {
             .compactMap { $0 }
             .sink { [weak self] project in
                 self?.projectName = project.name
-                self?.projectDescription = project.itemDescription ?? ""
+                self?.projectAC = project.projectAC ?? ""
+                self?.projectNotes = project.projectNotes ?? ""
                 self?.isDone = project.status == .done
                 self?.projectStatus = project.status
             }
@@ -134,7 +136,8 @@ final class ProjectDetailsVM: BaseVM {
     private var newProject: ProjectDTO {
         ProjectDTO(id: id,
                    name: projectName,
-                   itemDesrciption: projectDescription,
+                   itemDesrciption: projectAC,
+                   projectNotes: projectNotes,
                    type: .project,
                    status: projectStatus,
                    relatedItems: Relations()) // tutaj nie czyszcza sie relacje?

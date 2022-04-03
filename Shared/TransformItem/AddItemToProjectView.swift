@@ -42,10 +42,6 @@ struct AddItemToProjectView: View {
                 viewModel.actionSubject.send(.addNoteTapped)
                 focus = .first
             })
-            row(title: "Add description", imageName: "plus", tapAction: {
-                viewModel.actionSubject.send(.addDescriptionTapped)
-                focus = .first
-            })
             row(title: "Add acceptance criteria", imageName: "plus", tapAction: {
                 viewModel.actionSubject.send(.addACTapped)
                 focus = .first
