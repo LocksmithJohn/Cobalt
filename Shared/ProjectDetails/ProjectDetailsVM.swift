@@ -17,6 +17,7 @@ final class ProjectDetailsVM: BaseVM {
         case saveProject
         case deleteProject
         case toggleDoneProject
+        case showDeleteAlert
         case showAddingTask
         case showAddingItem
         case taskSelected(id: UUID)
@@ -34,6 +35,7 @@ final class ProjectDetailsVM: BaseVM {
     @Published var subtasks: [TaskDTOReduced] = []
     @Published var doneTasks: [TaskDTOReduced] = []
     @Published var isDone: Bool = false
+    @Published var isDeleteAlertVisible = false
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -123,6 +125,7 @@ final class ProjectDetailsVM: BaseVM {
             Haptic.impact(.medium)
             GlobalRouter.shared.popOverType.send(.addItemToProject(id: id) )
         case let .changeStatus(status): changeStatus(status: status)
+        case .showDeleteAlert: isDeleteAlertVisible = true
         }
     }
 

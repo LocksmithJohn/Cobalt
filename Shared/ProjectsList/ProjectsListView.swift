@@ -34,7 +34,9 @@ struct ProjectsListView: View {
                         viewModel.actionSubject.send(.goToProject(id: project.id))
                     }
                 }
-                Text("Done")
+                if !viewModel.doneProjects.isEmpty {
+                    Text("Done")
+                }
                 ForEach(viewModel.doneProjects) { project in
                     ProjectRowView(project: project) {
                         viewModel.actionSubject.send(.goToProject(id: project.id))

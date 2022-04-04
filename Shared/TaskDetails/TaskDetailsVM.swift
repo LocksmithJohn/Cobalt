@@ -40,11 +40,7 @@ final class TaskDetailsVM: BaseVM {
     private let appstate: TaskDetailsAppState
     private let interactor: TaskDetailsInteractor
     private let id: UUID
-    private var projectID: UUID? {
-        didSet {
-            print(projectID)
-        }
-    }
+    private var projectID: UUID?
     private var relatedItems = Relations()
 
     init(id: UUID?,

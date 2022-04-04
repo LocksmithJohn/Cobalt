@@ -56,6 +56,12 @@ struct ProjectDetailsView: View {
             rightButtonAction: { viewModel.actionSubject.send(.showAddingItem) },
             mainColor: Color.green)
         )
+        .alert("Delete?", isPresented: $viewModel.isDeleteAlertVisible) {
+            Button("Yes", role: .destructive) {
+                viewModel.actionSubject.send(.deleteProject)
+            }
+            Button("Cancel", role: .cancel) {}
+        }
     }
 
     @ObservedObject var viewModel: ProjectDetailsVM
@@ -152,7 +158,7 @@ struct ProjectDetailsView: View {
     private var bottomButtons: some View {
         VStack {
             HStack {
-                Button { viewModel.actionSubject.send(.deleteProject) } label:
+                Button { viewModel.actionSubject.send(.showDeleteAlert) } label:
                 { Text("Delete").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
                 Button { viewModel.actionSubject.send(.saveProject) } label:
