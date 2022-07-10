@@ -49,9 +49,8 @@ struct TasksListView: View {
     private var activeTasksList: some View {
         VStack(spacing: 8) {
             ForEach(viewModel.allActiveTasks.reversed()) { task in
-                TaskRowView(task: task,
-                            smallIcon: false,
-                            switchAction: {
+                TaskRowViewBig(task: task,
+                               switchAction: {
                     viewModel.actionSubject.send(.toggleDone(id: task.id, status: task.status))
                 })
                     .contentShape(Rectangle())
@@ -69,9 +68,8 @@ struct TasksListView: View {
             }
             if viewModel.doneVisible {
                 ForEach(viewModel.allDoneTasks.reversed()) { task in
-                    TaskRowView(task: task,
-                                smallIcon: false,
-                                switchAction: {
+                    TaskRowViewBig(task: task,
+                                   switchAction: {
                         viewModel.actionSubject.send(.toggleDone(id: task.id, status: task.status))
                     })
                         .contentShape(Rectangle())

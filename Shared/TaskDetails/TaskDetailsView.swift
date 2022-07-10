@@ -13,26 +13,36 @@ struct TaskDetailsView: View {
     @State var textEditorHeight : CGFloat = 20
     
     var body: some View {
-        VStack(spacing: 10) {
-            
-            ExpandingTextView(text: $viewModel.taskName,
-                              charsLimit: 100)
-                .padding(.horizontal)
-                .padding(.top, 10)
-            taskDetails
-                .padding(.horizontal, 20)
-            taskTypeView
-                .padding(.horizontal, 21)
-            descriptionView
-                .padding(.horizontal, 18)
-            Spacer()
-            bottomButtons
-                .padding()
+        ZStack(alignment: .bottom) {
+
+            ScrollView {
+
+                VStack(spacing: 0) {
+                    ExpandingTextView(text: $viewModel.taskName,
+                                      fontSize: 30,
+                                      charsLimit: 100)
+                        .padding(.horizontal)
+                        .padding(.top, 10)
+                    taskDetails
+                        .padding(.top, 10)
+                        .padding(.horizontal, 20)
+                        .background(Color("backgroundDark"))
+                    taskTypeView
+                        .padding(.horizontal, 21)
+                        .background(Color("backgroundDark"))
+                        .padding(.bottom, 10)
+                    descriptionView
+                        .padding(.horizontal, 18)
+                    Spacer()
+                    bottomButtons
+                        .padding()
+                }
+            }
         }
         .padding(.top, 50)
         .onAppear {
             viewModel.actionSubject.send(.onAppear)
-            if viewModel.isCreating {
+            if !viewModel.isEditing {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { focus = .first }
             }
         }
@@ -94,6 +104,10 @@ struct TaskDetailsView: View {
                 viewModel.actionSubject.send(.changeStatus(status: status))
             }
             parentProject
+            TagView(tag: viewModel.taskTag) { tag in
+                viewModel.actionSubject.send(.changeTag(tag: tag))
+            }
+            Spacer()
         }
     }
     
@@ -112,7 +126,7 @@ struct TaskDetailsView: View {
     
     private var bottomButtons: some View {
         HStack {
-            if viewModel.isCreating {
+            if !viewModel.isEditing {
                 Button { viewModel.actionSubject.send(.cancel) } label:
                 { Text("Cancel").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
@@ -159,17 +173,17 @@ struct TaskDetailsView: View {
         }
     }
     
-    private var parentProject: some View {
+    private var parentProject: some View { // tutaj przeniesc do pliku podobnie jak satusView
         VStack {
             HStack {
                 Text(viewModel.relatedProject?.name ?? " ... ")
                     .modifier(SmallObjectModifier())
                     .cornerRadius(6)
+                    .lineLimit(1)
                     .onTapGesture {
                         projectListExpanded.toggle()
                         Haptic.impact(.medium)
                     }
-                Spacer()
             }
             if projectListExpanded {
                 projectsList
@@ -178,7 +192,7 @@ struct TaskDetailsView: View {
             }
         }
     }
-    
+
     private var projectsList: some View {
         ScrollView {
             VStack(spacing: 12) {
@@ -188,7 +202,7 @@ struct TaskDetailsView: View {
                 SettingRowView(name: "- no project - ",
                                isChecked: viewModel.relatedProject == nil,
                                action: {
-                    viewModel.actionSubject.send(.selectedProject(id: nil))
+                    viewModel.actionSubject.send(.deleteParentProject)
                     Haptic.impact(.medium)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         projectListExpanded = false
@@ -199,7 +213,7 @@ struct TaskDetailsView: View {
                     SettingRowView(name: project.name,
                                    isChecked: project.id == viewModel.relatedProject?.id,
                                    action: {
-                        viewModel.actionSubject.send(.selectedProject(id: project.id))
+                        viewModel.actionSubject.send(.updateParentProject(id: project.id))
                         Haptic.impact(.medium)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             projectListExpanded = false

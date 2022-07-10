@@ -20,6 +20,7 @@ struct SettingRowView: View {
                 .font(.system(size: 16))
                 .padding(.leading, 8)
                 .foregroundColor(isChecked ? .white : .gray)
+                .lineLimit(1)
                 .onTapGesture { action() }
             Spacer()
         }

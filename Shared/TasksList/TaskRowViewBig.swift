@@ -7,25 +7,22 @@
 
 import SwiftUI
 
-struct TaskRowView: View {
+struct TaskRowViewBig: View {
 
     let task: TaskDTOReduced
     let switchAction: () -> Void
-    let smallIcon: Bool
 
     @State var isDone: Bool
 
     init(task: TaskDTOReduced,
-         smallIcon: Bool,
          switchAction: @escaping () -> Void) {
         _isDone = State(initialValue: task.status == .done)
         self.task = task
         self.switchAction = switchAction
-        self.smallIcon = smallIcon
     }
 
     var body: some View {
-        HStack(alignment: .top, spacing: smallIcon ? 4 : 16) {
+        HStack(alignment: .top, spacing: 16) {
             checkCircle(isDone)
                 .offset(y: 10)
                 .onTapGesture { // tutaj ta akcja do vm
@@ -47,17 +44,17 @@ struct TaskRowView: View {
 
     private func checkCircle(_ isChecked: Bool) -> some View {
         ZStack {
-            RoundedRectangle(cornerRadius: smallIcon ? 8 : 10)
-                .fill((isChecked || smallIcon) ? Color("inactive") : .blue)
-                .frame(width: smallIcon ? 20 : 28, height: smallIcon ? 20 : 28)
+            RoundedRectangle(cornerRadius: 10)
+                .fill((isChecked) ? Color("inactive") : .blue)
+                .frame(width: 28, height: 28)
 
-            RoundedRectangle(cornerRadius: smallIcon ? 6 : 7)
+            RoundedRectangle(cornerRadius: 7)
                 .fill(Color("background"))
-                .frame(width: smallIcon ? 16 : 23, height: smallIcon ? 16 : 23)
+                .frame(width: 23, height: 23)
 
             if isChecked {
                 Image(systemName: "checkmark")
-                    .font(.system(size: smallIcon ? 10 : 16, weight: .bold, design: .default))
+                    .font(.system(size: 16, weight: .bold, design: .default))
                     .foregroundColor(Color("inactive"))
             }
         }

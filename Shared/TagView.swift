@@ -1,23 +1,25 @@
 //
-//  StatusView.swift
-//  CobaltApp
+//  TagView.swift
+//  CobaltApp (iOS)
 //
-//  Created by Jan Slusarz on 26/02/2022.
+//  Created by Jan Slusarz on 07/04/2022.
 //
+
+import Foundation
 
 import SwiftUI
 
-struct StatusView: View {
+struct TagView: View {
 
-    let status: ItemStatus
-    let selectAction: (ItemStatus) -> Void
-    let allStatuses = ItemStatus.allCases
+    let tag: String
+    let selectAction: (String) -> Void
+    let allTags = [String]()
 
     @State private var isListVisible = false
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(status.rawValue)
+            Text(tag)
                 .font(.system(size: 14))
                 .foregroundColor(.white)
                 .padding(4)
@@ -30,17 +32,16 @@ struct StatusView: View {
                 }
             if isListVisible {
                 VStack {
-                    ForEach(allStatuses, id: \.self) { st in
-                        SettingRowView(name: st.rawValue,
-                                       isChecked: st == status,
+                    ForEach(array, id: \.self) { t in
+                        SettingRowView(name: t,
+                                       isChecked: t == tag,
                                        action: {
-                            selectAction(st)
+                            selectAction(t)
                             Haptic.impact(.medium)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                                 isListVisible = false
                                 Haptic.impact(.light)
                             }
-
                         })
                     }
                 }
@@ -49,4 +50,12 @@ struct StatusView: View {
             }
         }
     }
+
+    let array = [
+        "tag1",
+        "tag2",
+        "tag3",
+        "tag4",
+        "tag5"
+    ]
 }

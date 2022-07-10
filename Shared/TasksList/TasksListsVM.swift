@@ -44,11 +44,7 @@ final class TasksListVM: BaseVM {
         appstate.tasksListSubject
             .sink { [weak self] tasks in
                 guard let self = self else { return }
-                print("filter alltask ------------------------")
 
-                tasks.forEach { task in
-                    print("filter task: \(task.type.rawValue), \(task.name)")
-                }
                 self.allTasks = tasks
                 self.waitingFors = tasks.filter { $0.type == .waitFor }
                 self.nextActionTasks = tasks.filter { $0.type == .nextAction }

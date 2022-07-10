@@ -23,6 +23,7 @@ extension ItemObject {
     @NSManaged public var state: String?
     @NSManaged public var type: String?
     @NSManaged public var relatedItemsData: String?
+    @NSManaged public var tags: String?
 
 }
 

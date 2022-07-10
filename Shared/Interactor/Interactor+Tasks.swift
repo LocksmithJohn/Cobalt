@@ -40,6 +40,7 @@ protocol TaskDetailsInteractor: InteractorProtocol {
     func fetchTasks()
     func saveTask(_ task: TaskDTO)
     func fetchProjectsReduced()
+    func fetchProject(id: UUID)
     func fetchProjectReduced(id: UUID)
     func deleteTask(id: UUID)
     func fetchRelatedItems(id: UUID)

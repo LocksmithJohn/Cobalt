@@ -7,32 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FFD7C83-295E-4960-A917-A62FD23C1DB5"
+            uuid = "9E82B660-C66D-4791-A39E-428636B0ABF5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/TransformItem/AddItemToProjectVM.swift"
+            filePath = "Shared/TaskDetails/TaskDetailsVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "okButtonAction()"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "updateParentProjectAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "348CFD40-CD28-4C40-8C7C-5BDA5180DB07"
+            uuid = "E185B666-C086-4B11-B76C-E709A4AAC6C0"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Shared/ProjectDetails/ProjectDetailsVM.swift"
+            filePath = "Shared/TaskDetails/TaskDetailsVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "bindAppState()"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "updateParentProjectAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A29794A0-4187-4365-AF3F-78D5FEAEEA8D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Shared/TaskDetails/TaskDetailsVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "updateRelatedProject()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

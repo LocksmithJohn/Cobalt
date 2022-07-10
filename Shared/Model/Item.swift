@@ -22,6 +22,7 @@ struct Item: ItemProtocol, Identifiable {
     var type: ItemType
     var status: ItemStatus
     var relatedItems: Relations
+    var tags: ItemTags
     
     init(id: UUID,
          name: String,
@@ -29,7 +30,9 @@ struct Item: ItemProtocol, Identifiable {
          itemDescriptionLong: String,
          type: ItemType,
          status: ItemStatus,
-         relatedItems: Relations?) {
+         relatedItems: Relations?,
+         tags: ItemTags?
+    ) {
         self.id = id
         self.name = name
         self.itemDescriptionShort = itemDescriptionShort
@@ -37,6 +40,7 @@ struct Item: ItemProtocol, Identifiable {
         self.type = type
         self.status = status
         self.relatedItems = relatedItems ?? Relations()
+        self.tags = tags ?? ItemTags()
     }
 
     init(itemObject: ItemObject) {
@@ -46,7 +50,8 @@ struct Item: ItemProtocol, Identifiable {
                   itemDescriptionLong: itemObject.itemDescriptionLong ?? "tutaj765",
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new,
-                  relatedItems: itemObject.relatedItemsData?.relations())
+                  relatedItems: itemObject.relatedItemsData?.relations(),
+                  tags: itemObject.tags?.tags())
     }
 
     init(_ taskDTO: TaskDTO) {
@@ -56,7 +61,8 @@ struct Item: ItemProtocol, Identifiable {
         self.itemDescriptionShort = ""
         self.type = taskDTO.type
         self.status = taskDTO.status
-        self.relatedItems = taskDTO.relatedItems
+        self.relatedItems = taskDTO.relations
+        self.tags = taskDTO.tags
     }
 
     init(_ projectDTO: ProjectDTO) {
@@ -67,6 +73,7 @@ struct Item: ItemProtocol, Identifiable {
         self.type = projectDTO.type
         self.status = projectDTO.status
         self.relatedItems = projectDTO.relatedItems
+        self.tags = projectDTO.tags
     }
 
     init(_ noteDTO: NoteDTO) {
@@ -77,6 +84,7 @@ struct Item: ItemProtocol, Identifiable {
         self.type = noteDTO.type
         self.status = .new
         self.relatedItems = Relations()
+        self.tags = noteDTO.tags ?? ItemTags()
     }
 
 }

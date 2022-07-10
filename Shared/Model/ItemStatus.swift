@@ -8,9 +8,11 @@
 import Foundation
 
 enum ItemStatus: String, CaseIterable {
+
     case new
     case inProgress
     case done
     case deleted
     case someDay
+    
 }

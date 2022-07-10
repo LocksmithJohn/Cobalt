@@ -15,20 +15,23 @@ struct TaskDTO: ItemProtocol, Identifiable {
     var taskDescription: String?
     var type: ItemType
     var status: ItemStatus
-    var relatedItems: Relations
+    var relations: Relations
+    var tags: ItemTags
 
     init(id: UUID,
          name: String,
          taskDescription: String?,
          type: ItemType,
          status: ItemStatus,
-         relatedItems: Relations) {
+         relatedItems: Relations,
+         tags: ItemTags) {
         self.id = id
         self.name = name
         self.taskDescription = taskDescription
         self.type = type
         self.status = status
-        self.relatedItems = relatedItems
+        self.relations = relatedItems
+        self.tags = tags
     }
 
     init(itemObject: ItemObject) {
@@ -37,7 +40,8 @@ struct TaskDTO: ItemProtocol, Identifiable {
         self.taskDescription = itemObject.itemDescriptionLong
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .task
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
-        self.relatedItems = itemObject.relatedItemsData?.relations() ?? Relations()
+        self.relations = itemObject.relatedItemsData?.relations() ?? Relations()
+        self.tags = itemObject.tags?.tags() ?? ItemTags()
     }
 
     init(newID: UUID) {
@@ -46,6 +50,7 @@ struct TaskDTO: ItemProtocol, Identifiable {
         self.taskDescription = ""
         self.type = .task
         self.status = .new
-        self.relatedItems = Relations()
+        self.relations = Relations()
+        self.tags = ItemTags()
     }
 }

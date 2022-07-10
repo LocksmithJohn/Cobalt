@@ -18,6 +18,7 @@ protocol InteractorProtocol {
     func toggleDone(id: UUID, status: ItemStatus)
     func updateType(id: UUID, type: ItemType)
     func updateStatus(id: UUID, status: ItemStatus)
+    func updateTag(tag: String)
     func deleteAll()
 }
 
@@ -40,9 +41,9 @@ class Interactor {
        coreDataManager.actionSubject.send(.editItem(id: id, item: item))
     }
 
-    func toggleDone(id: UUID, status: ItemStatus) {
+    func toggleDone(id: UUID, status: ItemStatus) { // tutaj potrzebne?
         let newState: ItemStatus = status == .new ? .done : .new
-        coreDataManager.editItem(id: id, status: newState)
+        coreDataManager.editItem(id: id, status: newState) // tutaj powinny byc actiony
     }
 
     func updateType(id: UUID, type: ItemType) {
@@ -51,6 +52,10 @@ class Interactor {
 
     func updateStatus(id: UUID, status: ItemStatus) {
         coreDataManager.editItem(id: id, status: status)
+    }
+
+    func updateTag(id: UUID, tag: String) {
+//        coreDataManager.editItem(id: id, ta)
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {

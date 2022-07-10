@@ -9,6 +9,8 @@ import Foundation
 
 extension Interactor: NotesListInteractor,
                       NoteDetailsInteractor {
+    func updateTag(tag: String) { }
+
     func fetchNotes() {
         coreDataManager.actionSubject.send(.fetchNotes)
     }

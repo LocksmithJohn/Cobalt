@@ -16,6 +16,7 @@ struct ProjectDTO: ItemProtocol, Identifiable {
     let type: ItemType
     var status: ItemStatus
     var relatedItems: Relations
+    var tags: ItemTags
 
     init(id: UUID,
          name: String?,
@@ -23,13 +24,15 @@ struct ProjectDTO: ItemProtocol, Identifiable {
          projectNotes: String?,
          type: ItemType,
          status: ItemStatus,
-         relatedItems: Relations) {
+         relatedItems: Relations,
+         tags: ItemTags) {
         self.id = id
         self.name = name ?? ""
         self.projectAC = itemDesrciption
         self.type = type
         self.status = status
         self.relatedItems = relatedItems
+        self.tags = tags
     }
 
     init(itemObject: ItemObject) {
@@ -40,6 +43,7 @@ struct ProjectDTO: ItemProtocol, Identifiable {
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .task
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
         self.relatedItems = itemObject.relatedItemsData?.relations() ?? Relations()
+        self.tags = itemObject.tags?.tags() ?? ItemTags()
     }
 
     init(newID: UUID) {
@@ -49,5 +53,6 @@ struct ProjectDTO: ItemProtocol, Identifiable {
         self.type = .project
         self.status = .new
         self.relatedItems = Relations()
+        self.tags = ItemTags()
     }
 }

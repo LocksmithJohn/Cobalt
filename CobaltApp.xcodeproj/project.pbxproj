@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CE0F51D327D23B730026AE4A /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F51D227D23B730026AE4A /* TaskRowView.swift */; };
-		CE0F51D427D23B730026AE4A /* TaskRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F51D227D23B730026AE4A /* TaskRowView.swift */; };
+		CE0838CA27FD00720043BDC5 /* TaskRowViewSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0838C927FD00720043BDC5 /* TaskRowViewSmall.swift */; };
+		CE0838CC27FE548C0043BDC5 /* ItemTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0838CB27FE548C0043BDC5 /* ItemTags.swift */; };
+		CE0F51D327D23B730026AE4A /* TaskRowViewBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F51D227D23B730026AE4A /* TaskRowViewBig.swift */; };
+		CE0F51D427D23B730026AE4A /* TaskRowViewBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0F51D227D23B730026AE4A /* TaskRowViewBig.swift */; };
 		CE0FE99D27EFD4FE003E2937 /* AddItemToProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE99C27EFD4FE003E2937 /* AddItemToProjectView.swift */; };
 		CE0FE99F27EFD5D1003E2937 /* AddItemToProjectVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0FE99E27EFD5D1003E2937 /* AddItemToProjectVM.swift */; };
 		CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE338A9C27B7A4E5005289D1 /* CobaltAppApp.swift */; };
@@ -121,7 +123,7 @@
 		CEC7904927F7A46C0031CF98 /* ExpandingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904827F7A46C0031CF98 /* ExpandingTextView.swift */; };
 		CEC7904B27F7B7940031CF98 /* SmallObjectModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */; };
 		CEC7904D27F8C0B60031CF98 /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904C27F8C0B60031CF98 /* ItemType.swift */; };
-		CEC7904F27F8C0C40031CF98 /* ItemRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */; };
+		CEC7904F27F8C0C40031CF98 /* Relations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7904E27F8C0C40031CF98 /* Relations.swift */; };
 		CEC7905127F984760031CF98 /* SettingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7905027F984760031CF98 /* SettingRowView.swift */; };
 		CEC7905327F984DE0031CF98 /* SmallCheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC7905227F984DE0031CF98 /* SmallCheckBoxView.swift */; };
 		CECC279B27F4F499000E4BCC /* CustomButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */; };
@@ -158,10 +160,14 @@
 		CECFD1CE27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */; };
 		CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */; };
 		CECFD1D127BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */; };
+		CEFC98A327FF0DE400FA8836 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC98A227FF0DE400FA8836 /* TagView.swift */; };
+		CEFC98A727FF150B00FA8836 /* ParentProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC98A627FF150B00FA8836 /* ParentProjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		CE0F51D227D23B730026AE4A /* TaskRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowView.swift; sourceTree = "<group>"; };
+		CE0838C927FD00720043BDC5 /* TaskRowViewSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowViewSmall.swift; sourceTree = "<group>"; };
+		CE0838CB27FE548C0043BDC5 /* ItemTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTags.swift; sourceTree = "<group>"; };
+		CE0F51D227D23B730026AE4A /* TaskRowViewBig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRowViewBig.swift; sourceTree = "<group>"; };
 		CE0FE99C27EFD4FE003E2937 /* AddItemToProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToProjectView.swift; sourceTree = "<group>"; };
 		CE0FE99E27EFD5D1003E2937 /* AddItemToProjectVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemToProjectVM.swift; sourceTree = "<group>"; };
 		CE338A9C27B7A4E5005289D1 /* CobaltAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CobaltAppApp.swift; sourceTree = "<group>"; };
@@ -238,7 +244,7 @@
 		CEC7904827F7A46C0031CF98 /* ExpandingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingTextView.swift; sourceTree = "<group>"; };
 		CEC7904A27F7B7940031CF98 /* SmallObjectModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallObjectModifier.swift; sourceTree = "<group>"; };
 		CEC7904C27F8C0B60031CF98 /* ItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
-		CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRelation.swift; sourceTree = "<group>"; };
+		CEC7904E27F8C0C40031CF98 /* Relations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relations.swift; sourceTree = "<group>"; };
 		CEC7905027F984760031CF98 /* SettingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingRowView.swift; sourceTree = "<group>"; };
 		CEC7905227F984DE0031CF98 /* SmallCheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCheckBoxView.swift; sourceTree = "<group>"; };
 		CECC279A27F4F499000E4BCC /* CustomButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonStyle.swift; sourceTree = "<group>"; };
@@ -258,6 +264,8 @@
 		CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interactor+Notes.swift"; sourceTree = "<group>"; };
 		CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsView.swift; sourceTree = "<group>"; };
 		CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsVM.swift; sourceTree = "<group>"; };
+		CEFC98A227FF0DE400FA8836 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		CEFC98A627FF150B00FA8836 /* ParentProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentProjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,7 +307,10 @@
 				CE5AC23C27DD32EC009C55E8 /* ContentVM.swift */,
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
 				CE338AE727B7B773005289D1 /* StackAction.swift */,
+				CEC7905027F984760031CF98 /* SettingRowView.swift */,
 				CE723FAB27C99E04003F6DD8 /* StatusView.swift */,
+				CEFC98A627FF150B00FA8836 /* ParentProjectView.swift */,
+				CEFC98A227FF0DE400FA8836 /* TagView.swift */,
 				CEA5FAFD27C287730011B373 /* Interactor */,
 				CECC279927F3C566000E4BCC /* AddItemToProject */,
 				CEA5FAFC27C278B50011B373 /* TransformItem */,
@@ -382,7 +393,8 @@
 			children = (
 				CE338AC027B7A5B7005289D1 /* TasksListView.swift */,
 				CE338AC327B7A5E2005289D1 /* TasksListsVM.swift */,
-				CE0F51D227D23B730026AE4A /* TaskRowView.swift */,
+				CE0F51D227D23B730026AE4A /* TaskRowViewBig.swift */,
+				CE0838C927FD00720043BDC5 /* TaskRowViewSmall.swift */,
 			);
 			path = TasksList;
 			sourceTree = "<group>";
@@ -391,7 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				CE61F6B827B8782900A734EE /* TaskDetailsView.swift */,
-				CEC7905027F984760031CF98 /* SettingRowView.swift */,
 				CE61F6BA27B8783300A734EE /* TaskDetailsVM.swift */,
 			);
 			path = TaskDetails;
@@ -422,7 +433,8 @@
 				CE338AD227B7A68D005289D1 /* Item.swift */,
 				CE5AC24E27DE4A3F009C55E8 /* ItemReduced.swift */,
 				CE61F6D027B9B36C00A734EE /* ItemStatus.swift */,
-				CEC7904E27F8C0C40031CF98 /* ItemRelation.swift */,
+				CEC7904E27F8C0C40031CF98 /* Relations.swift */,
+				CE0838CB27FE548C0043BDC5 /* ItemTags.swift */,
 				CEC7904C27F8C0B60031CF98 /* ItemType.swift */,
 				CE61F6CC27B9B31C00A734EE /* TaskDTO.swift */,
 				CE61F6D227B9B37E00A734EE /* ProjectDTO.swift */,
@@ -641,14 +653,15 @@
 				CE338AEB27B7B890005289D1 /* BaseVM.swift in Sources */,
 				CE338AE527B7B6A5005289D1 /* ScreenType.swift in Sources */,
 				CE8F04BD27BD0AF70067D3EE /* String+Ext.swift in Sources */,
-				CE0F51D327D23B730026AE4A /* TaskRowView.swift in Sources */,
-				CEC7904F27F8C0C40031CF98 /* ItemRelation.swift in Sources */,
+				CE0F51D327D23B730026AE4A /* TaskRowViewBig.swift in Sources */,
+				CEC7904F27F8C0C40031CF98 /* Relations.swift in Sources */,
 				CE61F6D327B9B37E00A734EE /* ProjectDTO.swift in Sources */,
 				CECFD1BE27BFD87D00CCDBC2 /* AppState+Projects.swift in Sources */,
 				CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */,
 				CE338ACA27B7A634005289D1 /* TasksListInteractor.swift in Sources */,
 				CEA5FB0B27C3065B0011B373 /* PopoverView.swift in Sources */,
 				CE338ABB27B7A5A7005289D1 /* Router.swift in Sources */,
+				CEFC98A727FF150B00FA8836 /* ParentProjectView.swift in Sources */,
 				CE61F6C027B8FA6900A734EE /* ProjectsListVM.swift in Sources */,
 				CE61F6C827B9622D00A734EE /* Haptic.swift in Sources */,
 				CE5AC24F27DE4A3F009C55E8 /* ItemReduced.swift in Sources */,
@@ -684,6 +697,7 @@
 				CE447CB827C0705D005B0441 /* CoreDataManager+Saving.swift in Sources */,
 				CEC7905327F984DE0031CF98 /* SmallCheckBoxView.swift in Sources */,
 				CECFD1B827BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
+				CE0838CA27FD00720043BDC5 /* TaskRowViewSmall.swift in Sources */,
 				CE344FBB27BBDC78000FF670 /* TaskDTOReduced.swift in Sources */,
 				CECFD1C427BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
 				CECFD1C727BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
@@ -707,6 +721,7 @@
 				CE338AC727B7A603005289D1 /* CoreDataManager.swift in Sources */,
 				CEC7905127F984760031CF98 /* SettingRowView.swift in Sources */,
 				CE338AC427B7A5E2005289D1 /* TasksListsVM.swift in Sources */,
+				CEFC98A327FF0DE400FA8836 /* TagView.swift in Sources */,
 				CEA5FB0827C306470011B373 /* PopoverVM.swift in Sources */,
 				CE338AD627B7A74C005289D1 /* NavigationBar.swift in Sources */,
 				CE338AD927B7A77F005289D1 /* NavigationBarModifier.swift in Sources */,
@@ -717,6 +732,7 @@
 				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
 				CE5AC24827DDFEF6009C55E8 /* SearchVM.swift in Sources */,
 				CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
+				CE0838CC27FE548C0043BDC5 /* ItemTags.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,7 +744,7 @@
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CECFD1C527BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
 				CE338AEF27B7D9C9005289D1 /* DateManager.swift in Sources */,
-				CE0F51D427D23B730026AE4A /* TaskRowView.swift in Sources */,
+				CE0F51D427D23B730026AE4A /* TaskRowViewBig.swift in Sources */,
 				CECFD1A827BFB23600CCDBC2 /* CoreDataManager+Fetching.swift in Sources */,
 				CE338AD127B7A650005289D1 /* AppState.swift in Sources */,
 				CECFD1B227BFD21F00CCDBC2 /* NotesListVM.swift in Sources */,

@@ -9,14 +9,18 @@ import SwiftUI
 
 struct ExpandingTextView: View {
     @Binding var text: String
-    let minHeight: CGFloat = 40
+    let fontSize: CGFloat
+    let minHeight: CGFloat = 10
     @State private var textViewHeight: CGFloat?
-    @State var height: CGFloat = 40
+    @State var height: CGFloat = 10
     let charsLimit: Int
 
     var body: some View {
+
         WrappedTextView(text: $text, textDidChange: self.textDidChange,
-                        charsLimit: charsLimit)
+                        charsLimit: charsLimit,
+                        fontSize: fontSize)
+//            .submitLabel(.done)
             .frame(height: height ?? minHeight)
     }
 
@@ -31,15 +35,18 @@ struct WrappedTextView: UIViewRepresentable {
     @Binding var text: String
     let textDidChange: (UITextView) -> Void
     let charsLimit: Int
+    let fontSize: CGFloat
 
     func makeUIView(context: Context) -> UITextView {
         let textView = UITextView()
         textView.isEditable = true
         textView.delegate = context.coordinator
-        textView.font = UIFont.systemFont(ofSize: 30)
+        textView.font = UIFont.systemFont(ofSize: fontSize)
         textView.textColor = .white
         textView.textContainer.maximumNumberOfLines = 10
         textView.textContainer.lineBreakMode = .byTruncatingTail
+        textView.addDoneButtonOnKeyboard()
+
         return textView
     }
 
@@ -72,5 +79,28 @@ struct WrappedTextView: UIViewRepresentable {
             self.text = textView.text
             self.textDidChange(textView)
         }
+    }
+}
+
+extension UITextView {
+
+    func addDoneButtonOnKeyboard(){
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"),
+                                                    style: .done,
+                                                    target: nil,
+                                                    action: #selector(self.doneButtonAction))
+        let items = [flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+
+        self.inputAccessoryView = doneToolbar
+    }
+
+    @objc func doneButtonAction(){
+        self.resignFirstResponder()
     }
 }
