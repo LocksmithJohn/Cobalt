@@ -51,14 +51,6 @@ final class TasksListVM: BaseVM {
                 self.updateListForTab(self.filterTab)
             }
             .store(in: &cancellableBag)
-
-        $filterTab
-            .sink { [weak self] tab in
-                guard let self = self else { return }
-
-                self.updateListForTab(tab)
-            }
-            .store(in: &cancellableBag)
     }
 
     private func updateListForTab(_ tab: Int) {
@@ -79,6 +71,14 @@ final class TasksListVM: BaseVM {
         actionSubject
             .sink { [weak self] action in
                 self?.handleAction(action: action)
+            }
+            .store(in: &cancellableBag)
+
+        $filterTab
+            .sink { [weak self] tab in
+                guard let self = self else { return }
+
+                self.updateListForTab(tab)
             }
             .store(in: &cancellableBag)
     }

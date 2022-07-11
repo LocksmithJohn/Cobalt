@@ -13,6 +13,5 @@ enum ItemStatus: String, CaseIterable {
     case inProgress
     case done
     case deleted
-    case someDay
-    
+
 }

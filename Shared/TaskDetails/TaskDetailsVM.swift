@@ -25,6 +25,7 @@ final class TaskDetailsVM: BaseVM {
         case deleteParentProject
         case changeStatus(status: ItemStatus)
         case changeTag(tag: String)
+        case showTransform
     }
 
     @Published var taskName: String = ""
@@ -137,6 +138,7 @@ final class TaskDetailsVM: BaseVM {
         case let .fetchParentProject(id): fetchParentProject(id)
         case let .changeStatus(status): changeStatus(status: status)
         case let .changeTag(tag): changeTag(tag: tag)
+        case .showTransform: GlobalRouter.shared.popOverType.send(.itemTransform(id: id))
         }
     }
 

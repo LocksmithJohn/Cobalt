@@ -15,5 +15,6 @@ enum ItemType: String, Equatable {
     case project
     case note
     case reference
+    case someDay
 
 }

@@ -134,6 +134,9 @@ struct TaskDetailsView: View {
                 Button { viewModel.actionSubject.send(.showDeleteAlert) } label:
                 { Text("Delete").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
+                Button { viewModel.actionSubject.send(.showTransform) } label:
+                { Text("Change to").foregroundColor(.white) }
+                .buttonStyle(CustomButtonStyle(color: .yellow.opacity(0.4)))
             }
             Button { viewModel.actionSubject.send(.saveTask) } label:
             { Text("Save").foregroundColor(.white) }

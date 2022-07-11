@@ -13,12 +13,13 @@ final class TransformItemVM: PopoverVM {
     enum Action {
         case onAppear
         case saveItem
-        case typeSelected(ItemType)
+//        case typeSelected(ItemType)
         case backgroundTapped
     }
 
     @Published var previousItem: Item?
     @Published var newItem: Item?
+    @Published var selectedNewItemType: Int = 1
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
@@ -58,6 +59,18 @@ final class TransformItemVM: PopoverVM {
                 self?.handleAction(action: action)
             }
             .store(in: &cancellableBag)
+
+        $selectedNewItemType
+            .sink { [weak self] selectedType in
+                switch selectedType {
+                case 1: self?.newItem?.type = .task
+                case 2: self?.newItem?.type = .project
+                case 3: self?.newItem?.type = .someDay
+                case 4: self?.newItem?.type = .reference
+                default: self?.newItem?.type = .note
+                }
+            }
+            .store(in: &cancellableBag)
     }
 
     private func handleAction(action: Action) {
@@ -71,9 +84,11 @@ final class TransformItemVM: PopoverVM {
             goToItemDetails(item: newItem)
         case .backgroundTapped:
             GlobalRouter.shared.popOverType.send(nil)
-        case let .typeSelected(type):
-            newItem?.type = type
         }
+    }
+
+    private func getProjectTest() -> ProjectDTOReduced {
+        let project = newItem as? ProjectDTOReduced
     }
 
     private func goToItemDetails(item: Item) {
