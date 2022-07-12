@@ -78,8 +78,8 @@ final class ProjectDetailsVM: BaseVM {
                 tasks.forEach { task in
                     print("filter task: \(task.name)")
                 }
-                self?.nextActions = tasks.filter { $0.type == .nextAction && $0.status != .done }
-                self?.waitFors = tasks.filter { $0.type == .waitFor && $0.status != .done }
+                self?.nextActions = tasks.filter { $0.status == .nextAction && $0.status != .done }
+                self?.waitFors = tasks.filter { $0.status == .waitFor && $0.status != .done }
                 self?.subtasks = tasks.filter { $0.type == .task && $0.status != .done }
                 self?.doneTasks = tasks.filter { $0.status == .done }
             }

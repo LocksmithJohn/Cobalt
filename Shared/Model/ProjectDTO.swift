@@ -13,7 +13,7 @@ struct ProjectDTO: ItemProtocol, Identifiable {
     var name: String
     var projectAC: String?
     var projectNotes: String?
-    let type: ItemType
+    var type: ItemType
     var status: ItemStatus
     var relatedItems: Relations
     var tags: ItemTags

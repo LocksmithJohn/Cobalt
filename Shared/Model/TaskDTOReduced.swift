@@ -21,7 +21,7 @@ struct TaskDTOReduced: ItemProtocol, Identifiable {
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .task
     }
 
-    init(item: Item) {
+    init(item: ItemProtocol) {
         self.id = item.id
         self.name = item.name
         self.status = item.status

@@ -65,9 +65,9 @@ extension CoreDataManager { // tutaj te rozszerzenia powinny byc prywatne
     func fetchTasks() {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         let predicate1 = NSPredicate(format: "type == %@", ItemType.task.rawValue)
-        let predicate2 = NSPredicate(format: "type == %@", ItemType.waitFor.rawValue)
-        let predicate3 = NSPredicate(format: "type == %@", ItemType.nextAction.rawValue)
-        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [predicate1, predicate2, predicate3])
+//        let predicate2 = NSPredicate(format: "type == %@", ItemType.waitFor.rawValue)
+//        let predicate3 = NSPredicate(format: "type == %@", ItemType.nextAction.rawValue)
+        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates: [predicate1])
 
         if let itemObjects = try? managedContext.fetch(request) {
             tasksSubject.send(itemObjects.map { TaskDTOReduced(itemObject: $0) })

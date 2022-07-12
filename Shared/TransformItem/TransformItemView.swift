@@ -17,12 +17,15 @@ struct TransformItemView: View {
                 }
             VStack {
                 Spacer()
-                currentItemView
+                itemView(item: viewModel.previousItem)
+                    .frame(height: 80)
                 titleView
                 segmentedPicker
-                newItemView
-                confirmButton
+                itemView(item: viewModel.newItem)
+                    .frame(height: 80)
                 Spacer()
+                confirmButton
+                    .padding(.bottom, 60)
             }
             .padding(.horizontal)
         }
@@ -34,47 +37,23 @@ struct TransformItemView: View {
             .foregroundColor(.black)
     }
 
-    private var currentItemView: some View {
-        HStack {
-            Spacer()
-            VStack {
-                Spacer()
-                Text(viewModel.previousItem?.name ?? "-")
-                Text(viewModel.previousItem?.itemDescriptionShort ?? "-")
-                Text(viewModel.previousItem?.itemDescriptionLong ?? "-")
-                Spacer()
+    @ViewBuilder private func itemView(item: ItemProtocol?) -> some View {
+        if let item = item {
+            switch item.type {
+            case .project:
+                ProjectRowView(project: TransferManager.shared.toProjectDTOReduced(item: item),
+                               tapAction: {})
+            case .task:
+                TaskRowViewBig(task: TransferManager.shared.toTaskDTOReduced(item: item),
+                               switchAction: {})
+            case .note:
+                NoteRowView(note: TransferManager.shared.toNoteDTOReduced(item: item),
+                            tapAction: {})
+            default:
+                Text("tutaj brak widoku").foregroundColor(.white)
             }
-            Spacer()
-        }
-        .frame(height: 80)
-        .background(Color.blue)
-        .cornerRadius(16)
-    }
-
-    private var newItemView: some View {
-        HStack {
-            ProjectRowView(project: <#T##ProjectDTOReduced#>, tapAction: <#T##() -> Void#>)
-            Spacer()
-            VStack {
-                Spacer()
-                Text(viewModel.newItem?.name ?? "-")
-                Text(viewModel.newItem?.itemDescriptionShort ?? "-")
-                Text(viewModel.newItem?.itemDescriptionLong ?? "-")
-                Spacer()
-            }
-            Spacer()
-        }
-        .frame(height: 80)
-        .background(itemColor())
-        .cornerRadius(16)
-
-    }
-
-    private func itemColor() -> Color {
-        switch viewModel.newItem?.type {
-        case .task: return Color.blue
-        case .project: return Color.green
-        default: return Color.gray
+        } else {
+            EmptyView()
         }
     }
 

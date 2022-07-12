@@ -46,8 +46,8 @@ final class TasksListVM: BaseVM {
                 guard let self = self else { return }
 
                 self.allTasks = tasks
-                self.waitingFors = tasks.filter { $0.type == .waitFor }
-                self.nextActionTasks = tasks.filter { $0.type == .nextAction }
+                self.waitingFors = tasks.filter { $0.status == .waitFor }
+                self.nextActionTasks = tasks.filter { $0.status == .nextAction }
                 self.updateListForTab(self.filterTab)
             }
             .store(in: &cancellableBag)

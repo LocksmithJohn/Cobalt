@@ -12,7 +12,21 @@ protocol ItemProtocol {
     var id: UUID { get set }
     var name: String { get set }
     var status: ItemStatus { get set }
+    var type: ItemType { get set }
+
+
+//    func to(type: ItemType) -> ItemProtocol
 }
+
+//extension ItemProtocol {
+//    func to(type: ItemType) -> ItemProtocol {
+//        switch type {
+//        case .project
+//            ProjectDTO(id: <#T##UUID#>, name: <#T##String?#>, itemDesrciption: <#T##String?#>, projectNotes: <#T##String?#>, type: <#T##ItemType#>, status: <#T##ItemStatus#>, relatedItems: <#T##Relations#>, tags: <#T##ItemTags#>)
+//            default
+//        }
+//    }
+//}
 
 struct Item: ItemProtocol, Identifiable {
     var id: UUID

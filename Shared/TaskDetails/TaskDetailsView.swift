@@ -144,9 +144,9 @@ struct TaskDetailsView: View {
         }
     }
     
-    private func typeView(text: String, type: ItemType) -> some View {
+    private func typeView(text: String, status: ItemStatus) -> some View {
         var isSelected: Bool {
-            viewModel.taskType == type
+            viewModel.taskStatus == status
         }
         return HStack {
             SmallCheckBoxView(isChecked: isSelected)
@@ -161,12 +161,12 @@ struct TaskDetailsView: View {
     private var taskTypeView: some View {
         HStack {
             VStack(alignment: .leading) {
-                typeView(text: "Next action", type: .nextAction)
+                typeView(text: "Next action", status: .nextAction)
                     .onTapGesture {
                         viewModel.actionSubject.send(.toggleNextAction)
                         Haptic.impact(.medium)
                     }
-                typeView(text: "Wait for", type: .waitFor)
+                typeView(text: "Wait for", status: .waitFor)
                     .onTapGesture {
                         viewModel.actionSubject.send(.toggleWaitingFor)
                         Haptic.impact(.medium)

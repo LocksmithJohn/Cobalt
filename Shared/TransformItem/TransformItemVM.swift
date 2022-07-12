@@ -13,7 +13,6 @@ final class TransformItemVM: PopoverVM {
     enum Action {
         case onAppear
         case saveItem
-//        case typeSelected(ItemType)
         case backgroundTapped
     }
 
@@ -87,10 +86,6 @@ final class TransformItemVM: PopoverVM {
         }
     }
 
-    private func getProjectTest() -> ProjectDTOReduced {
-        let project = newItem as? ProjectDTOReduced
-    }
-
     private func goToItemDetails(item: Item) {
         GlobalRouter.shared.popOverType.send(nil)
         let routing: (RouterType, ScreenType, Int) = {
@@ -106,14 +101,5 @@ final class TransformItemVM: PopoverVM {
                                          typeTo: routing.1,
                                          routerType: routing.0)
     }
-
-//    private func prepareItem() {
-//        switch (previousItem?.type, newItem?.type) {
-//        case (.note, .task):
-//            newItem?.name = String(previousItem?.name.prefix(10) ?? "") + "..."
-//        default:
-//            break
-//        }
-//    }
 
 }

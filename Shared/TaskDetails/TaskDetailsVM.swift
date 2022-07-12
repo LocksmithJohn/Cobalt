@@ -33,7 +33,7 @@ final class TaskDetailsVM: BaseVM {
     @Published var taskStatus: ItemStatus = .new
     @Published var taskTag: String = ""
     @Published var isDone: Bool = false
-    @Published var taskType: ItemType = .nextAction
+    @Published var taskType: ItemType = .task
     @Published var projects: [ProjectDTOReduced] = []
     @Published var relatedProject: ProjectDTOReduced?
     @Published var isDeleteAlertVisible = false
@@ -229,20 +229,20 @@ final class TaskDetailsVM: BaseVM {
     }
 
     private func toggleWaitingForAction() {
-        if taskType != .waitFor {
-            taskType = .waitFor
+        if taskStatus != .waitFor {
+            taskStatus = .waitFor
         } else {
-            taskType = .task
+            taskStatus = .new
         }
         interactor.editItem(id: id, item: Item(temporaryTask))
         interactor.fetchTask(id: id)
     }
 
     private func toggleNextAction() {
-        if taskType != .nextAction {
-            taskType = .nextAction
+        if taskStatus != .nextAction {
+            taskStatus = .nextAction
         } else {
-            taskType = .task
+            taskStatus = .new
         }
 
         interactor.editItem(id: id, item: Item(temporaryTask))
