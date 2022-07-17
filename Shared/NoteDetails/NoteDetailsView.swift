@@ -14,24 +14,9 @@ struct NoteDetailsView: View {
     var body: some View {
         ZStack {
             VStack {
-                ZStack(alignment: .topLeading) {
-                    TextEditor(text: $viewModel.note)
-                        .font(.system(size: 32))
-                        .padding()
-                        .focused($focus, equals: .first)
-                    Text(viewModel.note)
-                        .font(.system(size: 32))
-                        .opacity(0)
-                        .padding(.all, 8)
-                    if viewModel.note.isEmpty {
-                        Text("What's on your mind? ...")
-                            .font(.system(size: 32))
-                            .foregroundColor(.gray)
-                            .padding()
-                            .offset(x: 12, y: 8)
-                    }
-                }
-
+                Spacer()
+                    .frame(height: 30)
+                inputText
                 Spacer()
                 bottomButtons
                     .padding()
@@ -55,6 +40,26 @@ struct NoteDetailsView: View {
     init(viewModel: NoteDetailsVM) {
         self.viewModel = viewModel
         UITextView.appearance().backgroundColor = .clear
+    }
+
+    private var inputText: some View {
+        ZStack(alignment: .topLeading) {
+            TextEditor(text: $viewModel.note)
+                .font(.system(size: 32))
+                .padding()
+                .focused($focus, equals: .first)
+            Text(viewModel.note)
+                .font(.system(size: 32))
+                .opacity(0)
+                .padding(.all, 8)
+            if viewModel.note.isEmpty {
+                Text("What's on your mind? ...")
+                    .font(.system(size: 32))
+                    .foregroundColor(.gray)
+                    .padding()
+                    .offset(x: 12, y: 8)
+            }
+        }
     }
 
     private var bottomButtons: some View {

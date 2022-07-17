@@ -44,16 +44,8 @@ final class TaskDetailsVM: BaseVM {
     private let appstate: TaskDetailsAppState
     private let interactor: TaskDetailsInteractor
     private let id: UUID
-    private var parentProjectID: UUID? {
-        didSet {
-            print("filter parentProjectID: \(parentProjectID)")
-        }
-    }
-    private var relations = Relations() {
-        didSet {
-            print("filter relations: \(relations)")
-        }
-    }
+    private var parentProjectID: UUID?
+    private var relations = Relations()
     private var tags = ItemTags()
 
     init(id: UUID?,
@@ -229,20 +221,20 @@ final class TaskDetailsVM: BaseVM {
     }
 
     private func toggleWaitingForAction() {
-        if taskStatus != .waitFor {
-            taskStatus = .waitFor
+        if taskType != .waitFor {
+            taskType = .waitFor
         } else {
-            taskStatus = .new
+            taskType = .task
         }
         interactor.editItem(id: id, item: Item(temporaryTask))
         interactor.fetchTask(id: id)
     }
 
     private func toggleNextAction() {
-        if taskStatus != .nextAction {
-            taskStatus = .nextAction
+        if taskType != .nextAction {
+            taskType = .nextAction
         } else {
-            taskStatus = .new
+            taskType = .task
         }
 
         interactor.editItem(id: id, item: Item(temporaryTask))

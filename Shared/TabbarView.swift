@@ -29,8 +29,13 @@ struct TabbarView: View {
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
                         .ignoresSafeArea()
-                default:
+                case 2:
                     ProjectsNavigationController()
+                        .environmentObject(viewModel.dependency)
+                        .background(Color("background"))
+                        .ignoresSafeArea()
+                default:
+                    MoreNavigationController()
                         .environmentObject(viewModel.dependency)
                         .background(Color("background"))
                         .ignoresSafeArea()
@@ -64,8 +69,13 @@ struct TabbarView: View {
                         text: "Projects",
                         tag: 2,
                         color: .green)
+                Spacer()
+                tabItem(iconName: "list.bullet",
+                        text: "More",
+                        tag: 3,
+                        color: .green)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 8)
             .padding(.bottom, 16)
         }
         .background(Color("background").ignoresSafeArea())
@@ -75,7 +85,7 @@ struct TabbarView: View {
                          text: String,
                          tag: Int,
                          color: Color) -> some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
             Spacer()
             Image(systemName: iconName)
                 .foregroundColor(viewModel.tabSelected == tag ? color : .gray)

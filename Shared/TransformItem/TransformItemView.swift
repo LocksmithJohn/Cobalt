@@ -19,8 +19,10 @@ struct TransformItemView: View {
                 Spacer()
                 itemView(item: viewModel.previousItem)
                     .frame(height: 80)
+                arrow.padding()
                 titleView
                 segmentedPicker
+                arrow.padding()
                 itemView(item: viewModel.newItem)
                     .frame(height: 80)
                 Spacer()
@@ -43,7 +45,7 @@ struct TransformItemView: View {
             case .project:
                 ProjectRowView(project: TransferManager.shared.toProjectDTOReduced(item: item),
                                tapAction: {})
-            case .task:
+            case .task, .nextAction, .waitFor:
                 TaskRowViewBig(task: TransferManager.shared.toTaskDTOReduced(item: item),
                                switchAction: {})
             case .note:
@@ -55,6 +57,12 @@ struct TransformItemView: View {
         } else {
             EmptyView()
         }
+    }
+
+    private var arrow: some View {
+        Image(systemName: "arrow.down")
+            .font(.system(size: 50))
+            .foregroundColor(.gray)
     }
 
     private var segmentedPicker: some View {

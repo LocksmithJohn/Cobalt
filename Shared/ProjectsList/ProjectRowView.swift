@@ -41,7 +41,7 @@ struct ProjectRowView: View {
             }
         }
         .padding(10)
-        .background(Color("object"))
+        .background(Color.green.opacity(0.2))
         .cornerRadius(10)
         .onTapGesture { tapAction() }
     }

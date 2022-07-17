@@ -15,7 +15,7 @@ final class GlobalRouter {
     var tabbarVisible = MYCurrentValueSubject<Bool>(true)
     var settingsVisible = MYCurrentValueSubject<Bool>(false)
     var popOverType = MYPassthroughSubject<PopoverType?>()
-    let tabSubject = MYPassthroughSubject<Int>()
+    let tabSubject = MYPassthroughSubject<TabType>()
 
     private var cancellableBag = Set<AnyCancellable>()
     private (set) var routers: [Router] = []
@@ -26,23 +26,22 @@ final class GlobalRouter {
         self.routers = routers
     }
 
-    func routeWithTab(tab: Int,
-                      typeFrom: ScreenType?,
-                      typeTo: ScreenType,
-                      routerType: RouterType) {
-        print("router1 tFrom: \(typeFrom?.title ?? "-"), tTo: \(typeTo.title), tab: \(tab), router: \(routerType.rawValue)")
+    func routeWithTab(screenFrom: ScreenType?,
+                      screenTo: ScreenType,
+                      tabToSet: TabType,
+                      destinationRouter: RouterType,
+                      routerToClear: RouterType? = nil) {
         guard let router = (GlobalRouter.shared.routers
-                                .first { $0.type == routerType })
+                                .first { $0.type == destinationRouter })
         else { return }
 
-        tabSubject
-            .first()
-            .sink { _ in
-                print("router2 tFrom: \(typeFrom?.title ?? "-"), tTo: \(typeTo.title), tab: \(tab), router: \(routerType.rawValue)")
-                router.route(from: typeFrom, to: typeTo)
-            }
-            .store(in: &cancellableBag)
-        tabSubject.send(tab)
+        tabSubject.send(tabToSet)
+        router.route(from: screenFrom, to: screenTo)
+
+        if let routerToReset = (GlobalRouter.shared.routers
+            .first { $0.type == routerToClear }) {
+            routerToReset.backToHome()
+        }
     }
 
 }

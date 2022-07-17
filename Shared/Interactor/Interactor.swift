@@ -41,9 +41,9 @@ class Interactor {
        coreDataManager.actionSubject.send(.editItem(id: id, item: item))
     }
 
-    func toggleDone(id: UUID, status: ItemStatus) { // tutaj potrzebne?
+    func toggleDone(id: UUID, status: ItemStatus) {
         let newState: ItemStatus = status == .new ? .done : .new
-        coreDataManager.editItem(id: id, status: newState) // tutaj powinny byc actiony
+        coreDataManager.editItem(id: id, status: newState)
     }
 
     func updateType(id: UUID, type: ItemType) {

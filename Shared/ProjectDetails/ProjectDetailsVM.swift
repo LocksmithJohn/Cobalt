@@ -14,12 +14,14 @@ final class ProjectDetailsVM: BaseVM {
     enum Action {
         case onAppear
         case back
+        case cancel
         case saveProject
         case deleteProject
         case toggleDoneProject
         case showDeleteAlert
         case showAddingTask
         case showAddingItem
+        case showTransform
         case taskSelected(id: UUID)
         case toggleDoneTask(task: TaskDTOReduced)
         case changeStatus(status: ItemStatus)
@@ -39,18 +41,18 @@ final class ProjectDetailsVM: BaseVM {
     @Published var isDone: Bool = false
     @Published var isDeleteAlertVisible = false
 
+    let isEditing: Bool
     let actionSubject = PassthroughSubject<Action, Never>()
 
     private let appstate: ProjectDetailsAppState
     private let interactor: ProjectDetailsInteractor
     private let id: UUID
-    private let isCreating: Bool
     private var tags = ItemTags()
 
     init(id: UUID?,
          interactor: ProjectDetailsInteractor,
          appstate: ProjectDetailsAppState) {
-        self.isCreating = id == nil
+        self.isEditing = id != nil
         self.interactor = interactor
         self.appstate = appstate
         self.id = id ?? UUID()
@@ -75,11 +77,8 @@ final class ProjectDetailsVM: BaseVM {
         appstate.relatedItemsSubject
             .compactMap { $0 }
             .sink { [weak self] tasks in
-                tasks.forEach { task in
-                    print("filter task: \(task.name)")
-                }
-                self?.nextActions = tasks.filter { $0.status == .nextAction && $0.status != .done }
-                self?.waitFors = tasks.filter { $0.status == .waitFor && $0.status != .done }
+                self?.nextActions = tasks.filter { $0.type == .nextAction && $0.status != .done }
+                self?.waitFors = tasks.filter { $0.type == .waitFor && $0.status != .done }
                 self?.subtasks = tasks.filter { $0.type == .task && $0.status != .done }
                 self?.doneTasks = tasks.filter { $0.status == .done }
             }
@@ -99,6 +98,7 @@ final class ProjectDetailsVM: BaseVM {
         case .onAppear: onAppearAction()
         case .saveProject: saveProjectAction()
         case .back: backAction()
+        case .cancel: cancelAction()
         case .deleteProject: deleteProjectAction()
         case .showAddingTask: showAddingTaskAction()
         case .toggleDoneProject: toggleDoneProjectAction()
@@ -107,8 +107,8 @@ final class ProjectDetailsVM: BaseVM {
         case .showAddingItem: showAddingItemAction()
         case let .changeStatus(status): changeStatusAction(status: status)
         case .showDeleteAlert: isDeleteAlertVisible = true
-        case let .changeTag(tag):
-            changeTagAction(tag: tag)
+        case let .changeTag(tag): changeTagAction(tag: tag)
+        case .showTransform: GlobalRouter.shared.popOverType.send(.itemTransform(id: id))
         }
     }
 
@@ -135,7 +135,7 @@ final class ProjectDetailsVM: BaseVM {
 
     private func toggleDoneProjectAction() {
         Haptic.impact(.medium)
-        interactor.toggleDone(id: newProject.id, status: newProject.status)
+        interactor.toggleDone(id: temporaryProject.id, status: temporaryProject.status)
         interactor.fetchProject(id: id)
     }
 
@@ -155,24 +155,38 @@ final class ProjectDetailsVM: BaseVM {
     }
 
     private func saveProjectAction() {
-        if isCreating {
-            interactor.saveProject(newProject)
-        } else {
-            interactor.editProject(id: id, newProject)
+        guard !projectName.isEmpty else {
+            backAction()
+            return
         }
-        actionSubject.send(.back)
+
+        interactor.editProject(id: id, temporaryProject)
+        backAction()
     }
 
     private func onAppearAction() {
-        interactor.fetchProject(id: id)
+        if !isEditing {
+            interactor.saveProject(temporaryProject)
+        }
+
+        if isEditing {
+            interactor.fetchProject(id: id)
+        }
+
         interactor.fetchRelatedItems(id: id)
+    }
+
+    private func cancelAction() {
+        interactor.deleteProject(id: id)
+        interactor.route(from: screenType, to: .projects)
+        interactor.fetchProjects()
     }
 
     private func changeTagAction(tag: String) {
 //        interactor.updateStatus(id: <#T##UUID#>, status: <#T##ItemStatus#>)
     }
 
-    private var newProject: ProjectDTO {
+    private var temporaryProject: ProjectDTO {
         ProjectDTO(id: id,
                    name: projectName,
                    itemDesrciption: projectAC,

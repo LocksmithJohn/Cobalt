@@ -161,6 +161,11 @@
 		CECFD1CE27BFE9B900CCDBC2 /* NoteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */; };
 		CECFD1D027BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */; };
 		CECFD1D127BFE9C700CCDBC2 /* NoteDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */; };
+		CED4367228822DAD0059CB28 /* RouterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4367128822DAD0059CB28 /* RouterType.swift */; };
+		CED4367328822DAD0059CB28 /* RouterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4367128822DAD0059CB28 /* RouterType.swift */; };
+		CED4367528822DC60059CB28 /* TabType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4367428822DC60059CB28 /* TabType.swift */; };
+		CED43677288238550059CB28 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED43676288238550059CB28 /* Debug.swift */; };
+		CED43678288238550059CB28 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED43676288238550059CB28 /* Debug.swift */; };
 		CEFC98A327FF0DE400FA8836 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC98A227FF0DE400FA8836 /* TagView.swift */; };
 		CEFC98A727FF150B00FA8836 /* ParentProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC98A627FF150B00FA8836 /* ParentProjectView.swift */; };
 /* End PBXBuildFile section */
@@ -266,6 +271,9 @@
 		CECFD1C927BFDFA300CCDBC2 /* Interactor+Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Interactor+Notes.swift"; sourceTree = "<group>"; };
 		CECFD1CC27BFE9B900CCDBC2 /* NoteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsView.swift; sourceTree = "<group>"; };
 		CECFD1CF27BFE9C700CCDBC2 /* NoteDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailsVM.swift; sourceTree = "<group>"; };
+		CED4367128822DAD0059CB28 /* RouterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterType.swift; sourceTree = "<group>"; };
+		CED4367428822DC60059CB28 /* TabType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabType.swift; sourceTree = "<group>"; };
+		CED43676288238550059CB28 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		CEFC98A227FF0DE400FA8836 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		CEFC98A627FF150B00FA8836 /* ParentProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentProjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -309,6 +317,9 @@
 				CE338A9D27B7A4E5005289D1 /* ContentView.swift */,
 				CE5AC23C27DD32EC009C55E8 /* ContentVM.swift */,
 				CE338ABA27B7A5A7005289D1 /* Router.swift */,
+				CED4367128822DAD0059CB28 /* RouterType.swift */,
+				CED43676288238550059CB28 /* Debug.swift */,
+				CED4367428822DC60059CB28 /* TabType.swift */,
 				CE338AE727B7B773005289D1 /* StackAction.swift */,
 				CEC7905027F984760031CF98 /* SettingRowView.swift */,
 				CE723FAB27C99E04003F6DD8 /* StatusView.swift */,
@@ -690,6 +701,7 @@
 				CE338ABE27B7A5AE005289D1 /* Interactor.swift in Sources */,
 				CE67A25F27D5339C00E9CFF2 /* MoreView.swift in Sources */,
 				CE61F6AB27B7DDE000A734EE /* ItemObject+CoreDataClass.swift in Sources */,
+				CED43677288238550059CB28 /* Debug.swift in Sources */,
 				CE447CBE27C07510005B0441 /* TransformItemView.swift in Sources */,
 				CE447CBB27C071D0005B0441 /* CoreDataManager+Editing.swift in Sources */,
 				CE447CC127C0752A005B0441 /* TransformItemVM.swift in Sources */,
@@ -707,6 +719,7 @@
 				CECFD1C727BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE723FAC27C99E04003F6DD8 /* StatusView.swift in Sources */,
 				CE5AC24627DDD9CD009C55E8 /* Interactor+More.swift in Sources */,
+				CED4367228822DAD0059CB28 /* RouterType.swift in Sources */,
 				CEC7904927F7A46C0031CF98 /* ExpandingTextView.swift in Sources */,
 				CE9043EE27BE8A8900AADC63 /* TabbarVM.swift in Sources */,
 				CE338AAC27B7A4E6005289D1 /* CobaltAppApp.swift in Sources */,
@@ -735,6 +748,7 @@
 				CEA5FB0527C2E8020011B373 /* GlobalRouter.swift in Sources */,
 				CE338ADC27B7A99D005289D1 /* ProjectsNavigationController.swift in Sources */,
 				CE5AC24827DDFEF6009C55E8 /* SearchVM.swift in Sources */,
+				CED4367528822DC60059CB28 /* TabType.swift in Sources */,
 				CE338AE227B7A9FC005289D1 /* StackScreenViewController.swift in Sources */,
 				CE0838CC27FE548C0043BDC5 /* ItemTags.swift in Sources */,
 			);
@@ -744,6 +758,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CED43678288238550059CB28 /* Debug.swift in Sources */,
 				CECC279C27F4F499000E4BCC /* CustomButtonStyle.swift in Sources */,
 				CE338AAF27B7A4E6005289D1 /* ContentView.swift in Sources */,
 				CECFD1C527BFDF9500CCDBC2 /* Interactor+Tasks.swift in Sources */,
@@ -785,6 +800,7 @@
 				CECFD1C827BFDF9C00CCDBC2 /* Interactor+Projects.swift in Sources */,
 				CE338AC227B7A5B7005289D1 /* TasksListView.swift in Sources */,
 				CECC279F27F4F55A000E4BCC /* FocusableField.swift in Sources */,
+				CED4367328822DAD0059CB28 /* RouterType.swift in Sources */,
 				CE447CBF27C07510005B0441 /* TransformItemView.swift in Sources */,
 				CECFD1B927BFD3B800CCDBC2 /* NoteDTOReduced.swift in Sources */,
 				CECFD1B627BFD3AD00CCDBC2 /* NoteDTO.swift in Sources */,
@@ -932,7 +948,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -962,7 +978,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

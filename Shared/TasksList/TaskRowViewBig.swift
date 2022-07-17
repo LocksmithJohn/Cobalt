@@ -40,6 +40,9 @@ struct TaskRowViewBig: View {
             }
             .frame(minHeight: 40)
         }
+        .padding(10)
+        .background(Color.blue.opacity(0.2))
+        .cornerRadius(10)
     }
 
     private func checkCircle(_ isChecked: Bool) -> some View {

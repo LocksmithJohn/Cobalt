@@ -28,7 +28,7 @@ final class TabbarVM: ObservableObject {
     private func bindTabsRouting() {
         GlobalRouter.shared.tabSubject
             .sink(receiveValue: { [weak self] tab in
-                self?.tabSelected = tab
+                self?.tabSelected = tab.rawValue
             })
             .store(in: &cancellableBag)
     }

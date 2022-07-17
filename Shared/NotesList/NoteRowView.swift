@@ -19,7 +19,7 @@ struct NoteRowView: View {
                     .padding(.vertical, 10)
             }
             .frame(maxHeight: 80)
-            .background(Color("object"))
+            .background(Color.yellow.opacity(0.2))
             .cornerRadius(8)
             .onTapGesture {
                 tapAction()

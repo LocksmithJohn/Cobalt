@@ -172,18 +172,22 @@ struct ProjectDetailsView: View {
     }
 
     private var bottomButtons: some View {
-        VStack {
-            HStack {
+        HStack {
+            if !viewModel.isEditing {
+                Button { viewModel.actionSubject.send(.cancel) } label:
+                { Text("Cancel").foregroundColor(.white) }
+                .buttonStyle(CustomButtonStyle(color: Color("object")))
+            } else {
                 Button { viewModel.actionSubject.send(.showDeleteAlert) } label:
                 { Text("Delete").foregroundColor(.white) }
                 .buttonStyle(CustomButtonStyle(color: Color("object")))
-                Button { viewModel.actionSubject.send(.saveProject) } label:
-                { Text("Save").foregroundColor(.green) }
-                .buttonStyle(CustomButtonStyle(color: Color("object")))
+                Button { viewModel.actionSubject.send(.showTransform) } label:
+                { Text("Change to").foregroundColor(.white) }
+                .buttonStyle(CustomButtonStyle(color: .yellow.opacity(0.4)))
             }
-            .padding(8)
-            .cornerRadius(8)
-            .background(Color("background"))
+            Button { viewModel.actionSubject.send(.saveProject) } label:
+            { Text("Save").foregroundColor(.white) }
+            .buttonStyle(CustomButtonStyle(color: .blue.opacity(0.4)))
         }
     }
 }

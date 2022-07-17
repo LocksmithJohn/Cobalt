@@ -22,6 +22,17 @@ final class TransformItemVM: PopoverVM {
 
     let actionSubject = PassthroughSubject<Action, Never>()
 
+    private var previousRouterType: RouterType {
+        switch previousItem?.type {
+        case .task: return .tasks
+        case .project: return .projects
+        case .note: return .notes
+        default:
+            Debug.print(.notHandled, 675)
+            return .more
+        }
+    }
+
     private let id: UUID
     private let appstate: AppStateProtocol
     private var interactor: InteractorProtocol
@@ -38,6 +49,14 @@ final class TransformItemVM: PopoverVM {
         bindAppState()
     }
 
+    private func setInitialNewTypes() {
+        switch previousItem?.type {
+        case .note, .project: selectedNewItemType = 1
+        case .task, .waitFor, .nextAction: selectedNewItemType = 2
+        default: selectedNewItemType = 1
+        }
+    }
+
     private func bindAppState() {
         appstate.currentlyManagedItemSubject
             .sink { [weak self] item in
@@ -48,6 +67,7 @@ final class TransformItemVM: PopoverVM {
             .first()
             .sink { [weak self] item in
                 self?.previousItem = item
+                self?.setInitialNewTypes()
             }
             .store(in: &cancellableBag)
     }
@@ -88,18 +108,23 @@ final class TransformItemVM: PopoverVM {
 
     private func goToItemDetails(item: Item) {
         GlobalRouter.shared.popOverType.send(nil)
-        let routing: (RouterType, ScreenType, Int) = {
+        let routing: (destinationRouter: RouterType,
+                      screenType: ScreenType,
+                      tabToSet: TabType) = {
             switch item.type {
             case .project:
-                return (.projects, .projectDetails(id: item.id), 2)
+                return (.projects, .projectDetails(id: item.id), .projects)
+            case .task:
+                return (.tasks, .taskDetails(id: item.id, projectID: nil), .tasks)
             default:
-                return (.tasks, .taskDetails(id: item.id, projectID: nil), 1)
+                return (.notes, .noteDetails(id: item.id), .notes)
             }
         }()
-        GlobalRouter.shared.routeWithTab(tab: routing.2,
-                                         typeFrom: .transformView,
-                                         typeTo: routing.1,
-                                         routerType: routing.0)
-    }
+        GlobalRouter.shared.routeWithTab(screenFrom: .transformView,
+                                         screenTo: routing.screenType,
+                                         tabToSet: routing.tabToSet,
+                                         destinationRouter: routing.destinationRouter,
+                                         routerToClear: previousRouterType)
 
+    }
 }

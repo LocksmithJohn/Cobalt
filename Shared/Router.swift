@@ -8,27 +8,6 @@
 import Foundation
 import SwiftUI
 
-enum RouterType: String {
-    case notes
-    case tasks
-    case projects
-    case more
-
-    var initialScreen: ScreenType {
-        switch self {
-        case .notes:
-            return .notes
-        case .tasks:
-            return .tasks
-        case .projects:
-            return .projects
-        case .more:
-            return .more
-        }
-    }
-}
-
-
 final class Router: ObservableObject {
 
     @Published private (set) var screens: [Screen] = [] {
@@ -53,10 +32,10 @@ final class Router: ObservableObject {
         case .set(let types):
             screens.removeAll()
             addScreens(types)
-        case .push(let type):
+        case .pushIfNotExists(let type):
             guard !exists(type) else { return }
             addScreen(type)
-        case .pushExisting(let type):
+        case .clearAndPush(let type):
             screens.removeAll { type == $0.type }
             addScreen(type)
         case .present(let type):
@@ -64,10 +43,16 @@ final class Router: ObservableObject {
             screen.isModal = true
             screens.append(screen)
         case .dismiss:
-            screens.removeLast()
+            removeLastModal()
+        case .dismissAll:
+            screens.removeAll(where: { $0.isModal })
         case .pop:
             guard !screens.isEmpty else { return }
             screens.removeLast()
+        case .backToHome:
+            if let homeScreen = screens.first {
+                screens = [homeScreen]
+            }
         }
     }
 
@@ -81,12 +66,18 @@ final class Router: ObservableObject {
         screens.append(Screen(type: type))
     }
 
-    private func removeScreen(_ type: ScreenType) {
+    private func removeLastModal() {
+        if let lastModalIndex = screens.lastIndex(where: { $0.isModal }) {
+            screens.remove(at: lastModalIndex)
+        }
+    }
+
+    private func removeScreens(_ type: ScreenType) {
         screens.removeAll { $0.type == type }
     }
 
     private func exists(_ type: ScreenType) -> Bool {
-        screens.contains(where: { $0.type == type})
+        screens.contains(where: { $0.type == type })
     }
 
     private func printStactInfo() {
@@ -99,6 +90,10 @@ final class Router: ObservableObject {
 
     func pop() {
         send(.pop)
+    }
+
+    func backToHome() {
+        send(.backToHome)
     }
 
     func route(from typeFrom: ScreenType?, to typeTo: ScreenType) {
@@ -115,7 +110,7 @@ final class Router: ObservableObject {
                 if id == nil {
                     send(.present(.taskDetails(id: nil, projectID: nil)))
                 } else {
-                    send(.push(.taskDetails(id: id, projectID: nil)))
+                    send(.pushIfNotExists(.taskDetails(id: id, projectID: nil)))
                 }
             }
 
@@ -140,7 +135,7 @@ final class Router: ObservableObject {
                 if id == nil {
                     send(.present(.projectDetails(id: nil)))
                 } else {
-                    send(.push(.projectDetails(id: id)))
+                    send(.pushIfNotExists(.projectDetails(id: id)))
                 }
             }
 
@@ -169,7 +164,7 @@ final class Router: ObservableObject {
                 if id == nil {
                     send(.present(.noteDetails(id: nil)))
                 } else {
-                    send(.push(.noteDetails(id: id)))
+                    send(.pushIfNotExists(.noteDetails(id: id)))
                 }
             }
 

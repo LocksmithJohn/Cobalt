@@ -14,7 +14,9 @@ struct TasksListView: View {
             ScrollView {
                 VStack(spacing: 8) {
                     activeTasksList
+                        .padding(.horizontal, 16)
                     doneTasksList
+                        .padding(.horizontal, 20)
                 }
                 .padding(.top, 90)
             }
@@ -38,7 +40,7 @@ struct TasksListView: View {
     }
 
     private var segmentedPicker: some View {
-        Picker("What is your favorite color?", selection: $viewModel.filterTab) {
+        Picker("", selection: $viewModel.filterTab) {
             Text("Waiting for").tag(0)
             Text("Actions").tag(1)
             Text("All").tag(2)
@@ -55,7 +57,6 @@ struct TasksListView: View {
                 })
                     .contentShape(Rectangle())
                     .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
-                    .padding(.leading, 28)
             }
         }
     }
@@ -64,7 +65,6 @@ struct TasksListView: View {
         VStack(spacing: 8) {
             if !viewModel.allDoneTasks.isEmpty {
                 doneButtonRow
-                    .padding(.leading, 28)
             }
             if viewModel.doneVisible {
                 ForEach(viewModel.allDoneTasks.reversed()) { task in
@@ -74,7 +74,6 @@ struct TasksListView: View {
                     })
                         .contentShape(Rectangle())
                         .onTapGesture { viewModel.actionSubject.send(.goToTask(id: task.id)) }
-                        .padding(.leading, 28)
                 }
             }
         }
