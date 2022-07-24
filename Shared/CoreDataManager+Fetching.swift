@@ -27,6 +27,22 @@ extension CoreDataManager { // tutaj te rozszerzenia powinny byc prywatne
         }
     }
 
+    func fetchItemsFiltered(phrase: String) {
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+
+        let predicate1 = NSPredicate(format: "name CONTAINS[c] %@", phrase)
+        let predicate2 = NSPredicate(format: "areas CONTAINS[c] %@", phrase)
+        let predicate3 = NSPredicate(format: "itemDescriptionLong CONTAINS[c] %@", phrase)
+        let predicate4 = NSPredicate(format: "itemDescriptionShort CONTAINS[c] %@", phrase)
+
+        request.predicate = NSCompoundPredicate(orPredicateWithSubpredicates:
+                                                    [predicate1, predicate2, predicate3, predicate4])
+
+        if let itemObjects = try? managedContext.fetch(request) {
+            itemsFilteredSubject.send(itemObjects.map { ItemReduced(itemObject: $0) })
+        }
+    }
+
     func fetchTask(id: UUID) {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id.uuidString)
@@ -80,6 +96,35 @@ extension CoreDataManager { // tutaj te rozszerzenia powinny byc prywatne
 
         if let itemObjects = try? managedContext.fetch(request) {
             notesSubject.send(itemObjects.map { NoteDTOReduced(itemObject: $0) })
+        }
+    }
+
+    func fetchAreasFor(id: UUID) { // tutaj sciagan obszary dla konkretnego itema
+        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+        request.predicate = NSPredicate(format: "areas CONTAINS %@", id.uuidString)
+
+        if let itemObjects = try? managedContext.fetch(request) {
+            //            areasSubject.send(itemObjects.map { FocusAreas( })
+            relatedItemsSubject.send(itemObjects.map { Item(itemObject: $0) })
+        }
+    }
+
+//    func fetchItem(id: UUID) {
+//        let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
+//        request.predicate = NSPredicate(format: "id == %@", id.uuidString)
+//
+//        if let itemObject = try? managedContext.fetch(request).first {
+//            itemSubject.send(Item(itemObject: itemObject))
+//        }
+//    }
+
+
+    func fetchMyAreas() {
+        let request: NSFetchRequest<AreasObject> = AreasObject.fetchRequest()
+
+        if let areasObject = try? managedContext.fetch(request).first {
+            print("filter 2")
+            areasSubject.send(FocusAreas(areasObject: areasObject) )
         }
     }
 

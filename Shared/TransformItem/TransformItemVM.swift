@@ -49,6 +49,8 @@ final class TransformItemVM: PopoverVM {
         bindAppState()
     }
 
+    //MARK: - Private methods
+
     private func setInitialNewTypes() {
         switch previousItem?.type {
         case .note, .project: selectedNewItemType = 1

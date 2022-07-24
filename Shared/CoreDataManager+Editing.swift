@@ -20,15 +20,22 @@ extension CoreDataManager {
             itemObject.id = id
             itemObject.state = newItem.status.rawValue
             itemObject.type = newItem.type.rawValue
+            itemObject.areas = newItem.areas.textData()
+            print("filter areas 2: \(itemObject.areas)")
             itemObject.relatedItemsData = newItem.relatedItems.textData()
             saveContext()
         }
     }
 
+    func editAreas(id: UUID, areas: String) {
+        editItem(id: id, areas: areas)
+    }
+
     func editItem(id: UUID,
                   status: ItemStatus? = nil,
                   type: ItemType? = nil,
-                  tags: String? = nil) {
+                  tags: String? = nil,
+                  areas: String? = nil) {
         let request: NSFetchRequest<ItemObject> = ItemObject.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", id.uuidString)
 
@@ -43,6 +50,35 @@ extension CoreDataManager {
             if let tags = tags {
                 itemObject.tags = tags
             }
+            if let areas = areas {
+                itemObject.areas = areas
+            }
+            saveContext()
+        }
+    }
+
+    func deleteArea(name: String) {
+        var focusAreas = FocusAreas()
+        let request: NSFetchRequest<AreasObject> = AreasObject.fetchRequest()
+
+        if let areasObject = try? managedContext.fetch(request).first {
+            focusAreas = FocusAreas(areasObject: areasObject)
+            focusAreas.deleteArea(areaName: name)
+
+            areasObject.areas = focusAreas.textData()
+            saveContext()
+        }
+    }
+
+    func addArea(name: String) {
+        var focusAreas = FocusAreas()
+        let request: NSFetchRequest<AreasObject> = AreasObject.fetchRequest()
+
+        if let areasObject = try? managedContext.fetch(request).first {
+            focusAreas = FocusAreas(areasObject: areasObject)
+            focusAreas.addArea(area: name)
+
+            areasObject.areas = focusAreas.textData()
             saveContext()
         }
     }

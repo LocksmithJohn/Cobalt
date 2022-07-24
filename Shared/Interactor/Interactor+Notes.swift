@@ -39,4 +39,5 @@ protocol NoteDetailsInteractor: InteractorProtocol {
     func deleteNote(id: UUID)
     func saveNote(_ note: NoteDTO)
     func editNote(id: UUID, _ note: NoteDTO)
+    func fetchAreas()
 }

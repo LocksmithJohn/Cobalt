@@ -19,6 +19,7 @@ protocol InteractorProtocol {
     func updateType(id: UUID, type: ItemType)
     func updateStatus(id: UUID, status: ItemStatus)
     func updateTag(tag: String)
+    func editAreasInItem(id: UUID, focusAreas: FocusAreas)
     func deleteAll()
 }
 
@@ -38,6 +39,7 @@ class Interactor {
     }
 
     func editItem(id: UUID, item: Item) {
+        print("filter areas 1 \(item.areas)")
        coreDataManager.actionSubject.send(.editItem(id: id, item: item))
     }
 
@@ -65,6 +67,11 @@ class Interactor {
     func deleteAll() {
         coreDataManager.deleteAllTasks()
     }
+    
+    func editAreasInItem(id: UUID, focusAreas: FocusAreas) {
+        coreDataManager.editAreas(id: id, areas: focusAreas.textData())
+    }
+
 }
 
 

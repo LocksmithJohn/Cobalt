@@ -18,6 +18,10 @@ extension AppState: NotesListAppState,
         coreDataManager.noteSubject
     }
 
+    var areasSubjectSubject: MYPassthroughSubject<FocusAreas> {
+        coreDataManager.areasSubject
+    }
+
 }
 
 protocol NotesListAppState {
@@ -26,4 +30,5 @@ protocol NotesListAppState {
 
 protocol NoteDetailsAppState {
     var noteDetailsSubject: MYPassthroughSubject<NoteDTO?> { get }
+    var areasSubjectSubject: MYPassthroughSubject<FocusAreas> { get }
 }

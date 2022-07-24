@@ -10,56 +10,57 @@ import SwiftUI
 struct ProjectDetailsView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
-            ScrollView {
-                VStack(spacing: 0) {
-                    header
-                        .padding(.horizontal, 17)
-                    capsulesView
-                        .padding(17)
-                        .background(Color("backgroundDark"))
-                    textSectionView(title: "Acceptance criteria:",
-                                    text: $viewModel.projectAC)
+            VStack {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        header
+                            .padding(.horizontal, 17)
+                        capsulesView
+                            .padding(17)
+                            .background(Color("backgroundDark"))
+                        textSectionView(title: "Acceptance criteria:",
+                                        text: $viewModel.projectAC)
                         .padding(.horizontal, 24)
                         .padding(.bottom, 16)
                         .background(Color("backgroundDark"))
-                    Group {
-                    if !viewModel.nextActions.isEmpty {
-                        tasksView(viewModel.nextActions, title: "Next actions:")
-                            .padding(.horizontal, 23)
-                            .padding(.vertical, 16)
-                    }
-                    if !viewModel.waitFors.isEmpty {
-                        tasksView(viewModel.waitFors, title: "Wait fors:")
-                            .padding(.horizontal, 23)
-                            .padding(.vertical, 16)
-                    }
-                    if !viewModel.subtasks.isEmpty {
-                        tasksView(viewModel.subtasks, title: "Tasks:")
-                            .padding(.horizontal, 23)
-                            .padding(.vertical, 16)
-                    }
-                    addTaskButton
-                        .padding(.leading, 24)
-                        .padding(.vertical, 16)
+                        Group {
+                            if !viewModel.nextActions.isEmpty {
+                                tasksView(viewModel.nextActions, title: "Next actions:")
+                                    .padding(.horizontal, 23)
+                                    .padding(.vertical, 16)
+                            }
+                            if !viewModel.waitFors.isEmpty {
+                                tasksView(viewModel.waitFors, title: "Wait fors:")
+                                    .padding(.horizontal, 23)
+                                    .padding(.vertical, 16)
+                            }
+                            if !viewModel.subtasks.isEmpty {
+                                tasksView(viewModel.subtasks, title: "Tasks:")
+                                    .padding(.horizontal, 23)
+                                    .padding(.vertical, 16)
+                            }
+                            addTaskButton
+                                .padding(.leading, 24)
+                                .padding(.vertical, 16)
 
-                    }
-                    textSectionView(title: "Notes:",
-                                    text: $viewModel.projectNotes)
+                        }
+                        textSectionView(title: "Notes:",
+                                        text: $viewModel.projectNotes)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 8)
-                    if !viewModel.doneTasks.isEmpty {
-                        tasksView(viewModel.doneTasks, title: "Done:")
-                            .padding(.horizontal, 24)
-                            .padding(.vertical, 8)
+                        if !viewModel.doneTasks.isEmpty {
+                            tasksView(viewModel.doneTasks, title: "Done:")
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 8)
+                        }
+                        Spacer()
                     }
-                    Spacer()
-                    bottomButtons
-                        .padding()
+                    .padding(.top, 50)
+                    .animation(.easeIn(duration: 0.05))
                 }
-                .padding(.top, 50)
-                .animation(.easeIn(duration: 0.05))
+                bottomButtons
+                    .padding()
             }
-
         }
         .background(Color("background"))
         .onAppear { viewModel.actionSubject.send(.onAppear) }

@@ -33,7 +33,7 @@ final class TaskDetailsVM: BaseVM {
     @Published var taskStatus: ItemStatus = .new
     @Published var taskTag: String = ""
     @Published var isDone: Bool = false
-    @Published var taskType: ItemType = .task
+    @Published var taskType: ItemType = .nextAction
     @Published var projects: [ProjectDTOReduced] = []
     @Published var relatedProject: ProjectDTOReduced?
     @Published var isDeleteAlertVisible = false
@@ -47,6 +47,7 @@ final class TaskDetailsVM: BaseVM {
     private var parentProjectID: UUID?
     private var relations = Relations()
     private var tags = ItemTags()
+    private var areas = FocusAreas()
 
     init(id: UUID?,
          parentProjectID: UUID?,
@@ -270,7 +271,8 @@ final class TaskDetailsVM: BaseVM {
                               type: taskType,
                               status: taskStatus,
                               relatedItems: relations,
-                              tags: tags)
+                              tags: tags,
+                              areas: areas)
         return newTask
     }
 

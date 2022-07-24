@@ -19,4 +19,11 @@ extension CoreDataManager {
         itemObject.relatedItemsData = item.relatedItems.textData()
         saveContext()
     }
+
+    func saveAreas(focusAreas: FocusAreas) {
+        let areasObject = AreasObject(context: managedContext)
+        areasObject.areas = focusAreas.textData()
+        saveContext()
+    }
+
 }

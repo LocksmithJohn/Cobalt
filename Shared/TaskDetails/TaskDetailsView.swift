@@ -14,29 +14,30 @@ struct TaskDetailsView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-
-            ScrollView {
-
-                VStack(spacing: 0) {
-                    ExpandingTextView(text: $viewModel.taskName,
-                                      fontSize: 30,
-                                      charsLimit: 100)
+            VStack {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        ExpandingTextView(text: $viewModel.taskName,
+                                          fontSize: 30,
+                                          charsLimit: 100)
                         .padding(.horizontal)
                         .padding(.top, 10)
-                    taskDetails
-                        .padding(.top, 10)
-                        .padding(.horizontal, 20)
-                        .background(Color("backgroundDark"))
-                    taskTypeView
-                        .padding(.horizontal, 21)
-                        .background(Color("backgroundDark"))
-                        .padding(.bottom, 10)
-                    descriptionView
-                        .padding(.horizontal, 18)
-                    Spacer()
-                    bottomButtons
-                        .padding()
+                        taskDetails
+                            .padding(.top, 10)
+                            .padding(.horizontal, 20)
+                            .background(Color("backgroundDark"))
+                        taskTypeView
+                            .padding(.horizontal, 21)
+                            .background(Color("backgroundDark"))
+                            .padding(.bottom, 10)
+                        descriptionView
+                            .padding(.horizontal, 18)
+                        Spacer()
+
+                    }
                 }
+                bottomButtons
+                    .padding()
             }
         }
         .padding(.top, 50)
@@ -118,9 +119,12 @@ struct TaskDetailsView: View {
                     .foregroundColor(.gray)
                     .offset(x: 5, y: 8)
             }
-            TextEditor(text: $viewModel.taskDescription)
-                .foregroundColor(.white)
-                .frame(height: 200)
+            ExpandingTextView(text: $viewModel.taskDescription,
+                              fontSize: 30,
+                              charsLimit: 500)
+//            TextEditor(text: $viewModel.taskDescription)
+//                .foregroundColor(.white)
+//                .frame(height: 200)
         }
     }
     
@@ -172,6 +176,7 @@ struct TaskDetailsView: View {
                         Haptic.impact(.medium)
                     }
             }
+            .padding()
             Spacer()
         }
     }

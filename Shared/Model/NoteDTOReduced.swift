@@ -21,6 +21,13 @@ struct NoteDTOReduced: ItemProtocol, Identifiable {
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .note
     }
 
+    init(name: String) { // tutaj do poprawy
+        self.id = UUID()
+        self.name = name
+        self.status = .new
+        self.type = .note
+    }
+
     init(item: ItemProtocol) {
         self.id = item.id
         self.name = item.name

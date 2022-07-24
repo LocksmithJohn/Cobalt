@@ -13,22 +13,10 @@ protocol ItemProtocol {
     var name: String { get set }
     var status: ItemStatus { get set }
     var type: ItemType { get set }
-
-
-//    func to(type: ItemType) -> ItemProtocol
 }
 
-//extension ItemProtocol {
-//    func to(type: ItemType) -> ItemProtocol {
-//        switch type {
-//        case .project
-//            ProjectDTO(id: <#T##UUID#>, name: <#T##String?#>, itemDesrciption: <#T##String?#>, projectNotes: <#T##String?#>, type: <#T##ItemType#>, status: <#T##ItemStatus#>, relatedItems: <#T##Relations#>, tags: <#T##ItemTags#>)
-//            default
-//        }
-//    }
-//}
-
 struct Item: ItemProtocol, Identifiable {
+
     var id: UUID
     var name: String
     let itemDescriptionShort: String
@@ -37,6 +25,7 @@ struct Item: ItemProtocol, Identifiable {
     var status: ItemStatus
     var relatedItems: Relations
     var tags: ItemTags
+    var areas: FocusAreas
     
     init(id: UUID,
          name: String,
@@ -45,7 +34,8 @@ struct Item: ItemProtocol, Identifiable {
          type: ItemType,
          status: ItemStatus,
          relatedItems: Relations?,
-         tags: ItemTags?
+         tags: ItemTags?,
+         areas: FocusAreas?
     ) {
         self.id = id
         self.name = name
@@ -55,6 +45,7 @@ struct Item: ItemProtocol, Identifiable {
         self.status = status
         self.relatedItems = relatedItems ?? Relations()
         self.tags = tags ?? ItemTags()
+        self.areas = areas ?? FocusAreas()
     }
 
     init(itemObject: ItemObject) {
@@ -65,7 +56,8 @@ struct Item: ItemProtocol, Identifiable {
                   type: ItemType(rawValue: itemObject.type ?? "") ?? .task,
                   status: ItemStatus(rawValue: itemObject.state ?? "") ?? .new,
                   relatedItems: itemObject.relatedItemsData?.relations(),
-                  tags: itemObject.tags?.tags())
+                  tags: itemObject.tags?.tags(),
+                  areas: itemObject.areas?.areas())
     }
 
     init(_ taskDTO: TaskDTO) {
@@ -77,6 +69,7 @@ struct Item: ItemProtocol, Identifiable {
         self.status = taskDTO.status
         self.relatedItems = taskDTO.relations
         self.tags = taskDTO.tags
+        self.areas = taskDTO.areas
     }
 
     init(_ projectDTO: ProjectDTO) {
@@ -88,6 +81,7 @@ struct Item: ItemProtocol, Identifiable {
         self.status = projectDTO.status
         self.relatedItems = projectDTO.relatedItems
         self.tags = projectDTO.tags
+        self.areas = projectDTO.areas
     }
 
     init(_ noteDTO: NoteDTO) {
@@ -99,6 +93,7 @@ struct Item: ItemProtocol, Identifiable {
         self.status = .new
         self.relatedItems = Relations()
         self.tags = noteDTO.tags ?? ItemTags()
+        self.areas = noteDTO.areas ?? FocusAreas()
     }
 
 }

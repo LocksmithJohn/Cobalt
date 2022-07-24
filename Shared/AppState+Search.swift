@@ -9,12 +9,12 @@ import Foundation
 
 extension AppState: SearchAppState {
 
-    var itemsReducedSubject: MYPassthroughSubject<[ItemReduced]> {
-        coreDataManager.itemsReducedSubject
+    var itemsFilteredSubject: MYPassthroughSubject<[ItemReduced]> {
+        coreDataManager.itemsFilteredSubject
     }
 
 }
 
 protocol SearchAppState {
-    var itemsReducedSubject: MYPassthroughSubject<[ItemReduced]> { get }
+    var itemsFilteredSubject: MYPassthroughSubject<[ItemReduced]> { get }
 }

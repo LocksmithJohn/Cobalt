@@ -17,6 +17,7 @@ struct TaskDTO: ItemProtocol, Identifiable {
     var status: ItemStatus
     var relations: Relations
     var tags: ItemTags
+    var areas: FocusAreas
 
     init(id: UUID,
          name: String,
@@ -24,7 +25,8 @@ struct TaskDTO: ItemProtocol, Identifiable {
          type: ItemType,
          status: ItemStatus,
          relatedItems: Relations,
-         tags: ItemTags) {
+         tags: ItemTags,
+         areas: FocusAreas) {
         self.id = id
         self.name = name
         self.taskDescription = taskDescription
@@ -32,6 +34,7 @@ struct TaskDTO: ItemProtocol, Identifiable {
         self.status = status
         self.relations = relatedItems
         self.tags = tags
+        self.areas = areas
     }
 
     init(itemObject: ItemObject) {
@@ -42,6 +45,7 @@ struct TaskDTO: ItemProtocol, Identifiable {
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
         self.relations = itemObject.relatedItemsData?.relations() ?? Relations()
         self.tags = itemObject.tags?.tags() ?? ItemTags()
+        self.areas = itemObject.areas?.areas() ?? FocusAreas()
     }
 
     init(newID: UUID) {
@@ -52,5 +56,6 @@ struct TaskDTO: ItemProtocol, Identifiable {
         self.status = .new
         self.relations = Relations()
         self.tags = ItemTags()
+        self.areas = FocusAreas()
     }
 }

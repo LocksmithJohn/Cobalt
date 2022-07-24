@@ -11,13 +11,14 @@ final class SearchVM: BaseVM {
 
     enum Action {
         case back
-        case onAppear
+        case searchTriggered(phrase: String)
     }
 
-    @Published var items: [ItemReduced] = [] {
+    @Published var searchText = ""
+    @Published var filteredItems: [ItemReduced] = [] {
         didSet {
             print("filter item ------------------------- - - - - - - - - - -")
-            items.forEach { item in
+            filteredItems.forEach { item in
                 print("filter item: \(item.name)")
             }
         }
@@ -43,20 +44,28 @@ final class SearchVM: BaseVM {
                 self?.handleAction(action: action)
             }
             .store(in: &cancellableBag)
+
+        $searchText
+            .sink { [weak self] phrase in
+                self?.actionSubject.send(.searchTriggered(phrase: phrase))
+            }
+            .store(in: &cancellableBag)
     }
 
     private func handleAction(action: Action) {
         switch action {
-        case .onAppear:
-            interactor.fetchItemsReduced()
+//        case .onAppear:
+//            interactor.fetchItemsReduced()
         case .back:
             interactor.route(from: screenType, to: .more)
+        case .searchTriggered(let phrase):
+            interactor.fetchItemsFiltered(phrase: phrase)
         }
     }
 
     private func bindAppState() {
-        appstate.itemsReducedSubject
-            .assign(to: \.items, on: self)
+        appstate.itemsFilteredSubject
+            .assign(to: \.filteredItems, on: self)
             .store(in: &cancellableBag)
     }
 }

@@ -65,4 +65,8 @@ extension String {
     func tags() -> ItemTags? {
         ItemTags(tags: components(separatedBy: ";"))
     }
+
+    func areas() -> FocusAreas? {
+        FocusAreas(areas: components(separatedBy: ";"))
+    }
 }

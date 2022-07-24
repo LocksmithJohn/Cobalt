@@ -17,6 +17,7 @@ struct NoteDetailsView: View {
                 Spacer()
                     .frame(height: 30)
                 inputText
+                areas
                 Spacer()
                 bottomButtons
                     .padding()
@@ -44,15 +45,15 @@ struct NoteDetailsView: View {
 
     private var inputText: some View {
         ZStack(alignment: .topLeading) {
-            TextEditor(text: $viewModel.note)
+            TextEditor(text: $viewModel.noteValue)
                 .font(.system(size: 32))
                 .padding()
                 .focused($focus, equals: .first)
-            Text(viewModel.note)
+            Text(viewModel.noteValue)
                 .font(.system(size: 32))
                 .opacity(0)
                 .padding(.all, 8)
-            if viewModel.note.isEmpty {
+            if viewModel.noteValue.isEmpty {
                 Text("What's on your mind? ...")
                     .font(.system(size: 32))
                     .foregroundColor(.gray)
@@ -60,6 +61,41 @@ struct NoteDetailsView: View {
                     .offset(x: 12, y: 8)
             }
         }
+    }
+
+    private var areas: some View { // ten widok przeniesc jako generycnzy
+        HStack {
+            VStack(spacing: 6) {
+                HStack {
+                    Text("Focus Area")
+                        .foregroundColor(.white)
+                        .padding(6)
+                        .background(Color.gray.opacity(0.2))
+                        .cornerRadius(8)
+                        .onTapGesture { viewModel.actionSubject.send(.toggleAreasVisibility) }
+                    Spacer()
+                }
+                if viewModel.isAreasViewVisible {
+                    ForEach(viewModel.focusAreasForDisplay, id: \.name) { area in
+                        HStack {
+                            Text(area.name)
+                                .foregroundColor(area.exists ? .white : .gray)
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    viewModel.actionSubject
+                                        .send(.toggleArea(name: area.name))
+                                }
+                                .padding(6)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(8)
+                            Spacer()
+                        }
+                    }
+                }
+            }
+            Spacer()
+        }
+        .padding()
     }
 
     private var bottomButtons: some View {

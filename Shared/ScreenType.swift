@@ -18,6 +18,8 @@ enum ScreenType: Equatable {
     case addItem
     case more
     case search
+    case areas
+    case export
 
     var title: String {
         switch self {

@@ -8,11 +8,11 @@
 import Foundation
 
 extension Interactor: SearchInteractor {
-    func fetchItemsReduced() {
-        coreDataManager.actionSubject.send(.fetchItemsReduced)
+    func fetchItemsFiltered(phrase: String) {
+        coreDataManager.actionSubject.send(.fetchFiltered(phrase: phrase))
     }
 }
 
 protocol SearchInteractor: InteractorProtocol {
-    func fetchItemsReduced()
+    func fetchItemsFiltered(phrase: String)
 }

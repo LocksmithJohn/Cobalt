@@ -27,6 +27,13 @@ struct ProjectDTOReduced: ItemProtocol, Identifiable {
         self.status = item.status
         self.type = item.type
     }
+
+    init(name: String) { // tutaj do poprawy
+        self.id = UUID()
+        self.name = name
+        self.status = .new
+        self.type = .project
+    }
     
     init() {
         self.id = UUID()

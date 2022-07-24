@@ -13,12 +13,12 @@ struct SmallCheckBoxView: View {
 
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle(cornerRadius: 10)
                 .fill(Color("inactive"))
-                .frame(width: 20, height: 20)
-            RoundedRectangle(cornerRadius: 5)
+                .frame(width: 22, height: 22)
+            RoundedRectangle(cornerRadius: 7)
                 .fill(isChecked ? Color.gray : Color("background"))
-                .frame(width: 14, height: 14)
+                .frame(width: 16, height: 16)
         }
     }
 }

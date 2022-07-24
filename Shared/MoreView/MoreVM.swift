@@ -11,6 +11,9 @@ final class MoreVM: BaseVM {
 
     enum Action {
         case showSearch
+        case showAreas
+        case showExport
+
     }
 
     let actionSubject = MYPassthroughSubject<Action>()
@@ -39,6 +42,10 @@ final class MoreVM: BaseVM {
         switch action {
         case .showSearch:
             interactor.route(from: screenType, to: .search)
+        case .showAreas:
+            interactor.route(from: screenType, to: .areas)
+        case .showExport:
+            interactor.route(from: screenType, to: .export)
         }
     }
 }

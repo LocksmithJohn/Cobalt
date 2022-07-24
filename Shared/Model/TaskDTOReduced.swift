@@ -21,6 +21,13 @@ struct TaskDTOReduced: ItemProtocol, Identifiable {
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .task
     }
 
+    init(name: String) { // tutaj do poprawy
+        self.id = UUID()
+        self.name = name
+        self.status = .new
+        self.type = .task
+    }
+
     init(item: ItemProtocol) {
         self.id = item.id
         self.name = item.name

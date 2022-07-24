@@ -9,31 +9,13 @@ import SwiftUI
 
 struct SearchView: View {
 
-    @State private var searchText = ""
-
     var body: some View {
         VStack {
-            HStack {
-                TextField("Search", text: $searchText, prompt: Text("Search..."))
-                    .font(.system(size: 32))
-                    .foregroundColor(.gray)
-                    .padding()
-                Spacer()
-            }
-            ScrollView {
-                VStack {
-                    ForEach(searchResults, id: \.self) { name in
-                        HStack {
-                        Text(name)
-                            Spacer()
-                        }
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 4)
-                    }
-                }
-            }
+            inputText
+                .padding(.top, 30)
+            scrollView
         }
-        .onAppear { viewModel.actionSubject.send(.onAppear) }
+//        .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
             leftImageView: AnyView(Image(systemName: "xmark")),
@@ -41,14 +23,51 @@ struct SearchView: View {
         )
     }
 
-    var searchResults: [String] { // tutaj do view modelu
-        if searchText.isEmpty {
+    private var scrollView: some View {
+        ScrollView {
+            VStack {
+                ForEach(searchResults) { item in
+                    HStack {
+                        itemView(type: item.type, name: item.name)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 4)
+                }
+            }
+        }
+    }
+
+    private var inputText: some View {
+        HStack {
+            TextField("Search", text: $viewModel.searchText, prompt: Text("Search..."))
+                .font(.system(size: 32))
+                .foregroundColor(.gray)
+                .padding()
+            Spacer()
+        }
+    }
+
+    var searchResults: [ItemReduced] { // tutaj do view modelu
+        if viewModel.searchText.isEmpty {
             return []
         } else {
-            return viewModel.items
-                .filter { $0.name.contains(searchText) } // tutaj nie spradza po description
-                .map { String($0.name.prefix(10)) }
+            return viewModel.filteredItems
         }
+    }
+
+    @ViewBuilder private func itemView(type: ItemType, name: String) -> some View {
+            switch type {
+            case .project:
+                ProjectRowView(project: ProjectDTOReduced(name: name), tapAction: {})
+            case .task, .nextAction, .waitFor:
+                TaskRowViewBig(task: TaskDTOReduced(name: name),
+                               switchAction: {})
+            case .note:
+                NoteRowView(note: NoteDTOReduced(name: name),
+                            tapAction: {})
+            default:
+                Text("tutaj brak widoku").foregroundColor(.white)
+            }
     }
 
     @ObservedObject private var viewModel: SearchVM

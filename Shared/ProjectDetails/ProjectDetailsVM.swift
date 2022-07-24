@@ -48,6 +48,7 @@ final class ProjectDetailsVM: BaseVM {
     private let interactor: ProjectDetailsInteractor
     private let id: UUID
     private var tags = ItemTags()
+    private var areas = FocusAreas()
 
     init(id: UUID?,
          interactor: ProjectDetailsInteractor,
@@ -159,7 +160,6 @@ final class ProjectDetailsVM: BaseVM {
             backAction()
             return
         }
-
         interactor.editProject(id: id, temporaryProject)
         backAction()
     }
@@ -194,7 +194,8 @@ final class ProjectDetailsVM: BaseVM {
                    type: .project,
                    status: projectStatus,
                    relatedItems: Relations(), // tutaj zrobic tak jak w tasku
-                   tags: tags)
+                   tags: tags,
+                   areas: areas)
     }
 
 }

@@ -15,18 +15,21 @@ struct NoteDTO: ItemProtocol, Identifiable {
     var type: ItemType
     var status: ItemStatus
     var tags: ItemTags?
+    var areas: FocusAreas?
 
     init(id: UUID,
          name: String,
          noteDescription: String?,
          type: ItemType,
-         tags: ItemTags?) {
+         tags: ItemTags?,
+         areas: FocusAreas?) {
         self.id = id
         self.name = name
         self.noteDescription = noteDescription
         self.type = type
         self.status = .new
         self.tags = tags
+        self.areas = areas
     }
 
     init(itemObject: ItemObject) {
@@ -36,6 +39,7 @@ struct NoteDTO: ItemProtocol, Identifiable {
         self.type = ItemType(rawValue: itemObject.type ?? "") ?? .note
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
         self.tags = itemObject.tags?.tags() ?? ItemTags()
+        self.areas = itemObject.areas?.areas() ?? FocusAreas()
     }
 
     init(newID: UUID) {
@@ -45,5 +49,6 @@ struct NoteDTO: ItemProtocol, Identifiable {
         self.type = .note
         self.status = .new
         self.tags = ItemTags()
+        self.areas = FocusAreas()
     }
 }

@@ -17,6 +17,7 @@ struct ProjectDTO: ItemProtocol, Identifiable {
     var status: ItemStatus
     var relatedItems: Relations
     var tags: ItemTags
+    var areas: FocusAreas
 
     init(id: UUID,
          name: String?,
@@ -25,14 +26,17 @@ struct ProjectDTO: ItemProtocol, Identifiable {
          type: ItemType,
          status: ItemStatus,
          relatedItems: Relations,
-         tags: ItemTags) {
+         tags: ItemTags,
+         areas: FocusAreas) {
         self.id = id
         self.name = name ?? ""
+        self.projectNotes = projectNotes
         self.projectAC = itemDesrciption
         self.type = type
         self.status = status
         self.relatedItems = relatedItems
         self.tags = tags
+        self.areas = areas
     }
 
     init(itemObject: ItemObject) {
@@ -44,6 +48,7 @@ struct ProjectDTO: ItemProtocol, Identifiable {
         self.status = ItemStatus(rawValue: itemObject.state ?? "") ?? .new
         self.relatedItems = itemObject.relatedItemsData?.relations() ?? Relations()
         self.tags = itemObject.tags?.tags() ?? ItemTags()
+        self.areas = itemObject.areas?.areas() ?? FocusAreas()
     }
 
     init(newID: UUID) {
@@ -54,5 +59,6 @@ struct ProjectDTO: ItemProtocol, Identifiable {
         self.status = .new
         self.relatedItems = Relations()
         self.tags = ItemTags()
+        self.areas = FocusAreas()
     }
 }

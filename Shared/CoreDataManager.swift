@@ -15,6 +15,7 @@ class CoreDataManager {
     enum Action {
         case fetchItem(id: UUID)
         case fetchItemsReduced
+        case fetchFiltered(phrase: String)
         case editItem(id: UUID, item: Item)
 
         case saveTask(task: TaskDTO)
@@ -32,16 +33,24 @@ class CoreDataManager {
 
         case deleteItem(id: UUID)
         case fetchRelatedItems(id: UUID)
+
+        case fetchAreas
+        case saveAreas(areas: FocusAreas)
+        case deleteArea(name: String)
+        case addArea(name: String)
     }
 
     static let shared = CoreDataManager()
 
     private init() {
         bindAction()
+
+        saveAreas(focusAreas: FocusAreas(areas: ["Ojciec", "Programista"]) )
     }
 
     let itemSubject = PassthroughSubject<Item?, Never>()
     let itemsReducedSubject = MYPassthroughSubject<[ItemReduced]>()
+    let itemsFilteredSubject = MYPassthroughSubject<[ItemReduced]>()
 
     let projectSubject = PassthroughSubject<ProjectDTO?, Never>()
     let projectsSubject = PassthroughSubject<[ProjectDTOReduced], Never>()
@@ -52,6 +61,8 @@ class CoreDataManager {
 
     let noteSubject = PassthroughSubject<NoteDTO?, Never>()
     let notesSubject = PassthroughSubject<[NoteDTOReduced], Never>()
+
+    let areasSubject = MYPassthroughSubject<FocusAreas>()
 
     let relatedItemsSubject = MYPassthroughSubject<[Item]>()
 
@@ -90,6 +101,8 @@ class CoreDataManager {
         switch action {
         case .fetchItemsReduced:
             fetchItemsReduced()
+        case let .fetchFiltered(phrase):
+            fetchItemsFiltered(phrase: phrase)
         case let .fetchTask(id):
             fetchTask(id: id)
         case .fetchTasks:
@@ -114,10 +127,18 @@ class CoreDataManager {
             fetchNote(id: id)
         case let .saveNote(note):
             saveItem(item: Item(note))
+        case let .saveAreas(focusAreas):
+            saveAreas(focusAreas: focusAreas)
         case let .fetchItem(id):
             fetchItem(id: id)
         case let .editItem(id, item):
             editItem(id: id, newItem: item)
+        case .fetchAreas:
+            fetchMyAreas()
+        case let .deleteArea(name):
+            deleteArea(name: name)
+        case let .addArea(name):
+            addArea(name: name)
         }
     }
 

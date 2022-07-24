@@ -44,6 +44,14 @@ class ScreenFactory {
             return AnyView(
                 SearchView(viewModel: VMFactory.search(dependency, router: router))
             )
+        case .areas:
+            return AnyView(
+                AreasView(viewModel: VMFactory.areas(dependency, router: router))
+            )
+        case .export:
+            return AnyView(
+                Text("tutaj 9875")
+            )
         case .transformView, .addItem:
             print("factory not allowed view")
             return AnyView(EmptyView())

@@ -10,16 +10,21 @@ import Foundation
 
 struct NotesListView: View {
     var body: some View {
-        VStack {
-            notesScrollView
-                .padding(.horizontal)
-            Text("What's on your mind? ...")
-                .font(.system(size: 32))
-                .foregroundColor(.gray)
-                .padding()
-                .onTapGesture { viewModel.actionSubject.send(.addNote) }
+        NavigationView {
+            VStack {
+                notesScrollView
+                    .padding(.horizontal)
+                Text("What's on your mind? ...")
+                    .font(.system(size: 32))
+                    .foregroundColor(.gray)
+                    .padding()
+                    .onTapGesture { viewModel.actionSubject.send(.addNote) }
+            }
+            .onAppear { viewModel.actionSubject.send(.onAppear) }
+            .toolbar {
+                Text("tutaj")
+            }
         }
-        .onAppear { viewModel.actionSubject.send(.onAppear) }
         .modifier(NavigationBarModifier(
             viewModel.screenType.title,
             leftImageView: AnyView(Image(systemName: "square.lefthalf.filled")),

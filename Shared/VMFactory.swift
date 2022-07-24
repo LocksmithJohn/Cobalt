@@ -40,4 +40,12 @@ class VMFactory {
     static func search(_ dependency: Dependency, router: Router) -> SearchVM {
         SearchVM(interactor: Interactor(router: router), appstate: dependency.appState)
     }
+
+    static func areas(_ dependency: Dependency, router: Router) -> AreasVM {
+        AreasVM(interactor: Interactor(router: router), appState: dependency.appState)
+    }
+
+    static func export() -> ExportVM {
+        ExportVM(screenType: .export)
+    }
 }

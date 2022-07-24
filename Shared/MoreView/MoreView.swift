@@ -15,10 +15,13 @@ struct MoreView: View {
         VStack {
             Form {
                 Section("Things") {
-                    row(title: "Areas of focus")
+                    row(title: "Areas of focus", tapAction: { viewModel.actionSubject.send(.showAreas)
+                    })
                     row(title: "Someday/Maybe")
                     row(title: "Control lists")
                     row(title: "References")
+                    row(title: "Export", tapAction: { viewModel.actionSubject.send(.showExport)
+                        })
                 }
                 Section("Settings") {
                     row(title: "Profile")
@@ -44,7 +47,9 @@ struct MoreView: View {
         )
     }
 
-    private func row(title: String, imageName: String? = nil) -> some View {
+    private func row(title: String,
+                     imageName: String? = nil,
+                     tapAction: (() -> Void)? = nil)  -> some View {
         HStack {
             Text(title)
             Spacer()
@@ -52,6 +57,8 @@ struct MoreView: View {
                 Image(systemName: imageName)
             }
         }
+        .contentShape(Rectangle())
+        .onTapGesture { tapAction?() }
     }
 
     @ObservedObject private var viewModel: MoreVM
